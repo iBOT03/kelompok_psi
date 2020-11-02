@@ -14,19 +14,19 @@
     <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
 
     <!-- Animate.css -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/animate.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/user/css/animate.css">
     <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/icomoon.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/user/css/icomoon.css">
     <!-- Bootstrap  -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/user/css/bootstrap.css">
     <!-- Flexslider  -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/flexslider.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/user/css/flexslider.css">
 
     <!-- Theme style  -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/user/css/style.css">
 
     <!-- Modernizr JS -->
-    <script src="<?php echo base_url(); ?>js/modernizr-2.6.2.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/user/js/modernizr-2.6.2.min.js"></script>
 
 </head>
 
@@ -40,16 +40,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 text-center logo-wrap">
-                        <div id="fh5co-logo"><a href="<?= base_url(); ?>Home">Cafe Rooster<span>.</span></a></div>
+                        <div id="fh5co-logo"><a href="<?= base_url(); ?>user/Home">Cafe Rooster<span>.</span></a></div>
                     </div>
                     <div class="col-xs-12 text-center menu-1 menu-wrap">
                         <ul>
-                            <li class="<?= $beranda; ?>"><a href="<?= base_url(); ?>Home">Beranda</a></li>
-                            <li class="<?= $menu; ?>"><a href="<?= base_url(); ?>Menu">Menu</a></li>
-                            <li class="<?= $galeri; ?>"><a href="<?= base_url(); ?>Gallery">Galeri</a></li>
-                            <li class="<?= $booking; ?>"><a href="<?= base_url(); ?>Booking">Pesan Meja</a></li>
-                            <li class="<?= $tentang; ?>"><a href="<?= base_url(); ?>About">Tentang</a></li>
-                            <li class="<?= $kontak; ?>"><a href="<?= base_url(); ?>Contact">Hubungi kami</a></li>
+                            <li class="<?= $beranda; ?>"><a href="<?= base_url(); ?>user/Home">Beranda</a></li>
+                            <li class="<?= $menu; ?>"><a href="<?= base_url(); ?>user/Menu">Menu</a></li>
+                            <li class="<?= $galeri; ?>"><a href="<?= base_url(); ?>user/Gallery">Galeri</a></li>
+                            <li class="<?= $booking; ?>"><a href="<?= base_url(); ?>user/Booking">Pesan Meja</a></li>
+                            <li class="<?= $tentang; ?>"><a href="<?= base_url(); ?>user/About">Tentang</a></li>
+                            <li class="<?= $kontak; ?>"><a href="<?= base_url(); ?>user/Contact">Hubungi kami</a></li>
                             <li class="<?= $login; ?>"><a href="#">Login</a></li>
                         </ul>
                     </div>

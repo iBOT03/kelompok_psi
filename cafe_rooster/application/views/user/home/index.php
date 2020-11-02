@@ -1,4 +1,4 @@
-        <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner" style="background-image: url(images/hero_1.jpeg);" data-stellar-background-ratio="0.5">
+        <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner" style="background-image: url(<?php echo base_url(); ?>/assets/user/images/gallery-4.jpg);" data-stellar-background-ratio="0.5">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row">
@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-md-pull-4 img-wrap animate-box" data-animate-effect="fadeInLeft">
-                        <img src="images/hero_1.jpeg" alt="Free Restaurant Bootstrap Website Template by FreeHTML5.co">
+                        <img src="<?php echo base_url(); ?>/assets/user/images/hero_1.jpeg" alt="Free Restaurant Bootstrap Website Template by FreeHTML5.co">
                     </div>
                     <div class="col-md-5 col-md-push-1 animate-box">
                         <div class="section-heading">
@@ -61,7 +61,7 @@
                         <aside id="fh5co-slider-wrwap">
                             <div class="flexslider">
                                 <ul class="slides">
-                                    <li style="background-image: url(images/gallery_7.jpeg);">
+                                    <li style="background-image: url(<?php echo base_url(); ?>/assets/user/images/gallery_7.jpeg);">
                                         <div class="overlay-gradient"></div>
                                         <div class="container-fluid">
                                             <div class="row">
@@ -77,7 +77,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li style="background-image: url(images/gallery_6.jpeg);">
+                                    <li style="background-image: url(<?php echo base_url(); ?>/assets/user/images/gallery_6.jpeg);">
                                         <div class="overlay-gradient"></div>
                                         <div class="container-fluid">
                                             <div class="row">
@@ -93,7 +93,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li style="background-image: url(images/gallery_5.jpeg);">
+                                    <li style="background-image: url(<?php echo base_url(); ?>/assets/user/images/gallery_5.jpeg);">
                                         <div class="overlay-gradient"></div>
                                         <div class="container-fluid">
                                             <div class="row">
@@ -131,7 +131,7 @@
                     </div>
 
                     <div class="col-md-5 animate-box img-to-responsive animate-box" data-animate-effect="fadeInLeft">
-                        <img src="images/person_1.jpg" alt="">
+                        <img src="<?php echo base_url(); ?>/assets/user/images/person_1.jpg" alt="">
                     </div>
                     <div class="col-md-7 animate-box" data-animate-effect="fadeInRight">
                         <blockquote>
