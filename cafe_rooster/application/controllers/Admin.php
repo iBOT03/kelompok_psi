@@ -7,8 +7,8 @@ class Admin extends CI_Controller
     {
 
         $data['judul'] = "Dashboard Admin";
-        $this->load->view('templates/headerAdmin', $data);
-        // $this->load->view('admin/index');
-        $this->load->view('templates/footerAdmin');
+        $this->load->view('admin/templates/headerAdmin', $data);
+        // $this->load->view('admin/dashboard/index');
+        $this->load->view('admin/templates/footerAdmin');
     }
 }

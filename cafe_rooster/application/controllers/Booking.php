@@ -14,8 +14,8 @@ class Booking extends CI_Controller
         $data['tentang'] = "";
         $data['kontak'] = "";
         $data['login'] = "";
-        $this->load->view('templates/header', $data);
-        $this->load->view('booking/index');
-        $this->load->view('templates/footer');
+        $this->load->view('user/templates/header', $data);
+        $this->load->view('user/booking/index');
+        $this->load->view('user/templates/footer');
     }
 }

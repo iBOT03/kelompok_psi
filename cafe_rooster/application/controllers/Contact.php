@@ -14,8 +14,8 @@ class Contact extends CI_Controller
         $data['tentang'] = "";
         $data['kontak'] = "active";
         $data['login'] = "";
-        $this->load->view('templates/header', $data);
-        $this->load->view('kontak/index');
-        $this->load->view('templates/footer');
+        $this->load->view('user/templates/header', $data);
+        $this->load->view('user/kontak/index');
+        $this->load->view('user/templates/footer');
     }
 }

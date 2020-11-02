@@ -14,8 +14,8 @@ class About extends CI_Controller
         $data['tentang'] = "active";
         $data['kontak'] = "";
         $data['login'] = "";
-        $this->load->view('templates/header', $data);
+        $this->load->view('user/templates/header', $data);
         $this->load->view('tentang/index');
-        $this->load->view('templates/footer');
+        $this->load->view('user/templates/footer');
     }
 }
