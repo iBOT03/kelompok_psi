@@ -69,7 +69,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <a href="#" class="btn btn-danger btn-icon-split">
+                                <a href="<?= site_url("admin/administrator") ?>" class="btn btn-danger btn-icon-split">
                                     <span class="icon text-white">
                                         <i class="fas fa-reply"></i>
                                     </span>
