@@ -1,12 +1,20 @@
-<?php 
-  class Administrator extends CI_Controller
-  {
+<?php
+class Administrator extends CI_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model("admin/Karyawan_Model");
+    }
+
     public function index()
     {
-      //$this->load->view('admin/templates/header');
-      //$this->load->view('admin/templates/sidebar'); 
-      $this->load->view('admin/administrator'); 
-      //$this->load->view('admin/templates/footer'); 
+        $data = array("karyawan" => $this->Karyawan_Model->getKaryawan());
+        $this->load->view("admin/administrator/administrator", $data);
     }
-  }
-?>
+
+    public function tambah()
+    {        
+        $this->load->view("admin/administrator/tambahadministrator");
+    }
+}
