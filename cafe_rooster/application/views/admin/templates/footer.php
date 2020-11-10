@@ -1,15 +1,10 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; <?= SITE_NAME ." ". Date('Y') ?>
+  <strong>Copyright &copy; <?= SITE_NAME . " " . Date('Y') ?>
     </div>
-  </footer>
+</footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
+
+<!-- /.control-sidebar -->
 
 <!-- jQuery -->
 <script src="<?php echo base_url(); ?>assets/admin/plugins/jquery/jquery.min.js"></script>
@@ -46,4 +41,5 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>assets/admin/js/demo.js"></script>
 </body>
+
 </html>
