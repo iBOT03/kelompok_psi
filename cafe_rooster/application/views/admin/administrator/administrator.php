@@ -36,7 +36,7 @@
                             <a href="<?= base_url("admin/administrator/tambah") ?>" class="btn btn-sm btn-info btn-icon-split shadow-sm">
                                 <span class="icon text-white">
                                     <i class="fas fa-plus"></i>
-                                    <i class="text">Tambah Karyawan</i>
+                                    <i class="text">Tambah Admin</i>
                                 </span>
                             </a>
                         </div>
