@@ -31,6 +31,35 @@ class Karyawan_Model extends CI_Model
     {
         return $this->db->get("bagian_karyawan")->result();
     }
+
+    public function index() {
+        $query = $this->db->query("SELECT * FROM bagian_karyawan, karyawan WHERE bagian_karyawan.id_bagian = karyawan.id_bagian")->result();
+        return $query;
+    }
+
+    //UPDATE DATA KARYAWAN
+    public function upKaryawan($data = array(), $id)
+    {
+        $this->db->where('id_karyawan', $id);
+        return $this->db->update("karyawan", $data);
+    }
+
+    public function detail($id)
+    {
+        $this->db->where('id_karyawan', $id);
+        return $this->db->get("karyawan")->result();
+    }
+
+    public function getDetail($id){
+        $query = $this->db->query("SELECT * FROM karyawan, bagian_karyawan WHERE karyawan.id_bagian = bagian_karyawan.id_bagian AND karyawan.id_karyawan = '$id'")->result();
+        return $query;
+   }
+
+   public  function getBagKar()
+    {
+        $query = $this->db->get('bagian_karyawan');
+        return $query->result_array();
+    }
 }
 
 ?>
