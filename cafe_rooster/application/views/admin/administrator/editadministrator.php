@@ -30,12 +30,13 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <form method="post" action="<?= site_url('admin/administrator/edit') ?>" enctype="multipart/form-data">
+        <form method="post" action="<?= site_url('admin/administrator/edit/'.$bagian[0]->id_karyawan) ?>" enctype="multipart/form-data">
 
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6">
+                        <input name="id" id="id" type="hidden" class="form-control border-dark small mb-3" placeholder="Masukkan Nama Lengkap" aria-describedby="basic-addon2" value="<?php echo $bagian[0]->id_karyawan; ?>">
                             <p>Nama Lengkap</p>
                             <div class="input-group">
                                 <input name="nama" id="nama" type="text" class="form-control border-dark small mb-3" placeholder="Masukkan Nama Lengkap" aria-describedby="basic-addon2" value="<?php echo $bagian[0]->nama_karyawan; ?>">
@@ -98,11 +99,9 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="input-group">
-                                <img id="preview" src="" alt="" width="320px" /> <br>
+                                <input type="hidden" name="blank" id="blank" class="form-control border-dark small mb-3" placeholder="blank" aria-describedby="basic-addon2">
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-sm-6">
                             <div class="input-group">
                                 <img id="preview" src="" alt="" width="320px" /> <br>

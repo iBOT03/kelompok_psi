@@ -71,10 +71,10 @@ class Administrator extends CI_Controller
         }
     }
 
-    public function edit($id)
+    public function edit($id = null)
     {
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim|max_length[100]');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[karyawan.email]');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('posisi', 'Posisi', 'required');
         $this->form_validation->set_rules('no_telpon', 'No Telepon ', 'required|trim|max_length[13]|numeric');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
@@ -87,9 +87,10 @@ class Administrator extends CI_Controller
             $data["row"] = $this->Karyawan_Model->getBagKar($id);
             $data["data"] = $this->Karyawan_Model->getDetail($id);
             $this->load->view("admin/administrator/editadministrator", $data);
+            
         } else {
             $update = $this->Karyawan_Model->upKaryawan(array(
-                'id_karyawan'           => '',
+                'id_karyawan'           => $this->input->post("id"),
                 'id_bagian'             => $this->input->post("posisi"),
                 'email'                 => $this->input->post("email"),
                 'password'              => md5($this->input->post("password1")),
@@ -138,7 +139,7 @@ class Administrator extends CI_Controller
         }
     }
 
-    public function hapus($id)
+    public function hapus($id = null)
     {
         $hapus = $this->Karyawan_Model->delKaryawan($id);
         if ($hapus) {
