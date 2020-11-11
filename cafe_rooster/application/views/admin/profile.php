@@ -27,20 +27,20 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="<?= base_url()?>assets/admin/img/user4-128x128.jpg"
+                       src="<?= base_url('assets/admin/img/'). $admin['foto']?>" alt="image"
                        alt="User profile picture">
                 </div>
 
-                <h3 class="profile-username text-center"><?= $admin['nama'] ?></h3>
-
-                <p class="text-muted text-center">Software Engineer</p>
-
+                <h3 class="profile-username text-center"><?= $admin['nama_karyawan'] ?></h3>
+                <?php foreach($bagian as $bgn) {?>
+                <p class="text-muted text-center"><?= $bgn['bagian'] ?> </p>
+                <?php } ?>
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
                     <b>Alamat</b> <a class="float-right"><?= $admin['alamat_karyawan'] ?></a>
                   </li>
                   <li class="list-group-item">
-                    <b>No Telepon</b> <a class="float-right"><?= $admin['no_telepon'] ?></a>
+                    <b>No Telepon</b> <a class="float-right"><?= $admin['no_telepon_karyawan'] ?></a>
                   </li>
                 </ul>
               </div>

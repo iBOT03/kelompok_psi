@@ -4,7 +4,7 @@
     $cek = get_instance();
     if (!$cek->session->userdata('email')) 
     {
-      redirect('admin/auth');
+      redirect('admin/Auth');
     }
   }
 
@@ -13,7 +13,7 @@
     $cek = get_instance();
     if ($cek->session->userdata('email')) 
     {
-      redirect('admin/dashboard');
+      redirect('admin/Dashboard');
     }
   }
 ?>

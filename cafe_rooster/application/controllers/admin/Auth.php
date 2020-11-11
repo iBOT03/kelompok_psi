@@ -28,7 +28,9 @@ class Auth extends CI_Controller
         if ($user) {
             if ($user['password'] == md5($password)) {
                 $data  = [
-                    'nama_karyawan' => $user['nama_karyawan']
+                    'nama_karyawan' => $user['nama_karyawan'],
+                    'email' => $user['email']
+
                 ];
                 $this->session->set_userdata($data);
                 redirect('admin/Dashboard');
