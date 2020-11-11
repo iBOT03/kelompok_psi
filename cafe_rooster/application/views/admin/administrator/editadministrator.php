@@ -84,7 +84,7 @@
                         <div class="col-sm-6">
                             <p>Upload Foto</p>
                             <div class="input-group">
-                                <input name="foto" id="foto" type="file" accept="image/*" onchange="tampilkanPreview(this,'preview')" class="form-control border-dark small mb-3" placeholder="" aria-describedby="basic-addon2" required>
+                                <input name="foto" id="foto" type="file" accept="image/*" onchange="tampilkanPreview(this,'preview')" class="form-control border-dark small mb-3" placeholder="" aria-describedby="basic-addon2">
                                 <?php foreach ($bagian as $row) { ?>
                                     <a href="<?= base_url('uploads/foto/') . $row->foto ?>">Lihat Foto</a>
                                 <?php } ?>
