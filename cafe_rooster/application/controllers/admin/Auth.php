@@ -5,7 +5,6 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
-        //$this->load->model('admin/Auth_Model');
     }
 
     public function index()
