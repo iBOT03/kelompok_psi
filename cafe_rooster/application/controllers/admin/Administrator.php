@@ -5,6 +5,7 @@ class Administrator extends CI_Controller
     {
         parent::__construct();
         $this->load->model("admin/Karyawan_Model");
+        belumlogin();
     }
 
     public function index()
