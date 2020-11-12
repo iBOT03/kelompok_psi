@@ -12,6 +12,8 @@ class Administrator extends CI_Controller
     {
         $data["karyawan"] = $this->Karyawan_Model->getKaryawan();
         $data["karyawan"] = $this->Karyawan_Model->index();
+        $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('admin/templates/sidebar', $data);
         $this->load->view("admin/administrator/administrator", $data);
     }
 
@@ -28,6 +30,8 @@ class Administrator extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data["karyawan"] = $this->Karyawan_Model->getBagian();
+            $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
+            $this->load->view('admin/templates/sidebar', $data);
             $this->load->view("admin/administrator/tambahadministrator", $data);
         } else {
             $temp = explode(".", $_FILES['foto']['name']);
@@ -86,8 +90,9 @@ class Administrator extends CI_Controller
             $data["bagian"] = $this->Karyawan_Model->detail($id);
             $data["row"] = $this->Karyawan_Model->getBagKar($id);
             $data["data"] = $this->Karyawan_Model->getDetail($id);
+            $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
+            $this->load->view('admin/templates/sidebar', $data);
             $this->load->view("admin/administrator/editadministrator", $data);
-            
         } else {
             $update = $this->Karyawan_Model->upKaryawan(array(
                 'id_karyawan'           => $this->input->post("id"),
@@ -104,10 +109,10 @@ class Administrator extends CI_Controller
 
                 if ($ubahfoto) {
                     $config['allowed_types'] = 'jpg|png|gif|jpeg|pdf';
-					$config['max_size'] = '2048';
-					$config['upload_path'] = './uploads/foto/';
+                    $config['max_size'] = '2048';
+                    $config['upload_path'] = './uploads/foto/';
                     $config['file_name'] = $ubahfoto;
-                    
+
                     $this->load->library('upload', $config);
 
                     if ($this->upload->do_upload('foto')) {
@@ -117,24 +122,25 @@ class Administrator extends CI_Controller
                             unlink(FCPATH . '.uploads/foto/' . $fotolama);
                         }
                         $fotobaru = $this->upload->data('file_name');
-						$this->db->set('foto', $fotobaru);
-						$this->db->where('id_karyawan', $id);
-						$this->db->update('karyawan');
+                        $this->db->set('foto', $fotobaru);
+                        $this->db->where('id_karyawan', $id);
+                        $this->db->update('karyawan');
                     } else {
                         $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">'
-							. $this->upload->display_errors() .
-							'</div>');
-						redirect('admin/administrator');
+                            . $this->upload->display_errors() .
+                            '</div>');
+                        redirect('admin/administrator');
                     }
-                } $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+                }
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
 				Data Berhasil Diubah
 				</div>');
-				redirect('admin/administrator');
+                redirect('admin/administrator');
             } else {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
                 Data Gagal Di Ubah
                 </div>');
-				redirect('admin/administrator');
+                redirect('admin/administrator');
             }
         }
     }

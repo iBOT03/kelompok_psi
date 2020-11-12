@@ -11,7 +11,8 @@ class Pengguna extends CI_Controller
     public function index()
     {
         $data["pengguna"] = $this->Pengguna_Model->getPengguna();
-        //$data["pengguna"] = $this->Pengguna_Model->index();
+        $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('admin/templates/sidebar', $data);
         $this->load->view("admin/pengguna/pengguna", $data);
     }
 
@@ -26,7 +27,8 @@ class Pengguna extends CI_Controller
         $this->form_validation->set_rules('password2', 'Kofirmasi Password', 'required|trim|matches[password1]');
 
         if ($this->form_validation->run() == false) {
-            //$data["karyawan"] = $this->Karyawan_Model->getBagian();
+            $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
+            $this->load->view('admin/templates/sidebar', $data);
             $this->load->view("admin/pengguna/tambahpengguna");
         } else {
             $temp = explode(".", $_FILES['foto']['name']);
