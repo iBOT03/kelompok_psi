@@ -13,7 +13,7 @@
       $this->db->from('karyawan');
       $this->db->join('bagian_karyawan', 'bagian_karyawan.id_bagian = karyawan.id_bagian', 'left');
       $this->db->where('email', $email);
-      $query = $this->db->get()->result_array();
+      $query = $this->db->get()->row_array();
       return $query;
     }
   }
