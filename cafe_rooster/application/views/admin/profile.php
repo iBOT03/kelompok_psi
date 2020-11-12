@@ -27,8 +27,8 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="<?= base_url('assets/admin/img/'). $admin['foto']?>" alt="image"
-                       alt="User profile picture">
+                       src="<?= base_url('./uploads/foto/'). $admin['foto']?>" alt="image"
+                       alt="User profile picture" style="width: 200px; height: 200px;">
                 </div>
 
                 <h3 class="profile-username text-center"><?= $admin['nama_karyawan'] ?></h3>

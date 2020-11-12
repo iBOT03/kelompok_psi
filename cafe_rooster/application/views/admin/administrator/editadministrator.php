@@ -112,14 +112,14 @@
                         <div class="col-sm-6">
                             <p>Password</p>
                             <div class="input-group">
-                                <input name="password1" id="password" type="password" class="form-control border-dark small mb-3" placeholder="Masukkan Password" aria-describedby="basic-addon2" value="<?php echo $bagian[0]->password; ?>">
+                                <input name="password1" id="password" type="password" class="form-control border-dark small mb-3" placeholder="Masukkan Password" aria-describedby="basic-addon2">
                             </div>
                             <?= form_error('password1', '<small class="text-danger pl-2">', '</small>'); ?>
                         </div>
                         <div class="col-sm-6">
                             <p>Konfirmasi Password</p>
                             <div class="input-group">
-                                <input name="password2" id="password2" type="password" class="form-control border-dark small mb-3" placeholder="Konfirmasi Password" aria-describedby="basic-addon2" value="<?php echo $bagian[0]->password; ?>">
+                                <input name="password2" id="password2" type="password" class="form-control border-dark small mb-3" placeholder="Konfirmasi Password" aria-describedby="basic-addon2">
                             </div>
                             <?= form_error('password2', '<small class="text-danger pl-2">', '</small>'); ?>
                         </div>
