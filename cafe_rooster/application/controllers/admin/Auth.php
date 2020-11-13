@@ -25,7 +25,7 @@ class Auth extends CI_Controller
         $password = $this->input->post('password');
         $user = $this->db->get_where('karyawan', ['email' => $email]) -> row_array();
         if ($user) {
-            if ($user['password'] == md5($password)) {
+            if (password_verify($password, $user['password'])) {
                 $data  = [
                     'nama_karyawan' => $user['nama_karyawan'],
                     'email' => $user['email']

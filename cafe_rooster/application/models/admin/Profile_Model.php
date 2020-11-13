@@ -16,5 +16,13 @@
       $query = $this->db->get()->row_array();
       return $query;
     }
+
+    public function edit_pass($cekpass, $email)
+    {
+      $this->db->set('password',  $cekpass);
+      $this->db->where('email', $email);
+      $this->db->update('karyawan');
+      return $this->db;
+    }
   }
 ?>

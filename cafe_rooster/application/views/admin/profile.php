@@ -33,7 +33,7 @@
                 </div>
 
                 <h3 class="profile-username text-center"><?= $admin['nama_karyawan'] ?></h3>
-                <p class="text-muted text-center"><?= $kategori['bagian'] ?></p>
+                <p class="text-muted text-center"><?= $karyawan['bagian'] ?></p>
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
                     <b>Alamat</b> <a class="float-right"><?= $admin['alamat_karyawan'] ?></a>
@@ -52,47 +52,15 @@
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#edit_password" data-toggle="tab">Edit Password</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#edit_profile" data-toggle="tab">Edit Profile</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#edit_profile" data-toggle="tab">Edit Profile</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#edit_password" data-toggle="tab">Edit Password</a></li>
                 </ul>
               </div><!-- /.card-header -->
 
-              <!-- EDIT PASSWORD -->
+                  <!-- EDIT PROFILE-->
               <div class="card-body">
                 <div class="tab-content">
-                <div class="active tab-pane" id="edit_password">
-                    <form class="form-horizontal" action="<?= base_url('admin/Profile/edit_password')?>" method="POST">
-                      <div class="form-group row">
-                        <label for="passwordlama" class="col-sm-3 col-form-label">Password Lama</label>
-                        <div class="col-sm-9">
-                          <input type="password" class="form-control" id="passwordlama" placeholder="Password Lama">
-                          <?= form_error('passwordlama', '<small class="text-danger">', '</small>') ?>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="passwordbaru" class="col-sm-3 col-form-label">Password Baru</label>
-                        <div class="col-sm-9">
-                          <input type="password" class="form-control" id="passwordbaru" placeholder="Password Baru">
-                          <?= form_error('passwordbaru', '<small class="text-danger">', '</small>') ?>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="konfirmasipassword" class="col-sm-3 col-form-label">Konfirmasi Password</label>
-                        <div class="col-sm-9">
-                          <input type="password" class="form-control" id="konfirmasipassword" placeholder="Konfirmasi Password">
-                          <?= form_error('konfirmasipassword', '<small class="text-danger">', '</small>') ?>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-3 col-sm-9">
-                          <button type="submit" class="btn btn-danger">Edit</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                  
-                  <!-- EDIT PROFILE-->
-                  <div class="tab-pane" id="edit_profile">
+                  <div class="active tab-pane" id="edit_profile">
                     <form class="form-horizontal" action="<?= base_url('admin/Profile/editprofile')?>" methode="POST">
                       <div class="form-group row">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
@@ -120,7 +88,40 @@
                       </div>
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Edit</button>
+                          <button type="submit" class="btn btn-danger">Simpan</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+
+
+                  <!-- EDIT PASSWORD -->
+                  <div class="tab-pane" id="edit_password">
+                    <form class="form-horizontal" action="<?= base_url('admin/Profile/edit_password')?>" method="POST">
+                      <div class="form-group row">
+                        <label for="passwordlama" class="col-sm-3 col-form-label">Password Lama</label>
+                        <div class="col-sm-9">
+                          <input type="password" class="form-control" name="passwordlama" id="passwordlama" placeholder="Password Lama">
+                          <?= form_error('passwordlama', '<small class="text-danger">', '</small>') ?>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="passwordbaru" class="col-sm-3 col-form-label">Password Baru</label>
+                        <div class="col-sm-9">
+                          <input type="password" class="form-control" name="passwordbaru" id="passwordbaru" placeholder="Password Baru">
+                          <?= form_error('passwordbaru', '<small class="text-danger">', '</small>') ?>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="konfirmasipassword" class="col-sm-3 col-form-label">Konfirmasi Password</label>
+                        <div class="col-sm-9">
+                          <input type="password" class="form-control" name="konfirmasipassword" id="konfirmasipassword" placeholder="Konfirmasi Password">
+                          <?= form_error('konfirmasipassword', '<small class="text-danger">', '</small>') ?>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="offset-sm-3 col-sm-9">
+                          <button type="submit" class="btn btn-danger">Simpan</button>
                         </div>
                       </div>
                     </form>
