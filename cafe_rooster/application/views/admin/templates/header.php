@@ -57,11 +57,22 @@
         </div>
       </form>
 
+      <!-- Profile -->
+      
+
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
-
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="<?= base_url('./uploads/foto/') .$admin['foto'] ?>" style="width: 40px; height: 40px;" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="<?= base_url('admin/Profile') ?>" class="d-block"><?= $this->session->userdata('nama_karyawan'); ?></a>
+        </div>
+      </div>
         <!-- Notifications Dropdown Menu -->
         <div class="dropdown" style="float:right;">
+        
           <button class="dropbtn" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="fas fa-ellipsis-v"></span>
           </button>

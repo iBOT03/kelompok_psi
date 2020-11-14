@@ -10,7 +10,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="<?= base_url('admin/Dashboard')?>">Home</a></li>
               <li class="breadcrumb-item active">User Profile</li>
             </ol>
           </div>
@@ -55,35 +55,40 @@
                   <li class="nav-item"><a class="nav-link active" href="#edit_profile" data-toggle="tab">Edit Profile</a></li>
                   <li class="nav-item"><a class="nav-link" href="#edit_password" data-toggle="tab">Edit Password</a></li>
                 </ul>
-              </div><!-- /.card-header -->
+              </div>
+              <!-- /.card-header -->
 
                   <!-- EDIT PROFILE-->
               <div class="card-body">
                 <div class="tab-content">
                   <div class="active tab-pane" id="edit_profile">
-                    <form class="form-horizontal" action="<?= base_url('admin/Profile/editprofile')?>" methode="POST">
+                    <!-- <form class="form-horizontal" action="<?= base_url('admin/Profile/edit_profile')?>" methode="POST" > -->
+                    <?= form_open_multipart('admin/Profile/edit_profile'); ?>
                       <div class="form-group row">
-                        <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+                        <label for="namakaryawan" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="nama" placeholder="Nama Lengkap">
+                          <input type="text" class="form-control" name="namakaryawan" value="<?= $admin['nama_karyawan']?>" id="namakaryawan" placeholder="Nama Lengkap">
+                          <?= form_error('namakaryawan', '<small class="text-danger">', '</small>') ?>
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="nohp" class="col-sm-2 col-form-label">No HP</label>
+                        <label for="nohpkaryawan" class="col-sm-2 col-form-label">No HP</label>
                         <div class="col-sm-10">
-                          <input type="number" class="form-control" id="nohp" placeholder="No HP">
+                          <input type="text" class="form-control" name="nohpkaryawan" value="<?= $admin['no_telepon_karyawan']?>" id="nohpkaryawan" placeholder="No HP">
+                          <?= form_error('nohpkaryawan', '<small class="text-danger">', '</small>') ?>
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                        <label for="alamatkaryawan" class="col-sm-2 col-form-label">Alamat</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="alamat" placeholder="Alamat Lengkap">
+                          <input type="text" class="form-control" name="alamatkaryawan" value="<?= $admin['alamat_karyawan']?>" id="alamatkaryawan" placeholder="Alamat Lengkap">
+                          <?= form_error('alamatkaryawan', '<small class="text-danger">', '</small>') ?>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="foto" class="col-sm-2 col-form-label">Foto</label>
                         <div class="col-sm-10">
-                          <input type="file" class="from-control" id="foto" placeholder="Foto">
+                          <input type="file" class="from-control" name="foto" value="<?= $admin['foto']?>" id="foto">
                         </div>
                       </div>
                       <div class="form-group row">
@@ -91,7 +96,8 @@
                           <button type="submit" class="btn btn-danger">Simpan</button>
                         </div>
                       </div>
-                    </form>
+                    <!-- </form> -->
+                    <?= form_close(); ?>
                   </div>
 
 

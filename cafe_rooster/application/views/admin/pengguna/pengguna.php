@@ -68,11 +68,11 @@
                                                 <a href="<?php echo site_url('admin/pengguna/edit/'. $row->id_pembeli) ?>" class="btn btn-sm btn-info">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
-                                                <a href="<?php echo site_url('admin/pengguna/hapus/' . $row->id_pembeli) ?>" 
+                                                <!-- <a href="<?php echo site_url('admin/pengguna/hapus/' . $row->id_pembeli) ?>" 
                                                 onclick="confirm_modal('<?php echo 'pengguna/hapus/' . $row->id_pembeli; ?>')" 
                                                 class="btn btn-sm btn-danger btn-circle" data-toggle="modal" data-target="#hapusModal">
                                                     <i class="fa fa-trash"></i>
-                                                </a>
+                                                </a> -->
                                             </td>
                                         </tr>
                                     </tbody>
@@ -80,7 +80,7 @@
                             </table>
                         </div>
                         <!-- /.card -->
-                        <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <!-- <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

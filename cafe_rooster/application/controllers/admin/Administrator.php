@@ -49,7 +49,7 @@ class Administrator extends CI_Controller
                     'id_karyawan'           => '',
                     'id_bagian'             => $this->input->post("posisi"),
                     'email'                 => $this->input->post("email"),
-                    'password'              => md5($this->input->post("password1")),
+                    'password'              => password_hash('karyawan', PASSWORD_DEFAULT),
                     'nama_karyawan'         => $this->input->post("nama"),
                     'alamat_karyawan'       => $this->input->post("alamat"),
                     'no_telepon_karyawan'   => $this->input->post("no_telpon"),
@@ -83,7 +83,7 @@ class Administrator extends CI_Controller
         $this->form_validation->set_rules('no_telpon', 'No Telepon ', 'required|trim|max_length[13]|numeric');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
         $this->form_validation->set_rules('foto', 'Foto', 'trim');
-        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|max_length[100]|matches[password2]');
+        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[5]|max_length[100]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Kofirmasi Password', 'required|trim|matches[password1]');
 
         if ($this->form_validation->run() == false) {
@@ -98,7 +98,7 @@ class Administrator extends CI_Controller
                 'id_karyawan'           => $this->input->post("id"),
                 'id_bagian'             => $this->input->post("posisi"),
                 'email'                 => $this->input->post("email"),
-                'password'              => md5($this->input->post("password1")),
+                'password'              => password_hash('karyawan', PASSWORD_DEFAULT),
                 'nama_karyawan'         => $this->input->post("nama"),
                 'alamat_karyawan'       => $this->input->post("alamat"),
                 'no_telepon_karyawan'   => $this->input->post("no_telpon")

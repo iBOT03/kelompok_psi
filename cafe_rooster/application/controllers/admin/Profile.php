@@ -7,6 +7,7 @@
       belumlogin();
       $this->load->library('form_validation');
       $this->load->model("admin/Profile_Model");
+      $this->load->library('upload');
     }
   
     public function index()
@@ -20,6 +21,77 @@
       $this->load->view('admin/templates/sidebar', $data);
       $this->load->view('admin/Profile', $data);
       $this->load->view('admin/templates/footer');
+    }
+
+    public function edit_profile()
+    {
+      $data['judul'] = 'Edit Profile';
+      $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
+      $email = $this->session->userdata('email');
+      $data['karyawan'] = $this->Profile_Model->get_bagian($email);
+    
+      $this->form_validation->set_rules('namakaryawan', 'Nama Lengkap', 'required|trim');
+      $this->form_validation->set_rules('nohpkaryawan', 'no HP', 'required|trim');
+      $this->form_validation->set_rules('alamatkaryawan', 'Alamat Karyawan', 'required|trim');
+      
+      if ($this->form_validation->run() == false) {
+          $this->load->view('admin/templates/header', $data);
+          $this->load->view('admin/templates/sidebar', $data);
+          $this->load->view('admin/Profile', $data);
+          $this->load->view('admin/templates/footer');
+      }else {
+        $nama = $this->input->post('namakaryawan');
+        $nohp = $this->input->post('nohpkaryawan');
+        $alamat = $this->input->post('alamatkaryawan');
+        $data = [
+            'nama_karyawan' => $nama,
+            'no_telepon_karyawan' => $nohp,
+            'alamat_karyawan' => $alamat
+        ];
+
+
+        //ubah foto
+        // $ubahfoto = str_replace(' ', '', $_FILES['foto']['name']);
+        $ubahfoto = $_FILES['foto']['name'];
+        if ($ubahfoto) {
+          $config['allowed_types'] = 'jpg|png|jpeg';
+          $config['max_size'] = '2048';
+          $config['upload_path'] = './uploads/foto/';
+          // $config['file_name'] = $ubahfoto;
+
+          $this->upload->initialize($config);
+
+          if ($this->upload->do_upload('foto')) {
+            $fotolama = $data['admin']['foto'];
+            if ($fotolama != 'default.jpg') {
+              unlink(FCPATH .'uploads/foto/' .$fotolama);
+            }else {
+              $fotobaru = $this->upload->data('file_name');
+              $this->db->set('foto', $fotobaru);
+            }
+          }else {
+            $this->session->set_flashdata('pesan', '<div class="alert text-center alert-danger alert-dismissible fade show" role="alert">'. $this->upload->display_errors() .'
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+            redirect('admin/Profile');
+          }
+        }else {
+          $this->db->set($data);
+          $this->db->where('email', $email);
+          $this->db->update('karyawan');
+
+          $this->session->set_flashdata('pesan', '<div class="alert alert-success text-center alert-dismissible fade show" role="alert">Profile Berhasil Diubah.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          </div>');
+          redirect('admin/Profile');
+        }
+
+      }
+
     }
     
     public function edit_password()

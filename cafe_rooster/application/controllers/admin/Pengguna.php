@@ -44,12 +44,12 @@ class Pengguna extends CI_Controller
             if ($this->upload->do_upload('foto')) {
                 $dataPost = array(
                     'id_pembeli'           => '',
-                    'email'                 => $this->input->post("email"),
-                    'password'              => md5($this->input->post("password1")),
+                    'email'                => $this->input->post("email"),
+                    'password'             => password_hash('karyawan', PASSWORD_DEFAULT),
                     'nama_pembeli'         => $this->input->post("nama"),
                     'alamat_pembeli'       => $this->input->post("alamat"),
                     'no_telepon_pembeli'   => $this->input->post("no_telpon"),
-                    'foto'                  => trim($foto)
+                    'foto'                 => trim($foto)
                 );
                 if ($this->Pengguna_Model->addPengguna($dataPost)) {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
