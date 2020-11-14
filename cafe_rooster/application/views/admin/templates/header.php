@@ -62,12 +62,12 @@
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel mt-3 pb-3 d-flex">
         <div class="image">
           <img src="<?= base_url('./uploads/foto/') .$admin['foto'] ?>" style="width: 40px; height: 40px;" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="<?= base_url('admin/Profile') ?>" class="d-block"><?= $this->session->userdata('nama_karyawan'); ?></a>
+          <p class="d-block"><?= $this->session->userdata('nama_karyawan'); ?></p>
         </div>
       </div>
         <!-- Notifications Dropdown Menu -->
@@ -77,8 +77,12 @@
             <span class="fas fa-ellipsis-v"></span>
           </button>
           <div class="dropdown-content">
+            <a class="dropdown-item" href="<?= base_url('admin/Profile') ?>" role="button">
+              <i class="fas fa-user-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+              My Profile
+            </a>
             <a class="dropdown-item" href="#" role="button" data-toggle="modal" data-target="#logoutModal">
-              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text0gray-400"></i>
+              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
               Logout
             </a>
           </div>
