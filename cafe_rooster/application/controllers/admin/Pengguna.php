@@ -39,13 +39,13 @@ class Pengguna extends CI_Controller
             $config['upload_path'] = './uploads/foto/';
             $config['file_name'] = $foto;
 
-            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
 
             if ($this->upload->do_upload('foto')) {
                 $dataPost = array(
                     'id_pembeli'           => '',
                     'email'                => $this->input->post("email"),
-                    'password'             => password_hash('karyawan', PASSWORD_DEFAULT),
+                    'password'             => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                     'nama_pembeli'         => $this->input->post("nama"),
                     'alamat_pembeli'       => $this->input->post("alamat"),
                     'no_telepon_pembeli'   => $this->input->post("no_telpon"),

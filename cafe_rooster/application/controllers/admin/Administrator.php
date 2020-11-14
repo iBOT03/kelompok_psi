@@ -26,7 +26,7 @@ class Administrator extends CI_Controller
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
         $this->form_validation->set_rules('foto', 'Foto', 'trim');
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|max_length[100]|matches[password2]');
-        $this->form_validation->set_rules('password2', 'Kofirmasi Password', 'required|trim|matches[password1]');
+        $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|trim|matches[password1]');
 
         if ($this->form_validation->run() == false) {
             $data["karyawan"] = $this->Karyawan_Model->getBagian();
@@ -42,14 +42,14 @@ class Administrator extends CI_Controller
             $config['upload_path'] = './uploads/foto/';
             $config['file_name'] = $foto;
 
-            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
 
             if ($this->upload->do_upload('foto')) {
                 $dataPost = array(
                     'id_karyawan'           => '',
                     'id_bagian'             => $this->input->post("posisi"),
                     'email'                 => $this->input->post("email"),
-                    'password'              => password_hash('karyawan', PASSWORD_DEFAULT),
+                    'password'              => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                     'nama_karyawan'         => $this->input->post("nama"),
                     'alamat_karyawan'       => $this->input->post("alamat"),
                     'no_telepon_karyawan'   => $this->input->post("no_telpon"),
@@ -98,7 +98,7 @@ class Administrator extends CI_Controller
                 'id_karyawan'           => $this->input->post("id"),
                 'id_bagian'             => $this->input->post("posisi"),
                 'email'                 => $this->input->post("email"),
-                'password'              => password_hash('karyawan', PASSWORD_DEFAULT),
+                'password'              => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'nama_karyawan'         => $this->input->post("nama"),
                 'alamat_karyawan'       => $this->input->post("alamat"),
                 'no_telepon_karyawan'   => $this->input->post("no_telpon")
@@ -113,7 +113,7 @@ class Administrator extends CI_Controller
                     $config['upload_path'] = './uploads/foto/';
                     $config['file_name'] = $ubahfoto;
 
-                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
 
                     if ($this->upload->do_upload('foto')) {
                         $user = $this->db->get_where('karyawan', ['id_karyawan' => $id])->row_array();
