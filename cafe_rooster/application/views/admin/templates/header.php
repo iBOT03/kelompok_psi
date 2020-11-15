@@ -67,9 +67,7 @@
           <img src="<?= base_url('./uploads/foto/') .$admin['foto'] ?>" style="width: 40px; height: 40px;" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="<?= base_url('admin/Profile'); ?>"> 
           <p class="d-block"><?= $this->session->userdata('nama_karyawan'); ?></p>
-          </a>
         </div>
       </div>
         <!-- Notifications Dropdown Menu -->
