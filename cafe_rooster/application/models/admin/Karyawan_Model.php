@@ -19,11 +19,16 @@ class Karyawan_Model extends CI_Model
         return $this->db->insert("karyawan", $data);
     }
 
-    //DELETE DATA KARYAWAN
-    public function delKaryawan($id)
+    //CHANGE STATUS KARYAWAN
+    public function setAktif($id)
     {
         $this->db->where('id_karyawan', $id);
-        return $this->db->delete("karyawan");
+        $this->db->update('karyawan', ['status' => '1']);
+    }
+    public function setMati($id)
+    {
+        $this->db->where('id_karyawan', $id);
+        $this->db->update('karyawan', ['status' => '2']);
     }
 
     // GET DATA BAGIAN KARYAWAN
@@ -32,7 +37,8 @@ class Karyawan_Model extends CI_Model
         return $this->db->get("bagian_karyawan")->result();
     }
 
-    public function index() {
+    public function index()
+    {
         $query = $this->db->query("SELECT * FROM bagian_karyawan, karyawan WHERE bagian_karyawan.id_bagian = karyawan.id_bagian")->result();
         return $query;
     }
@@ -50,16 +56,15 @@ class Karyawan_Model extends CI_Model
         return $this->db->get("karyawan")->result();
     }
 
-    public function getDetail($id){
+    public function getDetail($id)
+    {
         $query = $this->db->query("SELECT * FROM karyawan, bagian_karyawan WHERE karyawan.id_bagian = bagian_karyawan.id_bagian AND karyawan.id_karyawan = '$id'")->result();
         return $query;
-   }
+    }
 
-   public  function getBagKar()
+    public  function getBagKar()
     {
         $query = $this->db->get('bagian_karyawan');
         return $query->result_array();
     }
 }
-
-?>

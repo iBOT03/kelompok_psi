@@ -2,8 +2,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="<?= base_url("admin/dashboard") ?>" class="brand-link">
-    <img src="<?php echo base_url(); ?>assets/admin/img/logo.png" alt="AdminLTE Logo" style="width: 220px;">
-    <!-- <span class="brand-text font-weight-light">Cafe Rooster</span> -->
+    <img src="<?php echo base_url(); ?>assets/admin/img/rooster-logo.png" alt="Logo" style="width: 70px;">
+    <span class="brand-text font-weight-bold">Cafe Rooster</span>
   </a>
 
   <!-- Sidebar -->
@@ -11,7 +11,7 @@
     <!-- Sidebar user panel (optional) -->
     <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="<?= base_url('./uploads/foto/') .$admin['foto'] ?>" style="width: 40px; height: 40px;" class="img-circle elevation-2" alt="User Image">
+        <img src="<?= base_url('./uploads/foto/') . $admin['foto'] ?>" style="width: 40px; height: 40px;" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
         <a href="<?= base_url('admin/Profile') ?>" class="d-block"><?= $this->session->userdata('nama_karyawan'); ?></a>
@@ -108,7 +108,7 @@
           </ul>
         </li>
 
-        <li class="nav-header">DATA CATERING</li>
+        <li class="nav-header">DATA MASTER</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-table"></i>
@@ -149,29 +149,20 @@
                 <p>Menu</p>
               </a>
             </li>
-            <ul>
-              <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kategori Menu</p>
-                </a>
-              </li>
-            </ul>
+            <li class="nav-item">
+              <a href="pages/tables/data.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Kategori Menu</p>
+              </a>
+            </li>
             <li class="nav-item">
               <a href="pages/tables/data.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Data Barang</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="pages/tables/data.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Data Lain2 (Tambah sendiri cuk)</p>
-              </a>
-            </li>
           </ul>
         </li>
-
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

@@ -13,7 +13,6 @@ class Administrator extends CI_Controller
         $data["karyawan"] = $this->Karyawan_Model->getKaryawan();
         $data["karyawan"] = $this->Karyawan_Model->index();
         $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
-        $this->load->view('admin/templates/sidebar', $data);
         $this->load->view("admin/administrator/administrator", $data);
     }
 
@@ -53,7 +52,8 @@ class Administrator extends CI_Controller
                     'nama_karyawan'         => $this->input->post("nama"),
                     'alamat_karyawan'       => $this->input->post("alamat"),
                     'no_telepon_karyawan'   => $this->input->post("no_telpon"),
-                    'foto'                  => trim($foto)
+                    'foto'                  => trim($foto),
+                    'status'                => 1
                 );
                 if ($this->Karyawan_Model->addKaryawan($dataPost)) {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
@@ -101,7 +101,8 @@ class Administrator extends CI_Controller
                 'password'              => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'nama_karyawan'         => $this->input->post("nama"),
                 'alamat_karyawan'       => $this->input->post("alamat"),
-                'no_telepon_karyawan'   => $this->input->post("no_telpon")
+                'no_telepon_karyawan'   => $this->input->post("no_telpon"),
+                'status'                => $this->input->post("status")
             ), $id);
 
             if ($update) {
@@ -159,5 +160,23 @@ class Administrator extends CI_Controller
 		  </div>');
             redirect('admin/administrator');
         }
+    }
+
+    public function ganti($id)
+    {
+        if (isset($_POST['aktif'])) {
+            $this->Karyawan_Model->setAktif($id);
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+                Akun telah diaktifkan!
+            </div>');
+            redirect('admin/administrator');
+        } else if (isset($_POST['mati'])) {
+            $this->Karyawan_Model->setMati($id);
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+                        Akun telah dinonaktifkan!
+                        </div>');
+            redirect('admin/administrator');
+        } 
+        $this->load->view("admin/administrator");
     }
 }

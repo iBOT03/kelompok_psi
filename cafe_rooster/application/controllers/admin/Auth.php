@@ -23,18 +23,23 @@ class Auth extends CI_Controller
     {
         $email    = $this->input->post('email');
         $password = $this->input->post('password');
-        $user = $this->db->get_where('karyawan', ['email' => $email]) -> row_array();
+        $user = $this->db->get_where('karyawan', ['email' => $email])->row_array();
         if ($user) {
-            if (password_verify($password, $user['password'])) {
-                $data  = [
-                    'nama_karyawan' => $user['nama_karyawan'],
-                    'email' => $user['email']
+            if ($user['status'] == 1) {
+                if (password_verify($password, $user['password'])) {
+                    $data  = [
+                        'nama_karyawan' => $user['nama_karyawan'],
+                        'email' => $user['email']
 
-                ];
-                $this->session->set_userdata($data);
-                redirect('admin/Dashboard');
+                    ];
+                    $this->session->set_userdata($data);
+                    redirect('admin/Dashboard');
+                } else {
+                    $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Password salah!</div>');
+                    redirect('admin/Auth');
+                }
             } else {
-                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Email atau Password salah!</div>');
+                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Akun telah di no-Aktifkan! Apabila anda merasa ini sebuah kesalahan, silahkan hubungi pihak Admin.</div>');
                 redirect('admin/Auth');
             }
         } else {
