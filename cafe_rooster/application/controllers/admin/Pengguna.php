@@ -49,7 +49,8 @@ class Pengguna extends CI_Controller
                     'nama_pembeli'         => $this->input->post("nama"),
                     'alamat_pembeli'       => $this->input->post("alamat"),
                     'no_telepon_pembeli'   => $this->input->post("no_telpon"),
-                    'foto'                 => trim($foto)
+                    'foto'                 => trim($foto),
+                    'status'               => 1
                 );
                 if ($this->Pengguna_Model->addPengguna($dataPost)) {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
@@ -69,5 +70,23 @@ class Pengguna extends CI_Controller
                 redirect('admin/pengguna');
             }
         }
+    }
+
+    public function ganti($id)
+    {
+        if (isset($_POST['aktif'])) {
+            $this->Pengguna_Model->setAktif($id);
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+                Akun telah diaktifkan!
+            </div>');
+            redirect('admin/pengguna');
+        } else if (isset($_POST['mati'])) {
+            $this->Pengguna_Model->setMati($id);
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+                        Akun telah dinonaktifkan!
+                        </div>');
+            redirect('admin/pengguna');
+        } 
+        $this->load->view("admin/pengguna");
     }
 }
