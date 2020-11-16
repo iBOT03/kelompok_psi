@@ -17,5 +17,13 @@
       $this->load->view('admin/menu/index', $data);
       $this->load->view('admin/templates/footer');
     }
+
+    public function edit_menu()
+    {
+      $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
+      $data['menu'] = $this->Menu_Model->data_menu();
+
+      
+    }
   }
 ?>
