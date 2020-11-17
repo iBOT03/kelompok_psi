@@ -6,7 +6,7 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <h1>Profile</h1>
-          <?= $this->session->flashdata('pesan'); ?>
+          
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -59,6 +59,7 @@
             <!-- EDIT PROFILE-->
             <div class="card-body">
               <div class="tab-content">
+              <?= $this->session->flashdata('pesan'); ?>
                 <div class="active tab-pane" id="edit_profile">
                   <!-- <form class="form-horizontal" action="<?= base_url('admin/Profile/edit_profile') ?>" methode="POST" > -->
                   <?= form_open_multipart('admin/Profile/edit_profile'); ?>
