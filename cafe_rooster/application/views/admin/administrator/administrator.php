@@ -58,7 +58,7 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                    <tbody>
+                                <tbody>
                                     <?php foreach ($karyawan as $row) : ?>
                                         <tr style="text-align: center;">
                                             <td><?= $row->id_karyawan; ?></td>
@@ -75,45 +75,43 @@
                                                 } ?>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-default<?= $row->id_karyawan ?>">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <!-- <a href="<?php echo site_url('admin/administrator/edit/' . $row->id_karyawan) ?>" class="btn btn-sm btn-info">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </a>
-                                                <a href="<?php echo site_url('admin/administrator/hapus/' . $row->id_karyawan) ?>" onclick="confirm_modal('<?php echo 'administrator/hapus/' . $row->id_karyawan; ?>')" class="btn btn-sm btn-danger btn-circle" data-toggle="modal" data-target="#hapusModal">
-                                                    <i class="fa fa-trash"></i>
-                                                </a> -->
+                                                <?php
+                                                if ($_SESSION['nama_karyawan'] != $row->nama_karyawan) {
+                                                ?>
+                                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-default<?= $row->id_karyawan ?>">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                <?php } ?>
                                             </td>
                                         </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                    <form action="<?= site_url('admin/administrator/ganti/' . $row->id_karyawan) ?>" method="post">
-                                        <div class="modal fade" id="modal-default<?= $row->id_karyawan ?>">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title">Ganti Status</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Silahkan pilih status untuk akun tersebut. . .</p>
-                                                        <button class="btn btn-sm btn-success btn-icon-split shadow-sm" type="submit" name="aktif" id="aktif">
-                                                            <span class="icon text-white-50"><i class="fas fa-check"></i></span><span class="text"> Aktif</span></button>
+                                    <?php endforeach; ?>
+                                </tbody>
 
-                                                        <button class="btn btn-sm btn-danger btn-icon-split shadow-sm" type="submit" name="mati" id="mati">
-                                                            <span class="icon text-white-50"><i class="fas fa-times"></i></span><span class="text"> Non-Aktif</span></button>
-                                                    </div>
-                                                </div>
-                                                <!-- /.modal-content -->
-                                            </div>
-                                            <!-- /.modal-dialog -->
-                                        </div>
-                                    </form>
-                                
                             </table>
+                            <form action="<?= site_url('admin/administrator/ganti/' . $row->id_karyawan) ?>" method="post">
+                                <div class="modal fade" id="modal-default<?= $row->id_karyawan ?>">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Ganti Status</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Silahkan pilih status untuk akun tersebut. . .</p>
+                                                <button class="btn btn-sm btn-success btn-icon-split shadow-sm" type="submit" name="aktif" id="aktif">
+                                                    <span class="icon text-white-50"><i class="fas fa-check"></i></span><span class="text"> Aktif</span></button>
+
+                                                <button class="btn btn-sm btn-danger btn-icon-split shadow-sm" type="submit" name="mati" id="mati">
+                                                    <span class="icon text-white-50"><i class="fas fa-times"></i></span><span class="text"> Non-Aktif</span></button>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                            </form>
                         </div>
                         <!-- /.card -->
                         <!-- <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
