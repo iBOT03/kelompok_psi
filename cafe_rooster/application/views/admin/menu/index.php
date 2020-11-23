@@ -33,8 +33,8 @@
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
-                  <tr>
-                    <th>Id Menu</th>
+                  <tr style="text-align: center;">
+                    <th style="width: 2px; ">No</th>
                     <th>Nama Menu</th>
                     <th>Kategori Menu</th>
                     <th>Harga Menu</th>
@@ -44,20 +44,20 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <?php foreach($menu as $row) : ?>  
-                  <tr>
-                    <td><?= $row['id_menu'] ?></td>
+                  <?php $no=1; foreach($menu as $row) : ?>  
+                  <tr style="text-align: center;">
+                    <td style="width: 2px;"><?= $no; ?></td>
                     <td><?= $row['nama_menu'] ?></td>
                     <td><?= $row['nama_kategori'] ?></td>
                     <td> <?= $row['harga_menu'] ?></td>
                     <td><?= $row['gambar_menu']  ?></td>
                     <td><?= $row['deskripsi_menu'] ?></td>
                   </tr>
-                  <?php endforeach; ?>  
+                  <?php $no++; endforeach; ?>  
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Id Menu</th>
+                    <th>No</th>
                     <th>Nama Menu</th>
                     <th>Kategori Menu</th>
                     <th>Harga Menu</th>

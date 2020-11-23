@@ -47,8 +47,8 @@
                 <?php echo $this->session->userdata('pesan'); ?>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
-                  <tr>
-                    <th>Id Pengguna</th>
+                  <tr style="text-align: center;">
+                    <th style="width: 2px;">No</th>
                     <th>Alamat Email</th>
                     <th>Nama Pengguna</th>
                     <th>Alamat</th>
@@ -58,9 +58,9 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <?php foreach($pengguna as $row) : ?>
-                  <tr>
-                    <td><?= $row->id_pembeli; ?></td>
+                  <?php $no=1; foreach($pengguna as $row) : ?>
+                  <tr style="text-align: center;">
+                    <td style="width: 2px;"><?= $no; ?></td>
                     <td><?= $row->email; ?></td>
                     <td><?= $row->nama_pembeli; ?></td>
                     <td><?= $row->alamat_pembeli; ?></td>
@@ -77,11 +77,11 @@
                         </button>
                     </td>
                   </tr>
-                  <?php endforeach; ?>  
+                  <?php $no++; endforeach; ?>  
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Id Pengguna</th>
+                    <th>No</th>
                     <th>Alamat Email</th>
                     <th>Nama Pengguna</th>
                     <th>Alamat</th>

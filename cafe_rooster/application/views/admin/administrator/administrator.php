@@ -48,7 +48,7 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr style="text-align: center;">
-                                        <th>ID</th>
+                                        <th>No</th>
                                         <th>Posisi</th>
                                         <th>Nama Karyawan</th>
                                         <th>Alamat</th>
@@ -59,9 +59,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($karyawan as $row) : ?>
+                                    <?php $no=1; foreach ($karyawan as $row) : ?>
                                         <tr style="text-align: center;">
-                                            <td><?= $row->id_karyawan; ?></td>
+                                            <td><?= $no; ?></td>
                                             <td><?= $row->bagian; ?></td>
                                             <td><?= $row->nama_karyawan; ?></td>
                                             <td><?= $row->alamat_karyawan; ?></td>
@@ -83,8 +83,18 @@
                                                     </button>
                                                 <?php } ?>
                                             </td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                        </tr>                            
+                                    <?php $no++; endforeach; ?>
+                                    <tr style="text-align: center;">
+                                        <th>No</th>
+                                        <th>Posisi</th>
+                                        <th>Nama Karyawan</th>
+                                        <th>Alamat</th>
+                                        <th>Alamat Email</th>
+                                        <th>No. Telepon</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
                                 </tbody>
 
                             </table>
