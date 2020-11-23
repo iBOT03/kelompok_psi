@@ -26,6 +26,16 @@
     //   $query = $this->db->get()->result_array();
     //   return $query;
     // }
+
+    // INSERT DATA MENU
+    public function addMenu($data = array())
+    {
+        return $this->db->insert("menu", $data);
+    }
+
+    // GET DATA KATEGORI MENU
+    public function getkategori()
+    {
+        return $this->db->get("kategori_menu")->result();
+    }
   }
-  
-?>
