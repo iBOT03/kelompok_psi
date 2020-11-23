@@ -21,9 +21,12 @@
     public function edit_menu()
     {
       $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
-      $data['menu'] = $this->Menu_Model->data_menu();
+      // $data['menu'] = $this->Menu_Model->data_menu();
 
-      
+      $this->load->view('admin/templates/header', $data);
+      // $this->load->view('admin/templates/sidebar');
+      $this->load->view('admin/menu/tabel');
+      $this->load->view('admin/templates/footer');     
     }
   }
 ?>

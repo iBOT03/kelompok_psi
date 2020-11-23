@@ -25,12 +25,12 @@
       return $this->db;
     }
 
-    //UPDATE DATA KARYAWAN
-    public function upKaryawan($data = array(), $id)
-    {
-        $this->db->where('id_karyawan', $id);
-        return $this->db->update("karyawan", $data);
-    }
+    // //UPDATE DATA KARYAWAN
+    // public function upKaryawan($data = array(), $id)
+    // {
+    //     $this->db->where('id_karyawan', $id);
+    //     return $this->db->update("karyawan", $data);
+    // }
   }
   
 ?>

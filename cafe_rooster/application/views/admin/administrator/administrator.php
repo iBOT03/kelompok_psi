@@ -1,9 +1,9 @@
 <!-- Navbar -->
-<?php $this->load->view("admin/templates/header.php"); ?>
+<?php $this->load->view("admin/templates/header"); ?>
 <!-- End Navbar -->
 
 <!-- Sidebar -->
-<?php $this->load->view("admin/templates/sidebar.php"); ?>
+<?php $this->load->view("admin/templates/sidebar"); ?>
 <!-- End Sidebar -->
 
 <!-- Content Wrapper. Contains page content -->
@@ -58,8 +58,8 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                <?php foreach ($karyawan as $row) : ?>
                                     <tbody>
+                                    <?php foreach ($karyawan as $row) : ?>
                                         <tr style="text-align: center;">
                                             <td><?= $row->id_karyawan; ?></td>
                                             <td><?= $row->bagian; ?></td>
@@ -86,6 +86,7 @@
                                                 </a> -->
                                             </td>
                                         </tr>
+                                        <?php endforeach; ?>
                                     </tbody>
                                     <form action="<?= site_url('admin/administrator/ganti/' . $row->id_karyawan) ?>" method="post">
                                         <div class="modal fade" id="modal-default<?= $row->id_karyawan ?>">
@@ -111,7 +112,7 @@
                                             <!-- /.modal-dialog -->
                                         </div>
                                     </form>
-                                <?php endforeach; ?>
+                                
                             </table>
                         </div>
                         <!-- /.card -->
@@ -146,5 +147,5 @@
 <!-- /.content-wrapper -->
 
 <!-- Footer -->
-<?php $this->load->view("admin/templates/footer.php"); ?>
+<?php $this->load->view("admin/templates/footer"); ?>
 <!-- End Footer -->

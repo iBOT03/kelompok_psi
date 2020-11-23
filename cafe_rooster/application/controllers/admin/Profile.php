@@ -25,7 +25,7 @@ class Profile extends CI_Controller
 
   public function edit_profile()
   {
-    echo "TEST";
+    // echo "TEST";
     $data['judul'] = 'Edit Profile';
     $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
     $email = $this->session->userdata('email');
@@ -64,6 +64,10 @@ class Profile extends CI_Controller
           if ($fotolama != 'default.jpg') {
             unlink(FCPATH . 'uploads/foto/' . $fotolama);
           }
+          $this->db->set($array);
+          $this->db->where('email', $email);
+          $this->db->update('karyawan');
+
           $fotobaru = $this->upload->data('file_name');
           $this->db->set('foto', $fotobaru);
           $this->db->where('email', $email);
@@ -84,20 +88,11 @@ class Profile extends CI_Controller
           redirect('admin/profile');
         }
       } else {
-        $this->db->set($array);
-        $this->db->where('email', $email);
-        $this->db->update('karyawan');
-
-        $this->session->set_flashdata('pesan', '<div class="alert alert-success text-center alert-dismissible fade show" role="alert">Profile Berhasil Diubah.
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          </button>
-          </div>');
         redirect('admin/profile');
       }
     }
+    
   }
-
   public function edit_password()
   {
     $data['judul'] = "Edit Password";

@@ -167,5 +167,5 @@
 </script>
 
 <!-- Footer -->
-<?php $this->load->view("admin/templates/footer.php"); ?>
+<?php $this->load->view("admin/templates/footer"); ?>
 <!-- End Footer -->

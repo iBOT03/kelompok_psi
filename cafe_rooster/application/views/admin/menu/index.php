@@ -1,5 +1,8 @@
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -9,7 +12,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="<?= base_url('admin/dashboard')?>">Home</a></li>
+              <li class="breadcrumb-item"><a href="<?= base_url('admin/Dashboard')?>">Home</a></li>
               <li class="breadcrumb-item active">Data Menu</li>
             </ol>
           </div>
@@ -31,44 +34,37 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>ID Menu</th>
+                    <th>Id Menu</th>
                     <th>Nama Menu</th>
                     <th>Kategori Menu</th>
                     <th>Harga Menu</th>
                     <th>Gambar Menu</th>
                     <th>Deskripsi Menu</th>
-                    <th>Aksi</th>
+                    
                   </tr>
                   </thead>
-                  <?php foreach ($menu as $mn) : ?>
                   <tbody>
+                  <?php foreach($menu as $row) : ?>  
                   <tr>
-                    <td><?= $mn['id_menu'] ?></td>
-                    <td><?= $mn['nama_menu'] ?></td>
-                    <td><?= $mn['nama_kategori'] ?></td>
-                    <td><?= $mn['harga_menu'] ?></td>
-                    <td><?= $mn['gambar_menu'] ?></td>
-                    <td><?= $mn['deskripsi_menu'] ?></td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-info">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                    </td>
+                    <td><?= $row['id_menu'] ?></td>
+                    <td><?= $row['nama_menu'] ?></td>
+                    <td><?= $row['nama_kategori'] ?></td>
+                    <td> <?= $row['harga_menu'] ?></td>
+                    <td><?= $row['gambar_menu']  ?></td>
+                    <td><?= $row['deskripsi_menu'] ?></td>
                   </tr>
+                  <?php endforeach; ?>  
                   </tbody>
-                  <?php endforeach; ?>
                   <tfoot>
                   <tr>
-                    <th>ID Menu</th>
+                    <th>Id Menu</th>
                     <th>Nama Menu</th>
                     <th>Kategori Menu</th>
                     <th>Harga Menu</th>
                     <th>Gambar Menu</th>
                     <th>Deskripsi Menu</th>
-                    <th>Aksi</th>
                   </tr>
                   </tfoot>
-                
                 </table>
               </div>
               <!-- /.card-body -->
@@ -83,6 +79,9 @@
     </section>
     <!-- /.content -->
   </div>
-
-
-
+  <!-- /.content-wrapper -->
+  
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

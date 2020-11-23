@@ -1,9 +1,9 @@
 <!-- Navbar -->
-<?php $this->load->view("admin/templates/header.php"); ?>
+<?php $this->load->view("admin/templates/header"); ?>
 <!-- End Navbar -->
 
 <!-- Sidebar -->
-<?php $this->load->view("admin/templates/sidebar.php"); ?>
+<?php $this->load->view("admin/templates/sidebar"); ?>
 <!-- End Sidebar -->
 
 <!-- Content Wrapper. Contains page content -->
@@ -162,5 +162,5 @@
 </script>
 
 <!-- Footer -->
-<?php $this->load->view("admin/templates/footer.php"); ?>
+<?php $this->load->view("admin/templates/footer"); ?>
 <!-- End Footer -->
