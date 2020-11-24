@@ -18,14 +18,7 @@
       return $query;
     }
 
-    // public function bagian_menu()
-    // {
-    //   $this->db->select('*');
-    //   $this->db->from('menu');
-    //   $this->db->join('kategori_menu', 'kategori_menu.id_kategori = menu.id_kategori', 'left');
-    //   $query = $this->db->get()->result_array();
-    //   return $query;
-    // }
+  
 
     // INSERT DATA MENU
     public function addMenu($data = array())
@@ -37,5 +30,11 @@
     public function getkategori()
     {
         return $this->db->get("kategori_menu")->result();
+    }
+
+    //EDIT DATA MENU
+    public function editmenu($id)
+    {
+      
     }
   }

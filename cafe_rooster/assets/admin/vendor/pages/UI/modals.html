@@ -730,41 +730,54 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            
-            <div class="card card-success card-outline">
+            <div class="card card-primary card-outline">
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-edit"></i>
-                  SweetAlert2 Examples
+                  Modal Examples
                 </h3>
               </div>
               <div class="card-body">
-                <button type="button" class="btn btn-success swalDefaultSuccess">
-                  Launch Success Toast
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+                  Launch Default Modal
                 </button>
-                <button type="button" class="btn btn-info swalDefaultInfo">
-                  Launch Info Toast
-                </button>
-                <button type="button" class="btn btn-danger swalDefaultError">
-                  Launch Error Toast
-                </button>
-                <button type="button" class="btn btn-warning swalDefaultWarning">
-                  Launch Warning Toast
-                </button>
-                <button type="button" class="btn btn-default swalDefaultQuestion">
-                  Launch Question Toast
-                </button>
+                <br />
                 <div class="text-muted mt-3">
-                  For more examples look at <a href="https://sweetalert2.github.io/">https://sweetalert2.github.io/</a>
+                  Instructions for how to use modals are available on the
+                  <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a>
                 </div>
               </div>
               <!-- /.card -->
             </div>
+            
           </div>
           <!-- /.col -->
         </div>
         <!-- ./row -->
       </div><!-- /.container-fluid -->
+
+      <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Default Modal</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
     </section>
     <!-- /.content -->
   </div>
@@ -807,36 +820,57 @@
       timer: 3000
     });
 
-    $('.swalDefaultSuccess').click(function() {
-      Toast.fire({
-        icon: 'success',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+    // $('.swalDefaultSuccess').click(function() {
+    //   Toast.fire({
+    //     icon: 'success',
+    //     title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+    //   })
+    // });
+    // $('.swalDefaultInfo').click(function() {
+    //   Toast.fire({
+    //     icon: 'info',
+    //     title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+    //   })
+    // });
+    // $('.swalDefaultError').click(function() {
+    //   Toast.fire({
+    //     icon: 'error',
+    //     title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+    //   })
+    // });
+    // $('.swalDefaultWarning').click(function() {
+    //   Toast.fire({
+    //     icon: 'warning',
+    //     title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+    //   })
+    // });
+    // $('.swalDefaultQuestion').click(function() {
+    //   Toast.fire({
+    //     icon: 'question',
+    //     title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+    //   })
+    // });
+
+    // $('.toastrDefaultSuccess').click(function() {
+    //   toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    // });
+    // $('.toastrDefaultInfo').click(function() {
+    //   toastr.info('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    // });
+    // $('.toastrDefaultError').click(function() {
+    //   toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    // });
+    // $('.toastrDefaultWarning').click(function() {
+    //   toastr.warning('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    // });
+
+    $('.toastsDefaultDefault').click(function() {
+      $(document).Toasts('create', {
+        title: 'Toast Title',
+        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
       })
     });
-    $('.swalDefaultInfo').click(function() {
-      Toast.fire({
-        icon: 'info',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultError').click(function() {
-      Toast.fire({
-        icon: 'error',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultWarning').click(function() {
-      Toast.fire({
-        icon: 'warning',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultQuestion').click(function() {
-      Toast.fire({
-        icon: 'question',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
+    
   });
 
 </script>
