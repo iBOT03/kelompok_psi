@@ -12,7 +12,12 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Team</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Login</a></li>
+                        <?php if($_SESSION['email'] != $user['nama_pembeli']) : ?>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?= base_url('user/Auth')?>">Login</a></li>
+                        <?php  else : ?>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?= base_url('user/Auth')?>"><?= $this->session->userdata('nama_pembeli'); ?></a></li>
+                        <?php endif; ?>
+                        
                     </ul>
                 </div>
             </div>

@@ -1,97 +1,58 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+class Auth extends CI_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->library('form_validation');
+    }
 
-class Auth extends CI_Controller {
+    public function index()
+    {
+        Usudahlogin();
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        if ($this->form_validation->run() == false) {
+            $this->load->view("user/login_page");
+        } else {
+            $this->_login();
+        }
+    }
 
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->database();
-	}
+    private function _login()
+    {
+        $email    = $this->input->post('email');
+        $password = $this->input->post('password');
+        $user = $this->db->get_where('pembeli', ['email' => $email])->row_array();
+        if ($user) {
+            if ($user['status'] == 1) {
+                if (password_verify($password, $user['password'])) {
+                    $data  = [
+                        'nama_pembeli' => $user['nama_pembeli'],
+                        'email' => $user['email']
 
-	public function index()
-	{
-		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
-		$this->form_validation->set_rules('pass', 'Password', 'required|trim');
-		if($this->form_validation->run() == false)
-		{
-			$this->load->view('user/login_page');
-		}
-		else
-		{
-			$this->_login();
-		}
-	}
+                    ];
+                    $this->session->set_userdata($data);
+                    redirect('user/home');
+                } else {
+                    $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Password salah!</div>');
+                    redirect('user/Auth');
+                }
+            } else {
+                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Akun telah di no-Aktifkan! Apabila anda merasa ini sebuah kesalahan, silahkan hubungi pihak Admin.</div>');
+                redirect('user/Auth');
+            }
+        } else {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Akun belum terdaftar! Silahkan hubungi pihak Admin.</div>');
+            redirect('user/Auth');
+        }
+    }
 
-	private function _login()
-	{
-		$email = $this->input->post("email");
-		$pass = $this->input->post("pass");
-		
-		$user = $this->db->get_where("user", ['email' => $email])->row_array();
-		if($user)
-		{
-			if($user['status_aktif'] == 1)
-			{
-				if($user['status_user'] == 2)
-				{
-					$passmd5 = md5($pass);
-					if($passmd5 == $user['password'])
-					{
-						$data = [
-							'email' => $user['email'],
-							'id_user' => $user['id_user'],
-							'nama' => $user['nama_lengkap']	
-						];
-						$this->session->set_userdata($data);
-						redirect('Beranda');
-						// var_dump($data);
-						// die;
-					}
-					else
-					{
-						$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-						Wrong Password!
-						</div>');
-						redirect('Login');
-					}
-				}
-				else
-				{
-					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-					This login page is for users only, 
-					please login from the admin panel!
-					</div>');
-					redirect('Login');
-				}
-			}
-			else
-			{
-				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-				This email has not been actived!
-				</div>');
-				redirect('Login');
-			}
-			
-		}
-		else
-		{
-			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-			Email is not registered!
-			</div>');
-			redirect('Login');
-		}
-	}
-
-	public function logout()
-	{
-		$this->session->unset_userdata('email');
-		$this->session->unset_userdata('nama');
-		$this->session->unset_userdata('id_user');
-
-		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-			You have been logged out!
-			</div>');
-			redirect('Login');
-	}
+    public function logout()
+    {
+        $this->session->unset_userdata('nama_pembeli');
+        $this->session->unset_userdata('email');
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Anda berhasil logout! Silahkan login untuk melanjutkan.</div>');
+        redirect('admin/Auth');
+    }
 }
