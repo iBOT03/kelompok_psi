@@ -5,15 +5,17 @@
         public function index(){
 
             $data['judul'] = "Welcome to Cafe Rooster Probolinggo";
-            $data['beranda'] = "active";
-            $data['menu'] = "";
-            $data['galeri'] = "";
-            $data['booking'] = "";
-            $data['tentang'] = "";
-            $data['kontak'] = "";
-            $data['login'] = "";
             $this->load->view('user/templates/header', $data);
-            $this->load->view('user/home/index');
+            $this->load->view('user/templates/navbar');
+            $this->load->view('user/home');
+            $this->load->view('user/templates/footer');
+        }
+
+        public function booking()
+        {
+            $this->load->view('user/templates/header');
+            $this->load->view('user/templates/navbar');
+            $this->load->view('user/booking');
             $this->load->view('user/templates/footer');
         }
     }
