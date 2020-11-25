@@ -18,8 +18,6 @@
       return $query;
     }
 
-  
-
     // INSERT DATA MENU
     public function addMenu($data = array())
     {
@@ -36,5 +34,18 @@
     public function editmenu($id)
     {
       
+    }
+
+    //DELETE DATA KATEGORI
+    public function delKategori($id)
+    {
+        $this->db->where('id_kategori', $id);
+        return $this->db->delete("kategori_menu");
+    }
+
+    // INSERT DATA KATEGORI MENU
+    public function addKategori($data = array())
+    {
+        return $this->db->insert("kategori_menu", $data);
     }
   }

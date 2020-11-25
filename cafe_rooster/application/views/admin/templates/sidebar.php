@@ -69,13 +69,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?= base_url('admin/Menu')?>" class="nav-link">
+              <a href="<?= base_url('admin/Menu') ?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Menu</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/tables/data.html" class="nav-link">
+              <a href="<?= base_url('admin/Kategorimenu') ?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Kategori Menu</p>
               </a>
