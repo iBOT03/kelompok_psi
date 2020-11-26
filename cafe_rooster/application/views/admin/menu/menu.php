@@ -64,7 +64,7 @@
                         <td><?= $row['deskripsi_menu'] ?></td>
                         <td>
                           <button type="button" data-toggle="modal" data-id="<?= $row['id_menu'] ?>" data-target="#modalhapus" class="badge id btn btn-outline-danger"><i class="fas fa-trash"></i> Hapus</button>
-                          <button type="button" data-toggle="modal" data-target="#modaledit" data-id="?= $row['id_menu'] ?>" class="badge id btn btn-outline-primary"><i class="fas fa-edit"></i> Edit</button>
+                          <button type="button" data-toggle="modal" data-target="#modaledit" data-id="<?= $row['id_menu'] ?>" class="badge id btn btn-outline-primary"><i class="fas fa-edit"></i> Edit</button>
 
                           <!-- MODAL HAPUS -->
                           <div class="modal fade" id="modalhapus">
@@ -77,13 +77,15 @@
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                  <p>One fine body&hellip;</p>
+                                  <p>Apakah anda yakin ingin menghapus data ini&hellip;</p>
                                 </div>
-                                <div class="modal-footer justify-content-between">
-                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                              </div>
+                                <form action="<?= base_url('admin/Menu/del_menu/'). $row['id_menu']?>" method="POST">
+                                      <div class="modal-footer">
+                                          <input type="hidden" class="hapus" name="id">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                          <button type="submit" class="btn btn-primary">Hapus</button>
+                                      </div>
+                                </form>
                               <!-- /.modal-content -->
                             </div>
                             <!-- /.modal-dialog -->
@@ -91,6 +93,7 @@
 
 
                           <!-- MODAL EDIT -->
+                          
                           <div class="modal fade" id="modaledit">
                             <div class="modal-dialog">
                               <div class="modal-content">

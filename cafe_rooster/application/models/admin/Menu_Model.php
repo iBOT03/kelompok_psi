@@ -18,6 +18,11 @@
       return $query;
     }
 
+    // delete menu
+    public function deletemenu($idMenu)
+    {
+      $this->db->delete('menu', ['id_menu' => $idMenu]);
+    }
   
 
     // INSERT DATA MENU
@@ -33,8 +38,9 @@
     }
 
     //EDIT DATA MENU
-    public function editmenu($id)
+    public function editmenu($id_menu, $nama_menu, $kategori, $harga_menu, $gambar_menu, $deskripsi_menu )
     {
-      
+      $hasil = $this->db->query("UPDATE menu SET id_menu='$id_menu', nama_menu='$nama_menu' , kategori='$kategori',  harga_menu='$harga_menu', gambar_menu='$gambar_menu', deskripsi_menu='$deskripsi_menu'  WHERE id_menu='$id_menu' ");
+        return $hasil;
     }
   }
