@@ -90,6 +90,11 @@
         body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
       })
     })
+
+    //status
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    });
   });
 </script>
 </body>

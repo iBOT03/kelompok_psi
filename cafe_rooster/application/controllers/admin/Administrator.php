@@ -146,21 +146,6 @@ class Administrator extends CI_Controller
         }
     }
 
-    public function hapus($id = null)
-    {
-        $hapus = $this->Karyawan_Model->delKaryawan($id);
-        if ($hapus) {
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
-				Berhasil Menghapus Akun!
-			  </div>');
-            redirect('admin/administrator');
-        } else {
-            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
-			Gagal Menghapus Akun!
-		  </div>');
-            redirect('admin/administrator');
-        }
-    }
 
     public function ganti($id)
     {

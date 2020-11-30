@@ -64,60 +64,7 @@
                         <td><?= $row['deskripsi_menu'] ?></td>
                         <td>
                           <button type="button" data-toggle="modal" data-id="<?= $row['id_menu'] ?>" data-target="#modalhapus" class="badge id btn btn-outline-danger"><i class="fas fa-trash"></i> Hapus</button>
-                          <button type="button" data-toggle="modal" data-target="#modaledit" data-id="<?= $row['id_menu'] ?>" class="badge id btn btn-outline-primary"><i class="fas fa-edit"></i> Edit</button>
-
-                          <!-- MODAL HAPUS -->
-                          <div class="modal fade" id="modalhapus">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h4 class="modal-title">Modal Hapus</h4>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  <p>Apakah anda yakin ingin menghapus data ini&hellip;</p>
-                                </div>
-                                <form action="<?= base_url('admin/Menu/del_menu/'). $row['id_menu']?>" method="POST">
-                                      <div class="modal-footer">
-                                          <input type="hidden" class="hapus" name="id">
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                          <button type="submit" class="btn btn-primary">Hapus</button>
-                                      </div>
-                                </form>
-                              <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
-                          </div>
-
-
-                          <!-- MODAL EDIT -->
-                          
-                          <div class="modal fade" id="modaledit">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h4 class="modal-title">Modal Edit</h4>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  <p>One fine body&hellip;</p>
-                                </div>
-                                <div class="modal-footer justify-content-between">
-                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                              </div>
-                              <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
-                          </div>
-
-
-                          
+                          <button type="button" data-toggle="modal" data-target="#modaledit" class="badge id btn btn-outline-primary"><i class="fas fa-edit"></i> Edit</button>
                         </td>
                       </tr>
                     <?php $no++;
@@ -135,8 +82,49 @@
                     </tr>
                   </tfoot>
                 </table>
-              </div>
-              <!-- /.card-body -->
+                <!-- MODAL HAPUS -->
+                <div class="modal fade" id="modalhapus">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Pemberitahuan</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Apakah anda yakin ingin menghapus data ini?</p>
+                      </div>
+                      <form action="<?= base_url('admin/Menu/delete/'). $row['id_menu']?>" method="POST">
+                        <div class="modal-footer">
+                          <input type="hidden" class="hapus" name="id">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                          <button type="submit" class="btn btn-primary">Hapus</button>
+                        </div>
+                      </form>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                  </div>
+                </div>
+                <!-- MODAL Delete -->
+                <div class="modal fade" id="modaledit">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Pemberitahuan</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Edit Data ini</p>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                  </div>
+                </div>    
             </div>
             <!-- /.card -->
           </div>

@@ -18,7 +18,7 @@ class Menu extends CI_Controller
     $this->load->view('admin/templates/footer');
   }
 
-  public function edit_menu()
+  public function edit()
   {
     $this->form_validation->set_rules('nama_menu', 'Nama Menu', 'trim|required');
     $this->form_validation->set_rules('kategori', 'Kategori Menu', 'trim|required');
@@ -29,7 +29,7 @@ class Menu extends CI_Controller
     if ($this->form_validation->run() == false) {
         $judul['judul'] = 'Edit Menu';
         $data['dMenu'] = $this->Menu_Model->editmenu();
-        //$data['kategori'] = $this->db->get('kategori')->result_array();
+        $data['kategori'] = $this->db->get('kategori')->result_array();
         $data['user'] = $this->db->get_where('admin', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('admin/tamplates/header', $data);
         $this->load->view('admin/tamplates/sidebar', $judul);
@@ -50,7 +50,7 @@ class Menu extends CI_Controller
             $nama_menu = $this->input->post('nama_menu');
             $kategori = $this->input->post('nama_kategori');
             $harga_menu = $this->input->post('harga_menu');
-            $gambar_menu = $$temp;
+            $gambar_menu = $temp;
             $deskripsi_menu = $this->input->post('cara_perawatan');
 
             $this->Menu_Model->editmenu($id_menu, $nama_menu, $kategori, $harga_menu, $gambar_menu, $deskripsi_menu);
@@ -61,17 +61,16 @@ class Menu extends CI_Controller
             $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
                     '. $this->upload->display_errors() .'
                     </div>');
-            redirect('admin/Menu');
-            
+            redirect('admin/Menu');  
         }
     }
   }
 
-  public function del_menu()
+  public function delete($idMenu)
   {
-    $idMenu = $this->input->post('id');
+    // $idMenu = $this->input->post('id');
     $delete = $this->Menu_Model->deletemenu($idMenu);
-    if ($delete = true) {
+    if ($delete) {
             $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
 			Data Berhasi di Hapus!
             </div>');

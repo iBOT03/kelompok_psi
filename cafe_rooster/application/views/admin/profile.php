@@ -61,7 +61,6 @@
               <div class="tab-content">
               <?= $this->session->flashdata('pesan'); ?>
                 <div class="active tab-pane" id="edit_profile">
-                  <!-- <form class="form-horizontal" action="<?= base_url('admin/Profile/edit_profile') ?>" methode="POST" > -->
                   <?= form_open_multipart('admin/Profile/edit_profile'); ?>
                   <div class="form-group row">
                     <label for="namakaryawan" class="col-sm-2 col-form-label">Nama</label>
