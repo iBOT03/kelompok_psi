@@ -14,46 +14,52 @@
                 <?= $this->session->flashdata('pesan'); ?>
 
                 <form action="" method="post">
+                    <?= form_error('nama', '<small class="text-danger">', '</small>') ?>
                     <div class="input-group mb-3">
-                        <input type="nama" name="nama" id="nama" class="form-control" placeholder="Nama">
+                        <input type="nama" name="nama" id="nama" class="form-control" placeholder="Nama" value="<?= set_value('nama') ?>">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <!-- <span class="fas fa-envelope"></span> -->
                             </div>
                         </div>
                     </div>
+                    <?= form_error('alamat', '<small class="text-danger">', '</small>') ?>
                     <div class="input-group mb-3">
-                        <input type="alamat" name="alamat" id="alamat" class="form-control" placeholder="Alamat">
+                        <input type="alamat" name="alamat" id="alamat" class="form-control" placeholder="Alamat" value="<?= set_value('alamat') ?>">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <!-- <span class="fas fa-envelope"></span> -->
                             </div>
                         </div>
                     </div>
+                    <?= form_error('nohp', '<small class="text-danger">', '</small>') ?>
                     <div class="input-group mb-3">
-                        <input type="nohp" name="nohp" id="nohp" class="form-control" placeholder="No telepon">
+                        <input type="nohp" name="nohp" id="nohp" class="form-control" placeholder="No telepon" value="<?= set_value('nohp') ?>">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <!-- <span class="fas fa-envelope"></span> -->
                             </div>
                         </div>
                     </div>
+                    <?= form_error('email', '<small class="text-danger">', '</small>') ?>
                     <div class="input-group mb-3">
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="<?= set_value('email') ?>">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
                     </div>
+                    <?= form_error('password', '<small class="text-danger">', '</small>') ?>
                     <div class="input-group mb-3">
-                        <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" >
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
+                    <?= form_error('passwordk', '<small class="text-danger">', '</small>') ?>
                     <div class="input-group mb-3">
                         <input type="password" name="passwordk" id="password" class="form-control" placeholder="Konfirmasi Password">
                         <div class="input-group-append">

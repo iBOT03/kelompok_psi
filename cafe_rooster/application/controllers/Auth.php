@@ -10,8 +10,46 @@ class Auth extends CI_Controller
     }
 
     public function index(){
-        $this->load->view('user/auth/login_page');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        if($this->form_validation->run() === false){
+            $this->load->view('user/auth/login_page');
+        }else{
+            $this->_login();
+        }
+
     }
+
+    private function _login()
+	{
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
+
+		//cek apakah user terdaftar
+		$user = $this->db->get_where('pembeli', ['email' => $email])->row_array();
+		if ($user) {
+				//cek apakah password yang dimasukan benar
+				if (password_verify($password, $user['password'])) {
+					$data = [
+						'email' => $user['email'],
+						'nama' => $user['nama_pembeli']
+					];
+					$this->session->set_userdata($data);
+					redirect('Home');
+				} else {
+					$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+					password salah!
+		  			</div>');
+					redirect('auth');
+				}
+			
+		} else {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+			Email belum terdaftar!
+		  	</div>');
+			redirect('auth');
+		}
+	}
 
     public function Register(){
         // $nama = $this->input->post('nama');
@@ -30,7 +68,7 @@ class Auth extends CI_Controller
             $this->load->view('user/auth/register');
         }else{
             $data = [
-                'email' => $this->input->post('nama'), 
+                'email' => $this->input->post('email'), 
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT), 
                 'nama_pembeli' => $this->input->post('nama'),
                 'alamat_pembeli' => $this->input->post('alamat'),
