@@ -51,6 +51,31 @@ class Auth extends CI_Controller
 		}
 	}
 
+    public function ForgotPassword(){
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[pembeli.email]|valid_email');
+        if($this->form_validation->run() === false){
+            $this->load->view('user/auth/forgotpw');
+        }else{
+        $email = $this->input->post('email');
+		//cek apakah email terdaftar
+        $userMail = $this->db->get_where('pembeli', ['email' => $email])->row_array();
+        if ($userMail) {
+            //cek apakah email ada
+            $data = [
+                'email' => $userMail['email']
+            ];
+            $this->session->set_flashdata('pesan', '<div class="alert alert-info" role="alert">
+            Ini passwordnya
+            </div>');
+            redirect('auth/ForgotPassword');
+        } else {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+            Email Tidak Terdaftar
+            </div>');
+            redirect('auth/ForgotPassword');
+        }
+    }
+    }
     public function Register(){
         // $nama = $this->input->post('nama');
         // $alamat = $this->input->post('alamat');
