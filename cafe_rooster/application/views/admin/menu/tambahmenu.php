@@ -79,7 +79,6 @@
                             </div>
                         </div>
                     </div>
-
                     <p>Deskripsi Menu</p>
                     <div class="input-group">
                         <textarea name="deskripsi" id="deskripsi" type="text" class="form-control border-dark small mb-3" placeholder="Masukkan Deskripsi Menu" aria-describedby="basic-addon2"><?= set_value('deskripsi'); ?></textarea>

@@ -33,10 +33,10 @@
     }
     
     //EDIT DATA MENU
-    public function editmenu($id_menu, $nama_menu, $kategori, $harga_menu, $gambar_menu, $deskripsi_menu )
+    public function editmenu($namamenu, $hargamenu, $gambarmenu, $deskripsimenu )
     {
-      $hasil = $this->db->query("UPDATE menu SET id_menu='$id_menu', nama_menu='$nama_menu' , kategori='$kategori',  harga_menu='$harga_menu', gambar_menu='$gambar_menu', deskripsi_menu='$deskripsi_menu'  WHERE id_menu='$id_menu' ");
-        return $hasil;
+      $hasil = $this->db->query("UPDATE menu SET nama_menu='$namamenu' , harga_menu='$hargamenu', gambar_menu='$gambarmenu', deskripsi_menu='$deskripsimenu'");
+      return $hasil;
     }
 
     // GET DATA KATEGORI MENU

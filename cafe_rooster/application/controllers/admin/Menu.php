@@ -20,49 +20,55 @@ class Menu extends CI_Controller
 
   public function edit()
   {
-    $this->form_validation->set_rules('nama_menu', 'Nama Menu', 'trim|required');
-    $this->form_validation->set_rules('kategori', 'Kategori Menu', 'trim|required');
-    $this->form_validation->set_rules('harga_menu', 'Harga Menu', 'trim|required|numeric');
-    $this->form_validation->set_rules('gambar_menu', 'Gambar Menu', 'trim|required|numeric');
-    $this->form_validation->set_rules('deskripsi_menu', 'Deskripsi Menu', 'trim');
+    // echo "TEST";
+    
+    $this->form_validation->set_rules('namamenu', 'Nama Menu', 'required|trim');
+    $this->form_validation->set_rules('kategorimenu', 'Kategori menu', 'required|trim');
+    $this->form_validation->set_rules('hargamenu', 'Harga Menu', 'required|trim');
+    $this->form_validation->set_rules('gambarmenu', 'Gambar Menu', 'required|trim');
+    $this->form_validation->set_rules('deskripsimenu', 'Deskripsi Menu', 'required|trim');
 
     if ($this->form_validation->run() == false) {
-        $judul['judul'] = 'Edit Menu';
-        $data['dMenu'] = $this->Menu_Model->editmenu();
-        $data['kategori'] = $this->db->get('kategori')->result_array();
-        $data['user'] = $this->db->get_where('admin', ['email' => $this->session->userdata('email')])->row_array();
-        $this->load->view('admin/tamplates/header', $data);
-        $this->load->view('admin/tamplates/sidebar', $judul);
-        $this->load->view('admin/menu/index', $data);
-        $this->load->view('admin/tamplates/footer');
-    }else {
-      $temp = explode(".", $_FILES['foto']['name']);
-      $foto = round(microtime(true)) . '.' . end($temp);
-      move_uploaded_file($_FILES['foto']['menu'], "./uploads/foto/" . $foto);
-      $config['allowed_types'] = 'jpg|png|gif|jpeg|svg|pdf';
+      $data['judul'] = 'Edit Profile';
+      $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
+      $data['kategori'] = $this->db->get('kategori_menu')->result_array();
+      $this->load->view('admin/templates/header', $data);
+      $this->load->view('admin/templates/sidebar', $data);
+      $this->load->view('admin/menu/menu', $data);
+      $this->load->view('admin/templates/footer');
+    } else {
+      $gambarmenu = $_FILES['gambar_bunga']['name'];
+
+      $config['allowed_types'] = 'jpg|png|jpeg';
       $config['max_size'] = '2048';
       $config['upload_path'] = './uploads/foto/';
-      $config['file_name'] = $foto;;
+      $config['file_name'] = $gambarmenu;
 
-        $this->load->library('upload', $config);
-        if ($this->upload->do_upload('gambar_menu')) {
-            $id_menu = $this->input->post('id_menu');
-            $nama_menu = $this->input->post('nama_menu');
-            $kategori = $this->input->post('nama_kategori');
-            $harga_menu = $this->input->post('harga_menu');
-            $gambar_menu = $temp;
-            $deskripsi_menu = $this->input->post('cara_perawatan');
-
-            $this->Menu_Model->editmenu($id_menu, $nama_menu, $kategori, $harga_menu, $gambar_menu, $deskripsi_menu);
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert"> Bunga Berhasil Diedit
-             </div>');
-            redirect('admin/Menu');
-        }else {
-            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
-                    '. $this->upload->display_errors() .'
-                    </div>');
-            redirect('admin/Menu');  
-        }
+      $this->upload->initialize('upload', $config);
+      if ($this->upload->do_upload('gambar_menu')) {
+        $nama = $this->input->post('namamenu');
+        $kategori = $this->input->post('kategorimenu');
+        $harga = $this->input->post('hargamenu');
+        $gambarmenu = $this->input->post('gambarmenu');
+        $deskripsi = $this->input->post('deskripsimenu');
+        $array = [
+          'nama_menu' => $nama,
+          'nama_kategori' => $kategori,
+          'harga_menu' => $harga,
+          'gambar_menu' => $gambarmenu,
+          'deskripsi_menu' => $deskripsi
+        ];
+        $this->Menu_Model->edit($array);
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+        Data Berhasi di Hapus!
+          </div>');
+          redirect('admin/Menu');
+      }else {
+        $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+        Data gagal di Hapus!
+          </div>');
+          redirect('admin/Menu');
+      }
     }
   }
 
@@ -83,7 +89,7 @@ class Menu extends CI_Controller
         }
   }
 
-  public function tambah()
+  private function tambah()
   {
     $this->form_validation->set_rules('namamenu', 'Nama menu', 'required|trim|max_length[30]');
     $this->form_validation->set_rules('foto', 'Foto menu', 'trim');
@@ -92,7 +98,7 @@ class Menu extends CI_Controller
     $this->form_validation->set_rules('harga', 'Harga menu', 'required|trim|numeric|required');
 
     if ($this->form_validation->run() == false) {
-      $data["menu"] = $this->Menu_Model->getKategori();
+      $data['menu'] = $this->Menu_Model->getKategori();
       $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
       $this->load->view('admin/templates/header', $data);
       $this->load->view('admin/templates/sidebar');
