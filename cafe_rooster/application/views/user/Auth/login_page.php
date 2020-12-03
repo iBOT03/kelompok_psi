@@ -15,7 +15,7 @@
 
                 <form action="" method="post">
                     <div class="input-group mb-3">
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="<?= set_value('email')?>">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -30,18 +30,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-
                     <div class="social-auth-links text-center mb-3">
                         <button type="submit" class="btn btn-block btn-primary">
                             Sign in
@@ -50,7 +38,10 @@
                     <!-- /.social-auth-links -->
                 </form>
                 <p class="mb-1" style="text-align: center;">
-                    <a href="<?= site_url('admin/lupapassword') ?>">I forgot my password</a>
+                    <a href="<?= base_url('Auth/ForgotPassword') ?>">I forgot my password</a>
+                </p>
+                <p class="mb-1" style="text-align: center;">
+                    <a href="<?= base_url('Auth/Register') ?>">I don't have an account!</a>
                 </p>
             </div>
             <!-- /.login-card-body -->

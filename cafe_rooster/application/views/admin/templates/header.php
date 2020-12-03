@@ -65,7 +65,7 @@
       <ul class="navbar-nav ml-auto">
       <div class="user-panel mt-3 pb-3 d-flex">
         <div class="image">
-          <img src="<?= base_url('./uploads/foto/') .$admin['foto'] ?>" style="width: 40px; height: 40px;" class="img-circle elevation-2" alt="User Image">
+          <!-- <img src="<?= base_url('./uploads/foto/') .$admin['foto'] ?>" style="width: 40px; height: 40px;" class="img-circle elevation-2" alt="User Image"> -->
         </div>
         <div class="info">
           <p class="d-block"><?= $this->session->userdata('nama_karyawan'); ?></p>
