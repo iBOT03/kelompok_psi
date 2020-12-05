@@ -72,7 +72,7 @@
                          } ?>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-default<?= $row->id_pembeli ?>">
+                        <button type="button" class="badge id btn btn-outline-primary" data-toggle="modal" data-target="#modal-default<?= $row->id_pembeli ?>">
                             <i class="fas fa-edit"></i>
                         </button>
                     </td>

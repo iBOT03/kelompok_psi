@@ -57,10 +57,10 @@
                                                 <td><img src="<?= base_url('uploads/foto/') . $row->gambar_kategori ?>" alt="Foto Kategori" width="100"></td>
                                                 <td><?= $row->deskripsi_kategori ?></td>
                                                 <td>
-                                                    <a href="<?php echo site_url('admin/kategorimenu/edit/' . $row->id_kategori) ?>" class="btn btn-sm btn-info">
+                                                    <a href="<?php echo site_url('admin/kategorimenu/edit/' . $row->id_kategori) ?>" class="badge id btn btn-outline-primary">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
-                                                    <a href="<?php echo site_url('admin/kategorimenu/hapus/' . $row->id_kategori) ?>" onclick="confirm_modal('<?php echo 'kategorimenu/hapus/' . $row->id_kategori; ?>')" class="btn btn-sm btn-danger btn-circle" data-toggle="modal" data-target="#hapusModal">
+                                                    <a href="<?php echo site_url('admin/kategorimenu/hapus/' . $row->id_kategori) ?>" onclick="confirm_modal('<?php echo 'kategorimenu/hapus/' . $row->id_kategori; ?>')" class="badge id btn btn-outline-danger" data-toggle="modal" data-target="#hapusModal">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
                                                 </td>
@@ -97,18 +97,98 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- MODAL Edit -->
+                                <!-- <?php foreach ($kategori as $mn) : ?>
+                                    <div class="modal fade" id="modaledit<?= $mn->id_kategori ?>">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Pemberitahuan</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <?= form_open_multipart('admin/kategorimenu/edit'); ?>
+                                                    <div class="col-sm-12">
+                                                        <input type="hidden" class="form-control" name="namakategori" value="<?= $mn->id_kategori ?>" id="id">
+                                                        <?= form_error('idkategori', '<small class="text-danger">', '</small>') ?>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-12">
+                                                            <label for="namakategori" class=" col-form-label">Nama Kategori</label>
+                                                            <input type="text" class="form-control" name="namakategori" value="<?= $mn->nama_kategori ?>" id="namakategori" placeholder="Nama Kategori">
+                                                            <?= form_error('namakategori', '<small class="text-danger">', '</small>') ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-10">
+                                                            <label for="gambarkategori" class="col-form-label">Gambar Kategori</label>
+                                                            <input type="file" class="from-control" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="gambarkategori" value="<?= $mn->gambar_kategori ?>" id="gambarmenu">
+                                                            <?php foreach ($kategori as $row) { ?>
+                                                                <a href="<?= base_url('uploads/foto/') . $row->gambar_kategori ?>">Lihat Foto</a>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-10">
+                                                            <input type="hidden" name="blank" id="blank" class="form-control border-dark small mb-3" placeholder="blank" aria-describedby="basic-addon2">
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <div class="input-group">
+                                                                <input type="hidden" name="blank" id="blank" class="form-control border-dark small mb-3" placeholder="blank" aria-describedby="basic-addon2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <div class="input-group">
+                                                                <img id="preview" src="" alt="" width="320px" /> <br>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-12">
+                                                            <label for="deskripsikategori" class="col-form-label">Deskripsi kategori</label>
+                                                            <input type="text" class="form-control" name="deskripsikategori" value="<?= $mn->deskripsi_kategori ?>" id="deskripsikategori" placeholder="Deskripsi kategori">
+                                                            <?= form_error('deskripsikategori', '<small class="text-danger">', '</small>') ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" href="<?php echo site_url('admin/kategorimenu/kategorimenu') ?>" class="btn btn-info btn-icon-split">
+                                                            <span class="icon text-white-50">
+                                                                <i class="fas fa-edit"></i>
+                                                            </span>
+                                                            <span class="text">Edit</span>
+                                                        </button>
+                                                        <a href="<?php echo site_url('admin/kategorimenu') ?>" class="btn btn-danger btn-icon-split">
+                                                            <span class="icon text-white-50">
+                                                                <i class="fas fa-reply"></i>
+                                                            </span>
+                                                            <span class="text">Kembali</span>
+                                                        </a>
+                                                    </div>
+                                                    <?= form_close();  ?>
+
+                                                </div> -->
+                                                <!-- /.modal-content -->
+                                            <!-- </div> -->
+                                            <!-- /.modal-dialog -->
+                                        <!-- </div>
+                                    </div>
+                                <?php endforeach; ?> -->
                             </div>
-                            <!-- /.card-body -->
                         </div>
-                        <!-- /.card -->
+                        <!-- /.card-body -->
                     </div>
-                    <!-- /.col -->
+                    <!-- /.card -->
                 </div>
-                <!-- /.row -->
+                <!-- /.col -->
             </div>
-            <!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
+            <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
 

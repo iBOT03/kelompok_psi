@@ -78,7 +78,7 @@
                                                 <?php
                                                 if ($_SESSION['nama_karyawan'] != $row->nama_karyawan) {
                                                 ?>
-                                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-default<?= $row->id_karyawan ?>">
+                                                    <button type="button" class="badge id btn btn-outline-primary" data-toggle="modal" data-target="#modal-default<?= $row->id_karyawan ?>">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
                                                 <?php } ?>

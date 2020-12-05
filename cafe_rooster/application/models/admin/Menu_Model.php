@@ -23,8 +23,7 @@
     {
       $this->db->where('id_menu', $idMenu);
         return $this->db->delete("menu");
-    }
-  
+    }  
 
     // INSERT DATA MENU
     public function addMenu($data = array())
@@ -39,12 +38,25 @@
       return $hasil;
     }
 
+    //EDIT DATA KATEGORI
+    public function upKategori($data = array(), $id)
+    {
+        $this->db->where('id_kategori', $id);
+        return $this->db->update("kategori_menu", $data);
+    }
+
+    //GET DETAIL DATA KATEGORI
+    public function detail($id)
+    {
+        $this->db->where('id_kategori', $id);
+        return $this->db->get("kategori_menu")->result();
+    }
+
     // GET DATA KATEGORI MENU
     public function getkategori()
     {
         return $this->db->get("kategori_menu")->result();
     }
-
 
     //DELETE DATA KATEGORI
     public function delKategori($id)
