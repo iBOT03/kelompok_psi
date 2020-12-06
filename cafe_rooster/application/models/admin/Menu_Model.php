@@ -32,10 +32,17 @@
     }
     
     //EDIT DATA MENU
-    public function editmenu($namamenu, $hargamenu, $gambarmenu, $deskripsimenu )
+    public function upMenu($data = array(), $id)
     {
-      $hasil = $this->db->query("UPDATE menu SET nama_menu='$namamenu' , harga_menu='$hargamenu', gambar_menu='$gambarmenu', deskripsi_menu='$deskripsimenu'");
-      return $hasil;
+        $this->db->where('id_menu', $id);
+        return $this->db->update("menu", $data);
+    }
+
+    //GET DETAIL DATA Menu
+    public function dMenu($id)
+    {
+        $this->db->where('id_menu', $id);
+        return $this->db->get("menu")->result();
     }
 
     //EDIT DATA KATEGORI
