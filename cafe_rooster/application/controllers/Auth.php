@@ -13,7 +13,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
         if($this->form_validation->run() === false){
-            $this->load->view('user/auth/login_page');
+            $this->load->view('user/home/home.php');
         }else{
             $this->_login();
         }
@@ -31,7 +31,7 @@ class Auth extends CI_Controller
 				//cek apakah password yang dimasukan benar
 				if (password_verify($password, $user['password'])) {
 					$data = [
-						'email' => $user['email'],
+						'id_pembeli' => $user['id_pembeli'],
 						'nama' => $user['nama_pembeli']
 					];
 					$this->session->set_userdata($data);
@@ -105,7 +105,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]');
         $this->form_validation->set_rules('passwordk', 'Konfirmasi Password', 'required|trim|matches[password]');
         if($this->form_validation->run() === false){
-            $this->load->view('user/auth/register');
+            $this->load->view('user/home/home');
         }else{
             $data = [
                 'email' => $this->input->post('email'), 

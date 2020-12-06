@@ -28,7 +28,7 @@
                 <p class="login-box-msg">Welcome back, Sign in to start your session</p>
                 <?= $this->session->flashdata('pesan'); ?>
 
-                <form action="" method="post">
+                <form action="<?= base_url('Auth/index')?>" method="post">
                     <div class="input-group mb-3">
                         <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="<?= set_value('email')?>">
                         <div class="input-group-append">
@@ -113,7 +113,7 @@
                 <p class="login-box-msg">Regist your account here!</p>
                 <?= $this->session->flashdata('pesan'); ?>
 
-                <form action="" method="post">
+                <form action="<?= base_url('Auth/Register')?>" method="post">
                     <?= form_error('nama', '<small class="text-danger">', '</small>') ?>
                     <div class="input-group mb-3">
                         <input type="nama" name="nama" id="nama" class="form-control" placeholder="Nama" value="<?= set_value('nama') ?>">

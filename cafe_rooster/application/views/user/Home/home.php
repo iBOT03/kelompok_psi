@@ -440,7 +440,7 @@
                 // console.log($(this).attr('data-id'));
                 $("#get-data").modal('show');
                 $.post('application/controllers/menu.php', {
-                        id: $(this).attr('data-id')
+                        id: $(this).attr('data-id') 
                     },
                     function(html) {
                         $(".modal-body").html(html);
