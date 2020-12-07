@@ -43,7 +43,7 @@ class Menu extends CI_Controller
                 'id_kategori'     => $this->input->post('kategorimenu'),
                 'nama_menu'        => $this->input->post("namamenu"),
                 'harga_menu'      => $this->input->post("hargamenu"),
-                'gambar_menu'   => $this->input->post("gambarmenu"),
+                // 'gambar_menu'   => $this->input->post("gambarmenu"),
                 'deskripsi_menu'   => $this->input->post("deskripsimenu")
             ), $id);
 
@@ -58,8 +58,8 @@ class Menu extends CI_Controller
                     $this->upload->initialize($config);
 
                     if ($this->upload->do_upload('gambarmenu')) {
-                        $kategori = $this->db->get_where('menu', ['id_menu' => $id])->row_array();
-                        $fotolama = $kategori['gambar_menu'];
+                        $menu = $this->db->get_where('menu', ['id_menu' => $id])->row_array();
+                        $fotolama = $menu['gambar_menu'];
                         if ($fotolama) {
                             unlink(FCPATH . '.uploads/foto/' . $fotolama);
                         }

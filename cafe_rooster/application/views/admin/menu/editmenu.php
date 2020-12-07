@@ -60,7 +60,8 @@
                         <div class="col-sm-6">
                             <p>Upload Gambar Menu</p>
                             <div class="input-group">
-                                <input name="gambarmenu" id="gambarmenu" type="file" accept="image/*" onchange="tampilkanPreview(this,'preview')" class="form-control border-dark small mb-3" placeholder="" aria-describedby="basic-addon2" required>
+                                <input name="gambarmenu" id="gambarmenu" type="file" accept="image/*" onchange="tampilkanPreview(this,'preview')" class="form-control border-dark small mb-3" placeholder="" aria-describedby="basic-addon2">
+                                
                             </div>
                             <!-- <div>
                             <img width="100px" height="100px" src="<?//= base_url('uploads/foto/') . $food[0]->gambar_menu; ?>"> 
