@@ -29,12 +29,13 @@ class Menu extends CI_Controller
         if ($this->form_validation->run() == false) {
             $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
             $data['food'] = $this->Menu_Model->dMenu($id);
-            $data['kategori'] = $this->Menu_Model->getKategori();
+            $data['sub'] = $this->Menu_Model->getDetail($id);
+            $data['kategori'] = $this->Menu_Model->kategori($id);
 
             $this->load->view('admin/templates/header', $data);
             $this->load->view('admin/templates/sidebar');
             $this->load->view('admin/menu/editmenu', $data);
-            $this->load->view('admin/menu/footer');
+            $this->load->view('admin/templates/footer');
 
         } else {
             $update = $this->Menu_Model->upMenu(array(
@@ -103,7 +104,7 @@ class Menu extends CI_Controller
         }
   }
 
-  private function tambah()
+  public function tambah()
   {
     $this->form_validation->set_rules('namamenu', 'Nama menu', 'required|trim|max_length[30]');
     $this->form_validation->set_rules('foto', 'Foto menu', 'trim');

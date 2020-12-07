@@ -28,17 +28,17 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <a href="<?= base_url("admin/menu/tambah") ?>" class="btn btn-sm btn-info btn-icon-split shadow-sm">
+                <a href="<?= base_url("admin/Menu/tambah") ?>" class="btn btn-sm btn-info btn-icon-split shadow-sm">
                   <span class="icon text-white">
                     <i class="fas fa-plus"></i>
                     <i class="text">Tambah Menu</i>
-                    <?php echo $this->session->userdata('pesan'); ?>
+                    
                   </span>
                 </a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-
+              <?php echo $this->session->userdata('pesan'); ?>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr style="text-align: center;">
@@ -65,8 +65,11 @@
                         <td><?= $row['deskripsi_menu'] ?></td>
                         <td>
                           <a href="<?= base_url('admin/Menu/edit/' . $row['id_menu']) ?>" class="badge id btn btn-outline-primary">
-                                                        <i class="fas fa-pencil-alt"></i>
-                                                    </a>
+                              <i class="fas fa-pencil-alt"></i>
+                          </a>
+                          <a href="<?php echo site_url('admin/menu/delete/' . $row['id_menu']) ?>" onclick="confirm_modal('<?php echo 'menu/delete/' . $row['id_menu']; ?>')" class="badge id btn btn-outline-danger" data-toggle="modal" data-target="#hapusModal">
+                              <i class="fa fa-trash"></i>
+                          </a>
                                                     
                         </td>
                       </tr>
@@ -84,8 +87,26 @@
                       <th>Aksi</th>
                     </tr>
                   </tfoot>
-                </table
-                >
+                </table>
+                <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Apakah Anda yakin
+                                                    untuk menghapus?</h5>
+                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">Pilih "Hapus" untuk menghapus, pilih "Batal"
+                                                untuk kembali ke Panel Admin.</div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-info" type="button" data-dismiss="modal">Batal</button>
+                                                <a id="delete_link" class="btn btn-danger" href="<?php echo site_url('admin/menu/delete/' . $row['id_menu']) ?>">Hapus</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
               </div>
               <!-- /.card -->
             </div>
