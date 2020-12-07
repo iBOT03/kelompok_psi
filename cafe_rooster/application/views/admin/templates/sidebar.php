@@ -33,7 +33,10 @@
           </a>
         </li>
 
-        <li class="nav-header">MANAGEMENT USER</li>
+        <?php 
+        if($_SESSION['id_bagian'] == 1) {                  
+        ?>
+          <li class="nav-header">MANAGEMENT USER</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
@@ -87,21 +90,21 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-table"></i>
             <p>
-              Beli Langsung
+              Transaksi
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/charts/chartjs.html" class="nav-link">
+              <a href="<?= base_url('admin/Transaksi') ?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Data Beli Langsung</p>
+                <p>Transaksi Langsung</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="pages/charts/flot.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Report Beli Langsung</p>
+                <p>Report Transaksi</p>
               </a>
             </li>
           </ul>
@@ -152,6 +155,80 @@
             </li>
           </ul>
         </li>
+        <?php } elseif ($_SESSION['id_bagian'] == 2) {?>
+          <li class="nav-header">DATA TRANSAKSI</li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-table"></i>
+            <p>
+              Transaksi
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="<?= base_url('admin/Transaksi') ?>" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Transaksi Langsung</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="pages/charts/flot.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Report Transaksi</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-table"></i>
+            <p>
+              Booking
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="pages/tables/simple.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Data Booking</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="pages/tables/data.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Report Booking</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-table"></i>
+            <p>
+              Data Catering
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="pages/tables/simple.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Catering</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="pages/tables/data.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Report Catering</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <?php } ?>
+        
+        
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
