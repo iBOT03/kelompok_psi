@@ -155,7 +155,7 @@
             </li>
           </ul>
         </li>
-        <?php } elseif ($_SESSION['id_bagian'] == 2) {?>
+        <?php } elseif ($_SESSION['id_bagian'] == 3) {?>
           <li class="nav-header">DATA TRANSAKSI</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
