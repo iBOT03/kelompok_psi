@@ -5,6 +5,7 @@ class Transaksi extends CI_Controller
     {
         parent::__construct();
         belumlogin();
+        //cek2();
     }
     public function index()
     {
