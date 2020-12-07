@@ -39,7 +39,7 @@ class Menu extends CI_Controller
 
         } else {
             $update = $this->Menu_Model->upMenu(array(
-                'id_menu'          => $this->input->post("id"),
+                'id_menu'          => $this->input->post('idmenu'),
                 'id_kategori'     => $this->input->post('kategorimenu'),
                 'nama_menu'        => $this->input->post("namamenu"),
                 'harga_menu'      => $this->input->post("hargamenu"),

@@ -22,12 +22,13 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <form method="post" action="<?= site_url('admin/menu/edit') ?>" enctype="multipart/form-data">
+        <form method="post" action="<?= site_url('admin/menu/edit/') . $food[0]->id_menu; ?>" enctype="multipart/form-data">
 
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6">
+                            <input name="idmenu" id="idmenu" type="hidden" class="form-control border-dark small mb-3" aria-describedby="basic-addon2" value="<?php echo $food[0]->id_menu; ?>"> 
                             <p>Nama Menu</p>
                             <div class="input-group">
                                 <input name="namamenu" id="namamenu" type="text" class="form-control border-dark small mb-3" placeholder="Masukkan Nama Menu" aria-describedby="basic-addon2" value="<?= $food[0]->nama_menu; ?>">
@@ -52,7 +53,7 @@
                         <div class="col-sm-6">
                             <p>Harga Menu</p>
                             <div class="input-group">
-                                <input name="hargamenu" id="hargamenu" type="text" class="form-control border-dark small mb-3" placeholder="Masukkan Harga Menu" aria-describedby="basic-addon2" value="Rp. <?= number_format($food[0]->harga_menu) ?>">
+                                <input name="hargamenu" id="hargamenu" type="text" class="form-control border-dark small mb-3" placeholder="Masukkan Harga Menu" aria-describedby="basic-addon2" value="<?= $food[0]->harga_menu; ?>">
                             </div>
                             <?= form_error('hargamenu', '<small class="text-danger pl-2">', '</small>'); ?>
                         </div>
