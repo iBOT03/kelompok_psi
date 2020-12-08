@@ -13,9 +13,13 @@ class Catering extends CI_Controller
     {
 
 
-        $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|trim');
+        $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|trim|greater_than_equal_to[1]');
         if ($this->form_validation->run() === false) {
-            $this->load->view('user/home/home');
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+			Jumlah Menu yang ingin di beli tidak boleh kurang dari 1!
+		  	</div>');
+            redirect(base_url());
+
         } else {
 
             $cek = $this->db->get_where('catering', [
@@ -32,7 +36,6 @@ class Catering extends CI_Controller
                 ];
 
                 $this->db->insert('detail_catering', $detail_catering);
-                
             } else {
                 $catering = [
                     'id_pembeli' => $this->session->userdata('id_pembeli'),

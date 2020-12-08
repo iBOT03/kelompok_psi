@@ -26,11 +26,13 @@ $hasil = mysqli_fetch_array($data);
             <img class="img-fluid rounded mb-5" src="http://localhost/kelompok_psi/cafe_rooster/assets/user/img/menu/<?= $hasil['gambar_menu'] ?>" alt="" />
             <!-- Portfolio Modal - Text-->
             <p>Rp. <?= $hasil['harga_menu'] ?></p>
-            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+            <p class="mb-5"> <?= $hasil['deskripsi_menu'] ?></p>
             <form method="POST" action="Catering/Catering">
                 <div class="input-group mb-3">
-                    <input type="number" name="jumlah" class="form-control" placeholder="Jumlah">
-                    <input type="text" name="total" class="form-control" placeholder="Total Harga" value="100000">
+                    <input type="hidden" onkeyup="sum();" name="harga" id="harga" class="form-control" value="<?= $hasil['harga_menu'] ?>">
+                    <input type="number" onkeyup="sum();" name="jumlah" id="jumlah" class="form-control" placeholder="Jumlah" required min="1">
+                    <input type="text" onkeyup="sum();" id="total1" class="form-control" placeholder="Total Harga" disabled>
+                    <input type="hidden" onkeyup="sum();" name="total" id="total2" class="form-control" placeholder="Total Harga">
                 </div>
                 <input type="hidden" name="id_menu" class="form-control" value="<?= $hasil['id_menu'] ?>">
                 <button type="submit" class="btn btn-success">
@@ -40,3 +42,17 @@ $hasil = mysqli_fetch_array($data);
         </div>
     </div>
 </div>
+
+<script>
+    function sum() {
+        var txtFirstNumberValue = document.getElementById('harga').value;
+        var txtSecondNumberValue = document.getElementById('jumlah').value;
+        var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
+        if (!isNaN(txtSecondNumberValue)) {
+            document.getElementById('total1').value = result;
+            document.getElementById('total2').value = result;
+        }
+
+
+    }
+</script>
