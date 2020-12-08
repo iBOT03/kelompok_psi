@@ -20,7 +20,7 @@
                         id: $(this).attr('data-id')
                     },
                     function(html) {
-                        $(".modal-body").html(html);
+                        $(".isi").html(html);
                     });
             });
         });

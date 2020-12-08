@@ -176,13 +176,13 @@
     </div>
     <!-- Portfolio Modals-->
     <!-- Portfolio Modal 1-->
-    <div class="portfolio-modal modal fade" id="get-data" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">
+    <div class="modal portfolio-modal fade" id="get-data" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <!-- <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                </button>
-                <div class="modal-body text-center">
+                </button> -->
+                <div class="modal-body isi text-center">
 
                 </div>
             </div>
