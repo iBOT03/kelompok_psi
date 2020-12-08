@@ -59,7 +59,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no=1; foreach ($karyawan as $row) : ?>
+                                    <?php $no = 1;
+                                    foreach ($karyawan as $row) : ?>
                                         <tr style="text-align: center;">
                                             <td><?= $no; ?></td>
                                             <td><?= $row->bagian; ?></td>
@@ -78,13 +79,14 @@
                                                 <?php
                                                 if ($_SESSION['nama_karyawan'] != $row->nama_karyawan) {
                                                 ?>
-                                                    <button type="button" class="badge id btn btn-outline-primary" data-toggle="modal" data-target="#modal-default<?= $row->id_karyawan ?>">
+                                                    <a href="" type="button" class="badge id btn btn-outline-primary" data-toggle="modal" data-target="#modal-default<?= $row->id_karyawan ?>">
                                                         <i class="fas fa-edit"></i>
-                                                    </button>
+                                                    </a>
                                                 <?php } ?>
                                             </td>
-                                        </tr>                            
-                                    <?php $no++; endforeach; ?>
+                                        </tr>
+                                    <?php $no++;
+                                    endforeach; ?>
                                     <tr style="text-align: center;">
                                         <th>No</th>
                                         <th>Posisi</th>
@@ -96,7 +98,6 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </tbody>
-
                             </table>
                             <form action="<?= site_url('admin/administrator/ganti/' . $row->id_karyawan) ?>" method="post">
                                 <div class="modal fade" id="modal-default<?= $row->id_karyawan ?>">
@@ -151,6 +152,7 @@
         <!-- /.modal -->
     </section>
     <!-- /.content -->
+
 </div>
 <!-- /.content-wrapper -->
 

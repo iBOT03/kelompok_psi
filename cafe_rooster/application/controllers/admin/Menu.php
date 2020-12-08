@@ -5,6 +5,7 @@ class Menu extends CI_Controller
   {
     parent::__construct();
     belumlogin();
+    cek();
     $this->load->model('admin/Menu_Model');
   }
   public function index()
@@ -29,20 +30,21 @@ class Menu extends CI_Controller
         if ($this->form_validation->run() == false) {
             $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
             $data['food'] = $this->Menu_Model->dMenu($id);
-            $data['kategori'] = $this->Menu_Model->getKategori();
+            $data['sub'] = $this->Menu_Model->getDetail($id);
+            $data['kategori'] = $this->Menu_Model->kategori($id);
 
             $this->load->view('admin/templates/header', $data);
             $this->load->view('admin/templates/sidebar');
             $this->load->view('admin/menu/editmenu', $data);
-            $this->load->view('admin/menu/footer');
+            $this->load->view('admin/templates/footer');
 
         } else {
             $update = $this->Menu_Model->upMenu(array(
-                'id_menu'          => $this->input->post("id"),
+                'id_menu'          => $this->input->post('idmenu'),
                 'id_kategori'     => $this->input->post('kategorimenu'),
                 'nama_menu'        => $this->input->post("namamenu"),
                 'harga_menu'      => $this->input->post("hargamenu"),
-                'gambar_menu'   => $this->input->post("gambarmenu"),
+                // 'gambar_menu'   => $this->input->post("gambarmenu"),
                 'deskripsi_menu'   => $this->input->post("deskripsimenu")
             ), $id);
 
@@ -57,8 +59,8 @@ class Menu extends CI_Controller
                     $this->upload->initialize($config);
 
                     if ($this->upload->do_upload('gambarmenu')) {
-                        $kategori = $this->db->get_where('menu', ['id_menu' => $id])->row_array();
-                        $fotolama = $kategori['gambar_menu'];
+                        $menu = $this->db->get_where('menu', ['id_menu' => $id])->row_array();
+                        $fotolama = $menu['gambar_menu'];
                         if ($fotolama) {
                             unlink(FCPATH . '.uploads/foto/' . $fotolama);
                         }
@@ -103,7 +105,7 @@ class Menu extends CI_Controller
         }
   }
 
-  private function tambah()
+  public function tambah()
   {
     $this->form_validation->set_rules('namamenu', 'Nama menu', 'required|trim|max_length[30]');
     $this->form_validation->set_rules('foto', 'Foto menu', 'trim');

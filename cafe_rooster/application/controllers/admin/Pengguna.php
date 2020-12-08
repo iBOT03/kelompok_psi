@@ -6,6 +6,7 @@ class Pengguna extends CI_Controller
         parent::__construct();
         $this->load->model("admin/Pengguna_Model");
         belumlogin();
+        cek();
     }
 
     public function index()

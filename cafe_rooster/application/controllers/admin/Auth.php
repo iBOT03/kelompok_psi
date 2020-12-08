@@ -29,7 +29,8 @@ class Auth extends CI_Controller
                 if (password_verify($password, $user['password'])) {
                     $data  = [
                         'nama_karyawan' => $user['nama_karyawan'],
-                        'email' => $user['email']
+                        'email' => $user['email'],
+                        'id_bagian' => $user['id_bagian']
 
                     ];
                     $this->session->set_userdata($data);
@@ -52,6 +53,7 @@ class Auth extends CI_Controller
     {
         $this->session->unset_userdata('nama_karyawan');
         $this->session->unset_userdata('email');
+        $this->session->unset_userdata('id_bagian');
         $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Anda berhasil logout! Silahkan login untuk melanjutkan.</div>');
         redirect('admin/Auth');
     }

@@ -44,6 +44,17 @@
         $this->db->where('id_menu', $id);
         return $this->db->get("menu")->result();
     }
+    public function getDetail($id)
+    {
+        $query = $this->db->query("SELECT * FROM menu, kategori_menu WHERE menu.id_kategori = kategori_menu.id_kategori AND menu.id_menu = '$id'")->result();
+        return $query;
+    }
+
+    public function kategori()
+    {
+      $query = $this->db->get('kategori_menu');
+        return $query->result_array();
+    }
 
     //EDIT DATA KATEGORI
     public function upKategori($data = array(), $id)

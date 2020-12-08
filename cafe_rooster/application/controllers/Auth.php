@@ -13,19 +13,14 @@ class Auth extends CI_Controller
     {
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
-        if ($this->form_validation->run() === false) {
-            // $this->load->view('user/home');
-            // redirect(base_url());
-
-
+        if($this->form_validation->run() === false){
             $data['menu'] = $this->db->get('menu')->result_array();
             $data['judul'] = "Welcome to Cafe Rooster Probolinggo";
-            // $this->load->view('user/templates/header', $data);
             $data['user'] = $this->db->get_where('pembeli', ['email' => $this->session->userdata('email')])->row_array();
-            // $this->load->view('user/templates/navbar', $data);
-            $this->load->view('user/home/home', $data);
-            // $this->load->view('user/templates/footer');
-        } else {
+            $this->load->view('user/templates/header.php');
+            $this->load->view('user/home/home.php', $data);
+            $this->load->view('user/templates/footer.php');
+        }else{
             $this->_login();
         }
     }
