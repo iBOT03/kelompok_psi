@@ -51,9 +51,7 @@
                           <img width="100px" height="100px" src="<?= base_url('uploads/foto/') . $row['gambar_menu']; ?>">
                         </td>
                         <td>
-                          <a href="<?= base_url('admin/Menu/edit/' . $row['id_menu']) ?>" class="badge id btn btn-outline-primary">
-                            <i class="fas fa-pencil-alt"></i>
-                          </a>
+                        <a href="#" class="btn btn-success btn-sm active" role="button" aria-pressed="true">Beli</a>
                         </td>
                       </tr>
                     <?php $no++;

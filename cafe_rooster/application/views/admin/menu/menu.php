@@ -69,8 +69,7 @@
                           </a>
                           <a href="<?php echo site_url('admin/menu/delete/' . $row['id_menu']) ?>" onclick="confirm_modal('<?php echo 'menu/delete/' . $row['id_menu']; ?>')" class="badge id btn btn-outline-danger" data-toggle="modal" data-target="#hapusModal">
                               <i class="fa fa-trash"></i>
-                          </a>
-                                                    
+                          </a>                          
                         </td>
                       </tr>
                     <?php $no++;
