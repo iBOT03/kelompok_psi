@@ -19,7 +19,6 @@ class Catering extends CI_Controller
 			Jumlah Menu yang ingin di beli tidak boleh kurang dari 1!
 		  	</div>');
             redirect(base_url());
-
         } else {
 
             $cek = $this->db->get_where('catering', [
@@ -60,5 +59,16 @@ class Catering extends CI_Controller
                 $this->db->insert('detail_catering', $detail_catering);
             }
         }
+    }
+    public function Keranjang()
+    {
+        $data['judul'] = 'Keranjang';
+
+        $id_pembeli = $this->session->userdata('id_pembeli');
+        $data['keranjang'] = $this->db->join('detail_catering', 'detail_catering.id_catering = catering.id_catering')->join('menu', 'menu.id_menu = detail_catering.id_menu')->get_where('catering', ['id_pembeli' => $id_pembeli])->result_array();
+
+        $this->load->view('user/templates/header', $data);
+        $this->load->view('user/Catering/Keranjang', $data);
+        $this->load->view('user/templates/footer');
     }
 }
