@@ -5,7 +5,7 @@ class Menu extends CI_Controller
   {
     parent::__construct();
     belumlogin();
-    cek();
+    // cek();
     $this->load->model('admin/Menu_Model');
   }
   public function index()
