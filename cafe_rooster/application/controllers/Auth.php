@@ -17,7 +17,7 @@ class Auth extends CI_Controller
             $data['menu'] = $this->db->get('menu')->result_array();
             $data['judul'] = "Welcome to Cafe Rooster Probolinggo";
             $data['user'] = $this->db->get_where('pembeli', ['email' => $this->session->userdata('email')])->row_array();
-            $this->load->view('user/templates/header.php');
+            $this->load->view('user/templates/header.php', $data);
             $this->load->view('user/home/home.php', $data);
             $this->load->view('user/templates/footer.php');
         } else {
@@ -123,9 +123,9 @@ class Auth extends CI_Controller
             $data['judul'] = "Welcome to Cafe Rooster Probolinggo";
             // $this->load->view('user/templates/header', $data);
             $data['user'] = $this->db->get_where('pembeli', ['email' => $this->session->userdata('email')])->row_array();
-            // $this->load->view('user/templates/navbar', $data);
+            $this->load->view('user/templates/header.php', $data);
             $this->load->view('user/home/home', $data);
-            // $this->load->view('user/templates/footer');
+            $this->load->view('user/templates/footer');
         } else {
             $data = [
                 'email' => $this->input->post('email'),
