@@ -65,10 +65,9 @@ class Auth extends CI_Controller
             $this->load->view('user/auth/forgotpw');
         } else {
             $email = $this->input->post('email');
-            //cek apakah email terdaftar
+            //cek email di db
             $data = $this->db->get('pembeli')->result_array();
             if ($email == $data['email']) {
-
                 $dt = rand(10);
                 $this->db->query("update pembeli SET password ='$dt' where email='" . $email . "'");
                 $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
