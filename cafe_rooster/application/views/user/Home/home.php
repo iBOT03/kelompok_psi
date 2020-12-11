@@ -16,6 +16,7 @@
 
         </div>
     </header>
+
     <!-- Portfolio Section-->
     <section class="page-section portfolio" id="portfolio">
         <div class="container">
@@ -50,6 +51,7 @@
             </div>
         </div>
     </section>
+
     <!-- About Section-->
     <section class="page-section bg-primary text-white mb-0" id="about">
         <div class="container">
@@ -80,58 +82,100 @@
         </div>
     </section>
 
-    <!-- Contact Section-->
-    <section class="page-section" id="contact">
-        <div class="container">
-            <!-- Contact Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <!-- Contact Section Form-->
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
-                    <form id="contactForm" name="sentMessage" novalidate="novalidate">
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Name</label>
-                                <input class="form-control" id="name" type="text" placeholder="Name" required="required" data-validation-required-message="Please enter your name." />
-                                <p class="help-block text-danger"></p>
+    <?php if ($this->session->userdata('id_pembeli')) { ?>
+
+        <!-- Booking Section-->
+        <section class="page-section" id="booking">
+            <div class="container">
+                <!-- Booking Section Heading-->
+                <br><br>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">BOOKING MEJA SEKARANG</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-book"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+
+                <?php if (validation_errors()) : ?>
+                    <div class="alert alert-danger text-center" role="alert">
+                        <?= validation_errors() ?>
+                    </div>
+                <?php endif; ?>
+
+                <!-- Booking Section Form-->
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <form method="post" action="<?php base_url() ?>home/booking" id="bookingForm" name="bookingForm">
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label for="tglAcara">Tanggal Acara</label>
+                                    <!-- <input class="form-control" id="tglAcara" type="date" required="required" data-validation-required-message="Harap isi tanggal acara anda." /> -->
+                                    <input type="hidden" name="id_booking" id="id_booking">
+                                    <input class="form-control textbox-n" type="text" onfocus="(this.type='date')" id="tglAcara" name="tglAcara" required="required" placeholder="Tanggal Acara" data-validation-required-message="Harap isi tanggal acara anda.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Email Address</label>
-                                <input class="form-control" id="email" type="email" placeholder="Email Address" required="required" data-validation-required-message="Please enter your email address." />
-                                <p class="help-block text-danger"></p>
+
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <div class="form-group">
+                                        <label for="jmlMeja">Jumlah Meja</label>
+                                        <select required="required" class="form-control" id="jmlMeja" name="jmlMeja">
+                                            <option>Jumlah Meja</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                    <p class="help-block text-danger"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Phone Number</label>
-                                <input class="form-control" id="phone" type="tel" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number." />
-                                <p class="help-block text-danger"></p>
+                            <div class="control-group">
+                                <div class="form-group controls">
+                                    <br>
+                                    <p class="text-center">Jumlah tagihan adalah Rp. 50.000/Meja <br>
+                                        Anda bisa melakukan pembayaran langsung lunas maaupun uang muka terlebih dahulu.
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Message</label>
-                                <textarea class="form-control" id="message" rows="5" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
-                                <p class="help-block text-danger"></p>
+                            <br />
+                            <div id="success"></div>
+                            <div class="form-group">
+                                <!-- <button class="btn btn-primary btn-xl float-right" type="submit" name="lanjutkan">Lanjutkan</button> -->
+                                <a class="btn btn-primary float-right js-scroll-trigger" href="#" data-target="#BookingModaluser" data-toggle="modal" role="button">
+                                    <i class="mr-2 text-gray-400"></i>
+                                    Konfirmasi
+                                </a>
+
+
+                                <!-- Booking Modal -->
+                                <div class="modal fade" id="BookingModaluser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Konfirmasi pemesanan meja ?</h5>
+                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-info float-left" type="button" data-dismiss="modal">Batal</button>
+                                                <button class="btn btn-primary form-group" type="submit" name="lanjutkan">Lanjutkan</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
-                        </div>
-                        <br />
-                        <div id="success"></div>
-                        <div class="form-group"><button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Send</button></div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    <?php } else { ?>
 
-    
-    
+    <?php } ?>

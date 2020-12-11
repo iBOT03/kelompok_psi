@@ -5,12 +5,24 @@ class Transaksi extends CI_Controller
     {
         parent::__construct();
         belumlogin();
-        //cek2();
+        $this->load->model('admin/Menu_Model');
     }
     public function index()
     {
+        //load library
+        $this->load->library('pagination');
+
+        
+        $config['total_rows'] = $this->Menu_Model->hitung();
+        $config['per_page'] = 6;
+
+        //inisialisasi
+        $this->pagination->initialize($config);
+
+
         $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
-        $data['menu'] = $this->Pesan_Model->data_menu();
+        $data['start'] = $this->uri->segment(4);
+        $data['menu'] = $this->Menu_Model->sebagian_produk($config['per_page'], $data['start']);
 
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar');

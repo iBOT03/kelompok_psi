@@ -33,8 +33,6 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Menu</a></li>
 
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="<?php base_url(); ?>home/booking">Booking</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a></li>
                     <?php if (!$this->session->userdata('id_pembeli')) { ?>
                         <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="<?= base_url('Auth') ?>">Login</a></li> -->
                         <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="<?= base_url('auth/register') ?>">Register</a></li> -->
@@ -44,12 +42,15 @@
                         </li>
 
                     <?php } else { ?>
+                        
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#booking">Booking</a></li>
                         <li class="nav-item dropdown mx-0 mx-lg-1">
                             <a class="nav-link py-3 px-0 px-lg-3 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Transaksi
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="<?= base_url('Catering/Keranjang')?>">Keranjang</a></li>
+                            <li><a class="dropdown-item" href="#">Booking</a></li>
+                                <li><a class="dropdown-item" href="<?= base_url('Catering/Keranjang') ?>">Keranjang</a></li>
                                 <li><a class="dropdown-item" href="#">Pembayaran</a></li>
                                 <li><a class="dropdown-item" href="#">Proses</a></li>
                                 <li><a class="dropdown-item" href="#">Riwayat</a></li>
