@@ -77,7 +77,7 @@ class Auth extends CI_Controller
                 redirect('auth/ForgotPassword');
             } else {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
-            Email Tidak Terdaftar
+            Email Tidak Terdaftar <b> Okedah bos</b>
             </div>');
                 redirect('auth/ForgotPassword');
             }
