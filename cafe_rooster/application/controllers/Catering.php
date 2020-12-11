@@ -27,14 +27,40 @@ class Catering extends CI_Controller
             ])->row_array();
 
             if ($cek) {
-                $detail_catering = [
-                    'id_menu' => $this->input->post('id_menu'),
-                    'id_catering' => $cek['id_catering'],
-                    'jumlah_catering' => $this->input->post('jumlah'),
-                    'total_harga_catering' => $this->input->post('total')
-                ];
+                $id_catering = $cek['id_catering'];
+                $idmenu = $this->input->post('id_menu');
+                $cek2 = $this->db->get_where('detail_catering', [
+                    'id_catering' => $id_catering,
+                    'id_menu' => $idmenu
+                ])->row_array();
 
-                $this->db->insert('detail_catering', $detail_catering);
+                if ($cek2) {
+                    $jumlahbeli = $this->input->post('jumlah');
+                    $jumlahbelisebelumnya = $cek2['jumlah_catering'];
+                    $tambahjumlah = $jumlahbeli + $jumlahbelisebelumnya;
+                    $totalhargacatering = $tambahjumlah * $this->input->post('harga');
+
+                    $datadetailcatering = [
+                        'jumlah_catering' => $tambahjumlah, 
+                        'total_harga_catering' => $totalhargacatering
+                    ];
+                    $this->db->where([
+                        'id_catering' => $id_catering,
+                        'id_menu' => $idmenu
+                    ]);
+                    $this->db->update('detail_catering', $datadetailcatering);
+                    redirect('Catering/Keranjang');
+                } else {
+                    $detail_catering = [
+                        'id_menu' => $this->input->post('id_menu'),
+                        'id_catering' => $cek['id_catering'],
+                        'jumlah_catering' => $this->input->post('jumlah'),
+                        'total_harga_catering' => $this->input->post('total')
+                    ];
+
+                    $this->db->insert('detail_catering', $detail_catering);
+                    redirect('Catering/Keranjang');
+                }
             } else {
                 $catering = [
                     'id_pembeli' => $this->session->userdata('id_pembeli'),
@@ -57,6 +83,7 @@ class Catering extends CI_Controller
                 ];
 
                 $this->db->insert('detail_catering', $detail_catering);
+                redirect('Catering/Keranjang');
             }
         }
     }
@@ -64,10 +91,12 @@ class Catering extends CI_Controller
     {
         $data['judul'] = 'Keranjang';
 
+        $data['menu'] = $this->db->get('menu')->result_array();
+
         $id_pembeli = $this->session->userdata('id_pembeli');
         $data['keranjang'] = $this->db->join('detail_catering', 'detail_catering.id_catering = catering.id_catering')->join('menu', 'menu.id_menu = detail_catering.id_menu')->get_where('catering', ['id_pembeli' => $id_pembeli])->result_array();
 
-        $this->load->view('user/templates/header', $data);
+        $this->load->view('user/templates/headerother', $data);
         $this->load->view('user/Catering/Keranjang', $data);
         $this->load->view('user/templates/footer');
     }
