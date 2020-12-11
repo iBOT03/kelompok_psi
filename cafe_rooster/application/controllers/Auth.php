@@ -48,13 +48,13 @@ class Auth extends CI_Controller
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
 					Password email yang anda masukan salah!
 		  			</div>');
-                redirect('auth');
+                redirect('home');
             }
         } else {
             $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
 			Email belum terdaftar!
 		  	</div>');
-            redirect('auth');
+            redirect('home');
         }
     }
 

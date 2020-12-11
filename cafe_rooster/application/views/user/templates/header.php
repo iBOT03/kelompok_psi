@@ -57,7 +57,7 @@
                             </ul>
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#">HI, <?= $this->session->userdata('nama'); ?>!</a>
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="user/edit">HI, <?= $this->session->userdata('nama'); ?>!</a>
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">
                             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#" data-target="#logoutModaluser" data-toggle="modal" role="button">
