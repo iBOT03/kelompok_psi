@@ -60,44 +60,28 @@ class Auth extends CI_Controller
 
     public function ForgotPassword()
     {
-        if ($this->input->post('submit')) {
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[pembeli.email]|valid_email');
+        if ($this->form_validation->run() === false) {
+            $this->load->view('user/auth/forgotpw');
+        } else {
             $email = $this->input->post('email');
-            $qry['email'] = $this->Employer_model->select($email);
-            $email1 = $qry['email']->email;
-            if ($email1 == $email) {
-                $code1 = rand();
-                $code = md5($code1);
-                $employer_id = $GLOBALS['employer_id'];
-                $qry1 = $this->Employer_model->insertpwd($code, $employer_id);
-                if ($qry1) {
-                    echo "<script>alert(' your new password is $code1!')</script>";
-                }
+            //cek apakah email terdaftar
+            $data = $this->db->get('pembeli')->result_array();
+            if ($email == $data['email']) {
+
+                $dt = rand(10);
+                $this->db->query("update pembeli SET password ='$dt' where email='" . $email . "'");
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+            Password baru anda <b>'.$dt.' </b>
+            </div>');
+                redirect('auth/ForgotPassword');
+            } else {
+                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+            Email Tidak Terdaftar
+            </div>');
+                redirect('auth/ForgotPassword');
             }
         }
-        $this->load->view('employer/forgot');
-        // $this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[pembeli.email]|valid_email');
-        // if($this->form_validation->run() === false){
-        //     $this->load->view('user/auth/forgotpw');
-        // }else{
-        // $email = $this->input->post('email');
-        // //cek apakah email terdaftar
-        // $userMail = $this->db->get_where('pembeli', ['email' => $email])->row_array();
-        // if ($userMail) {
-        //     //cek apakah email ada
-        //     $data = [
-        //         'email' => $userMail['email']
-        //     ];
-        //     $this->session->set_flashdata('pesan', '<div class="alert alert-info" role="alert">
-        //     Ini passwordnya
-        //     </div>');
-        //     redirect('auth/ForgotPassword');
-        // } else {
-        //     $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
-        //     Email Tidak Terdaftar
-        //     </div>');
-        //     redirect('auth/ForgotPassword');
-        // }
-        // }
     }
     public function Register()
     {
