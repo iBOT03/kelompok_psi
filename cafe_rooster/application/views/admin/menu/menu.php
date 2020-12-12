@@ -64,11 +64,12 @@
                         </td>
                         <td><?= $row['deskripsi_menu'] ?></td>
                         <td>
-                          <a href="<?= base_url('admin/Menu/edit/' . $row['id_menu']) ?>" class="badge id btn btn-outline-primary">
-                              <i class="fas fa-pencil-alt"></i>
+                          <a href="<?= base_url('admin/Menu/edit/' . $row['id_menu']) ?>" class="badge id btn btn-success">edit
+                              <!-- <i class="fas fa-pencil-alt"></i> -->
                           </a>
-                          <a href="<?php echo site_url('admin/menu/delete/' . $row['id_menu']) ?>" onclick="confirm_modal('<?php echo 'menu/delete/' . $row['id_menu']; ?>')" class="badge id btn btn-outline-danger" data-toggle="modal" data-target="#hapusModal">
-                              <i class="fa fa-trash"></i>
+                          <a href="<?php echo site_url('admin/menu/delete/' . $row['id_menu']) ?>" onclick="confirm_modal('<?php echo 'menu/delete/' . $row['id_menu']; ?>')" class="badge id btn btn-danger" data-toggle="modal" data-target="#hapusModal">
+                          hapus    
+                          <!-- <i class="fa fa-trash"></i> -->
                           </a>                          
                         </td>
                       </tr>

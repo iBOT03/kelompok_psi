@@ -89,22 +89,24 @@ class Menu_Model extends CI_Model
     return $this->db->insert("kategori_menu", $data);
   }
 
+  //Transaksi
+  // public function produk()
+  // {
+  //   $query = $this->db->get('menu');
+  //   return $query->result_array();
+  // }
 
-  //TRANSAKSI
-  public function produk()
-  {
-    $query = $this->db->get('menu');
-    return $query->result_array();
-  }
+  // public function sebagian_produk($limit, $start, $search = null)
+  // {
+  //   if ($search) {
+  //     $this->db->like('nama_menu', $search);
+  //   }
+  //   $query = $this->db->get('menu', $limit, $start);
+  //   return $query->result_array();
+  // }
 
-  public function sebagian_produk($limit, $start)
-  {
-    $query = $this->db->get('menu', $limit, $start);
-    return $query->result_array();
-  }
-
-  public function hitung()
-  {
-    return $this->db->get('menu')->num_rows();
-  }
+  // public function hitung()
+  // {
+  //   return $this->db->get('menu')->num_rows();
+  // }
 }
