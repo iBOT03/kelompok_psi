@@ -8,7 +8,7 @@
             <div class="divider-custom-icon"><i class="fas fa-file-invoice-dollar"></i></div>
             <div class="divider-custom-line"></div>
         </div>
-
+        <?= $this->session->flashdata('pesan');?>
         <!-- Portfolio Grid Items-->
         <div class="row justify-content-center">
             <!-- Portfolio Item 1-->
@@ -22,31 +22,33 @@
                         <th scope="col">Total</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php if ($pembayaran) { ?>
-                        <?php $i = 1;
-                        foreach ($pembayaran as $data) { ?>
-                            <tr>
-                                <th scope="row"><?= $i ?></th>
-                                <td><?= $data['nama_menu'] ?></td>
-                                <td><?= $data['jumlah_catering'] ?></td>
-                                <td>Rp. <?= $data['harga_menu'] ?></td>
-                                <td>Rp. <?= $data['total_harga_catering'] ?></td>
-                            </tr>
-                        <?php $i++;
-                        } ?>
-                    <?php } else { ?>
-                        <div class="alert alert-info" role="alert">
-                            Anda belum memiliki tagihan pembayaran!
-                        </div>
-                    <?php } ?>
-                    <tr>
-                        <th scope="row">Total Harga</th>
-                        <td colspan="3"></td>
-                        <td>Rp. </td>
-                        <td colspan="1"></td>
-                    </tr>
-                </tbody>
+                <form action="<?= base_url('Catering/UploadPembayaran') ?>" method="post" enctype="multipart/form-data">
+                    <tbody>
+                        <?php if ($pembayaran) { ?>
+                            <?php $i = 1;
+                            foreach ($pembayaran as $data) { ?>
+                                <tr>
+                                    <th scope="row"><?= $i ?></th>
+                                    <td><?= $data['nama_menu'] ?></td>
+                                    <td><?= $data['jumlah_catering'] ?></td>
+                                    <td>Rp. <?= $data['harga_menu'] ?></td>
+                                    <td>Rp. <?= $data['total_harga_catering'] ?></td>
+                                </tr>
+                                <input type="hidden" name="id" value="<?= $data['id_catering'] ?>">
+                            <?php $i++;
+                            } ?>
+                        <?php } else { ?>
+                            <div class="alert alert-info" role="alert">
+                                Anda belum memiliki tagihan pembayaran!
+                            </div>
+                        <?php } ?>
+                        <tr>
+                            <th scope="row">Total Harga</th>
+                            <td colspan="3"></td>
+                            <td>Rp. </td>
+                            <td colspan="1"></td>
+                        </tr>
+                    </tbody>
             </table>
             <div class="alert alert-secondary text-center" role="alert">
                 Silahkan bayar Down Payment (DP) anda untuk catering yang anda pesan sebesar Rp. <br>
@@ -56,13 +58,13 @@
 
 
             </div>
-            <form action="" method="post" enctype="multipart/form-data">
 
-                <div class="input-group mb-3">
-                    <input type="file" class="form-control" id="inputGroupFile02">
-                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                </div>
-                <button type="submit" class="btn btn-success">Success</button>
+
+            <div class="input-group mb-3">
+                <input type="file" name="bukti" class="form-control" id="inputGroupFile02" required>
+                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+            </div>
+            <button type="submit" class="btn btn-success">Success</button>
             </form>
         </div>
     </div>
