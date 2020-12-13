@@ -49,7 +49,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="<?= base_url('Catering/Keranjang') ?>">Keranjang</a></li>
-                                <li><a class="dropdown-item" href="#">Pembayaran</a></li>
+                                <li><a class="dropdown-item" href="<?= base_url('Catering/Pembayaran') ?>">Pembayaran</a></li>
                                 <li><a class="dropdown-item" href="#">Proses</a></li>
                                 <li><a class="dropdown-item" href="#">Riwayat</a></li>
                             </ul>

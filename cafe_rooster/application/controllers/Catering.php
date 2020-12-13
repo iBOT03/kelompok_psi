@@ -41,7 +41,7 @@ class Catering extends CI_Controller
                     $totalhargacatering = $tambahjumlah * $this->input->post('harga');
 
                     $datadetailcatering = [
-                        'jumlah_catering' => $tambahjumlah, 
+                        'jumlah_catering' => $tambahjumlah,
                         'total_harga_catering' => $totalhargacatering
                     ];
                     $this->db->where([
@@ -91,13 +91,43 @@ class Catering extends CI_Controller
     {
         $data['judul'] = 'Keranjang';
 
-        $data['menu'] = $this->db->get('menu')->result_array();
-
         $id_pembeli = $this->session->userdata('id_pembeli');
-        $data['keranjang'] = $this->db->join('detail_catering', 'detail_catering.id_catering = catering.id_catering')->join('menu', 'menu.id_menu = detail_catering.id_menu')->get_where('catering', ['id_pembeli' => $id_pembeli])->result_array();
+        $data['keranjang'] = $this->db->join('detail_catering', 'detail_catering.id_catering = catering.id_catering')->join('menu', 'menu.id_menu = detail_catering.id_menu')->get_where('catering', [
+            'id_pembeli' => $id_pembeli,
+            'id_status_transaksi' => 1
+            ])->result_array();
 
         $this->load->view('user/templates/headerother', $data);
         $this->load->view('user/Catering/Keranjang', $data);
         $this->load->view('user/templates/footer');
+    }
+
+    public function HapusKeranjang($id)
+    {
+        if ($id) {
+            $this->db->delete('detail_catering', ['id_detail_catering' => $id]);
+            redirect('Catering/Keranjang');
+        }else{
+            redirect(base_url());
+        }
+    }
+
+    public function Pembayaran()
+    {
+        $data['judul'] = 'Pembayaran';
+
+        $id_pembeli = $this->session->userdata('id_pembeli');
+        $data['pembayaran'] = $this->db->join('detail_catering', 'detail_catering.id_catering = catering.id_catering')->join('menu', 'menu.id_menu = detail_catering.id_menu')->get_where('catering', [
+            'id_pembeli' => $id_pembeli, 
+            'id_status_transaksi' => 2
+            ])->result_array();
+
+        $this->load->view('user/templates/headerother', $data);
+        $this->load->view('user/Catering/Pembayaran', $data);
+        $this->load->view('user/templates/footer');
+    }
+
+    public function UploadPembayaran(){
+        
     }
 }

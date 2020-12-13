@@ -1,11 +1,11 @@
 <section class="page-section portfolio mt-5">
     <div class="container">
         <!-- Portfolio Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Keranjang</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Pembayaran</h2>
         <!-- Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-shopping-cart"></i></div>
+            <div class="divider-custom-icon"><i class="fas fa-file-invoice-dollar"></i></div>
             <div class="divider-custom-line"></div>
         </div>
 
@@ -20,26 +20,24 @@
                         <th scope="col">Jumlah</th>
                         <th scope="col">Harga</th>
                         <th scope="col">Total</th>
-                        <th scope="col">Hapus</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if ($keranjang) { ?>
+                    <?php if ($pembayaran) { ?>
                         <?php $i = 1;
-                        foreach ($keranjang as $data) { ?>
+                        foreach ($pembayaran as $data) { ?>
                             <tr>
                                 <th scope="row"><?= $i ?></th>
                                 <td><?= $data['nama_menu'] ?></td>
                                 <td><?= $data['jumlah_catering'] ?></td>
                                 <td>Rp. <?= $data['harga_menu'] ?></td>
                                 <td>Rp. <?= $data['total_harga_catering'] ?></td>
-                                <td><a href="<?= base_url('Catering/HapusKeranjang/') ?><?= $data['id_detail_catering'] ?>"><i class="fas fa-trash"></i></a></td>
                             </tr>
                         <?php $i++;
                         } ?>
                     <?php } else { ?>
                         <div class="alert alert-info" role="alert">
-                            Anda belum memasukan menu apapun kedalam keranjang!
+                            Anda belum memiliki tagihan pembayaran!
                         </div>
                     <?php } ?>
                     <tr>
@@ -50,7 +48,22 @@
                     </tr>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-success">Pesan</button>
+            <div class="alert alert-secondary text-center" role="alert">
+                Silahkan bayar Down Payment (DP) anda untuk catering yang anda pesan sebesar Rp. <br>
+                Pastikan anda mentransfer pembayaran anda ke rekening BCA berikut, lalu upload bukti pembayaran dibawah ini. <br>
+                <center><b>2010847583, Atas nama Hendry Dwi Nurmansyah Idris</b></center>
+
+
+
+            </div>
+            <form action="" method="post" enctype="multipart/form-data">
+
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="inputGroupFile02">
+                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                </div>
+                <button type="submit" class="btn btn-success">Success</button>
+            </form>
         </div>
     </div>
 </section>
