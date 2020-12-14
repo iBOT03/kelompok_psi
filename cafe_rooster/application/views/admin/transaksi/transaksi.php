@@ -26,7 +26,7 @@
         <div class="row">
           <div class="col-md-2">
             <h6 class="text-bold">List Menu</h6>
-            <p> Hasil = <?= $total_rows; ?>
+            <!-- <p> Hasil = <?= $total_rows; ?> -->
             </p>
           </div>
           <div class="col-md-4">
@@ -72,7 +72,7 @@
                     </div>
                     <div class="card-footer">
                       <div class="row">
-                        <div class="col-md-12" >
+                        <div class="col-md-12">
                           <!-- <button type="button" name="tambah" class="btn btn-sm btn-primary tambah" data-namamenu="<?= $row['nama_menu'] ?>" data-hargamenu="<?= $row['harga_menu'] ?>" data-idmenu="<?= $row['id_menu'] ?>">
                             Beli
                           </button> -->
@@ -96,7 +96,7 @@
             <h4 align="center">Keranjang Transaksi</h4>
           </div> -->
           <div class="card-body">
-            <h4>Kode Transaksi <?= $kode_jual;  ?></h4>
+            <!-- <h4>Kode Transaksi <?= $kode_jual;  ?></h4> -->
             <?php echo $this->session->userdata('pesan'); ?>
             <table id="example1" class="table table-bordered table-striped">
               <thead>
@@ -117,25 +117,20 @@
                     <td><?= $row->nama_menu ?></td>
                     <td>Rp. <?= number_format($row->harga_menu); ?></td>
                     <td><?= $row->jumlah_pesan; ?></td>
+                    <!-- <td><?= $row->id_detail_pesan; ?>hh</td> -->
                     <td>Rp. <?= number_format($row->total_harga_pesan); ?></td>
-                    <td><a href="<?= site_url() . 'admin/Transaksi/hapus/' . $kode_jual . '-' . $row->id_menu; ?>" class="badge id btn btn-danger">Hapus</a>
+                    <td><a href="<?= site_url() . 'admin/Transaksi/hapus/' . $row->id_detail_pesan; ?>" class="badge id btn btn-danger">Hapus</a>
                     </td>
                   </tr>
                 <?php $no++;
                 endforeach; ?>
               </tbody>
-              <!-- <tfoot>
-                <tr>
-                  <th>No</th>
-                  <th>Nama Produk</th>
-                  <th>Harga Satuan</th>
-                  <th>Jumlah Beli</th>
-                  <th>Total</th>
-                  <th>Aksi</th>
-                </tr>
-              </tfoot> -->
             </table>
-            <a href="<?= base_url(). 'admin/Transaksi/cekout/' . $sub_total->total ?>" class="btn btn-success btn-sm " role="button"   style="float: right; text-decoration: none;">Checkout</a>
+            <div class="row justify-content-center">
+              <?php foreach ($detail_beli as $data) { ?>
+                <a href="<?= base_url() . 'admin/Transaksi/cekout/' . $huhu->id_pesan ?>" class="btn btn-success btn-sm" role="button" style="float: right; text-decoration: none;">Checkout</a>
+              <?php } ?>
+            </div>
           </div>
           <!-- /.card -->
         </div>

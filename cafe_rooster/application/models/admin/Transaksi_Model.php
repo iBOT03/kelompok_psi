@@ -48,8 +48,8 @@ public function ubah($table, $field, $id) {
     return $this->db->update($table, $field);
 }
 
-public function hapus($table, $id) {
-    return $this->db->delete($table, $id);
+public function hapus($id) {
+    return $this->db->delete('detail_pesan', ['id_detail_pesan' => $id]);
 }
 
 public function tampil_order($field, $table, $order) {
@@ -58,9 +58,12 @@ public function tampil_order($field, $table, $order) {
 }
 
 public function tampil_join($table, $tablejoin, $join, $where) {
-    $this->db->join($tablejoin, $join);
-    $this->db->where($where);
-    return $this->db->get($table);
+    // $this->db->join($tablejoin, $join);
+    // $this->db->where($where);
+    // return $this->db->get($table);
+    return $this->db->join('Menu', 'menu.id_menu = detail_pesan.id_menu')
+              ->join('pesan', 'pesan.id_pesan = detail_pesan.id_pesan')
+              ->get_where('detail_pesan', ['id_status_transaksi' => 1]);
 }
 
 public function total($table, $total, $where) {

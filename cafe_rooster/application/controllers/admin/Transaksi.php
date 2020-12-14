@@ -54,8 +54,12 @@ class Transaksi extends CI_Controller
         //get sub total
         $data['sub_total'] = $this->Transaksi_Model->total('detail_pesan', 'total_harga_pesan', $kode)->row();
         //menampilkan detail beli
-        $data['detail_beli'] = $this->Transaksi_Model->tampil_join
-                                ('menu', 'detail_pesan', 'menu.id_menu=detail_pesan.id_menu', $kode)->result();
+        $data['detail_beli'] = $this->Transaksi_Model->tampil_join('menu', 'detail_pesan', 'menu.id_menu=detail_pesan.id_menu', $kode)->result();
+
+
+        $dataIdPesan = $this->db->get_where('pesan', ['id_status_transaksi' => 1])->row();
+        // var_dump($dataIdPesan);die;
+        $data['huhu'] = $dataIdPesan;
         $data['produk'] = $this->Transaksi_Model->tampil('menu')->result();
 
 
@@ -67,41 +71,102 @@ class Transaksi extends CI_Controller
 
     public function beli($id)
     {
-        //menampilkan data harga satuan produk
-        $where['id_menu'] = $id;
-        $produk = $this->Transaksi_Model->tampil_id('menu', $where)->row();
-        //mengambil id penjualan terakhir
-        $id_pesan = $id_pesan = $this->Transaksi_Model->tampil_order('id_pesan', 'pesan', 'DESC')->row_array();
-        if (empty($id_pesan)) {
-            $kode_jual = 1;
-        } else {
-            $kode_jual = $id_pesan->id_pesan + 1;
-        }
-        //mengecek produk di keranjang
-        $wherecek['id_menu'] = $id;
-        $wherecek['id_pesan'] = $kode_jual;
-        $cektransaksi = $this->Transaksi_Model->tampil_id('detail_pesan', $wherecek)->row();
-        if (empty($cektransaksi)) {
-            $field['id_menu']     = $id;
-            $field['id_pesan']  = $kode_jual;
-            $field['jumlah_pesan']   = 1;
-            $field['total_harga_pesan']  = $produk->harga_menu;
-            $this->Transaksi_Model->tambah('detail_pesan', $field);
-        } else {
-            $field['jumlah_pesan'] = $cektransaksi->jumlah_pesan+1;
-            $field['total_harga_pesan'] = $field['jumlah_pesan'] * $produk->harga_menu;
-            $this->Transaksi_Model->ubah('detail_pesan', $field, $wherecek);
+
+        $pesan = [
+            'id_karyawan' => $this->session->userdata('id_karyawan'),
+            'id_status_transaksi' => 1,
+            'tgl_pesan' => time()
+        ];
+
+        $dataProduk = $this->Transaksi_Model->tampil_id('menu', ['id_menu' => $id])->row_array();
+
+
+
+        if ($id) {
+            $cekIdPesan = $this->db->get_where('pesan', ['id_status_transaksi' => 1])->row_array();
+            $dataMenu = $this->db->get_where('menu',  ['id_menu' => $id])->row_array();
+            if ($cekIdPesan) {
+                $cekDetailPesan = $this->db->get_where(
+                    'detail_pesan',
+                    [
+                        'id_menu' => $id,
+                        'id_pesan' => $cekIdPesan['id_pesan']
+                    ]
+                )->row_array();
+
+                if ($cekDetailPesan) {
+                    $jumlahPesan = $cekDetailPesan['jumlah_pesan'] + 1;
+
+                    $this->db->where('id_detail_pesan', $cekDetailPesan['id_detail_pesan']);
+                    $this->db->update('detail_pesan', [
+                        'jumlah_pesan' => $jumlahPesan, 
+                        'total_harga_pesan' => $jumlahPesan * $dataMenu['harga_menu']
+                    ]);
+                    redirect('admin/Transaksi');
+                } else {
+                    $detailPesan = [
+                        'id_pesan' => $cekIdPesan['id_pesan'],
+                        'id_menu' => $id,
+                        'jumlah_pesan' => 1,
+                        'total_harga_pesan' => $dataProduk['harga_menu']
+                    ];
+                    $this->db->insert('detail_pesan', $detailPesan);
+                    redirect('admin/Transaksi');
+                }
+            } else {
+                $this->db->insert('pesan', $pesan);
+                $cekPesan = $this->db->get_where('pesan', ['id_status_transaksi' => 1])->row_array();
+                $detailPesan = [
+                    'id_pesan' => $cekPesan['id_pesan'],
+                    'id_menu' => $id,
+                    'jumlah_pesan' => 1,
+                    'total_harga_pesan' => $dataProduk['harga_menu']
+                ];
+                $this->db->insert('detail_pesan', $detailPesan);
+                redirect('admin/Transaksi');
+            }
         }
 
-        redirect(base_url() . 'admin/Transaksi');
+
+        // //menampilkan data harga satuan produk
+        // $where['id_menu'] = $id;
+        // $produk = $this->Transaksi_Model->tampil_id('menu', $where)->row();
+        // //mengambil id penjualan terakhir
+        // $id_pesan = $id_pesan = $this->Transaksi_Model->tampil_order('id_pesan', 'pesan', 'DESC')->row_array();
+        // if (empty($id_pesan)) {
+        //     $kode_jual = 1;
+        // } else {
+        //     $kode_jual = $id_pesan->id_pesan + 1;
+        // }
+        // //mengecek produk di keranjang
+        // $wherecek['id_menu'] = $id;
+        // $wherecek['id_pesan'] = $kode_jual;
+        // $cektransaksi = $this->Transaksi_Model->tampil_id('detail_pesan', $wherecek)->row();
+        // if (empty($cektransaksi)) {
+        //     $field['id_menu']     = $id;
+        //     $field['id_pesan']  = $kode_jual;
+        //     $field['jumlah_pesan']   = 1;
+        //     $field['total_harga_pesan']  = $produk->harga_menu;
+        //     $this->Transaksi_Model->tambah('detail_pesan', $field);
+        // } else {
+        //     $field['jumlah_pesan'] = $cektransaksi->jumlah_pesan+1;
+        //     $field['total_harga_pesan'] = $field['jumlah_pesan'] * $produk->harga_menu;
+        //     $this->Transaksi_Model->ubah('detail_pesan', $field, $wherecek);
+        // }
+
+        // redirect(base_url() . 'admin/Transaksi');
     }
 
-    public function hapus($id) {
-        $pecah = explode('-', $id);
-        $where['id_pesan'] = $pecah[0];
-        $where['id_menu'] = $pecah[1];
-        $this->Transaksi_Model->hapus('detail_pesan', $where);
-        redirect(base_url(). 'admin/Transaksi');
+    public function hapus($id)
+    {
+        if($id){
+            $this->Transaksi_Model->hapus($id);
+            redirect('admin/transaksi');
+        }
+        // $pecah = explode('-', $id);
+        // $where['id_pesan'] = $pecah[0];
+        // $where['id_menu'] = $pecah[1];
+        // $this->Transaksi_Model->hapus('detail_pesan', $where);
+        // redirect(base_url() . 'admin/Transaksi');
     }
-
 }
