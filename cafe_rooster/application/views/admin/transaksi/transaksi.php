@@ -127,9 +127,8 @@
               </tbody>
             </table>
             <div class="row justify-content-center">
-              <?php foreach ($detail_beli as $data) { ?>
-                <a href="<?= base_url() . 'admin/Transaksi/cekout/' . $huhu->id_pesan ?>" class="btn btn-success btn-sm" role="button" style="float: right; text-decoration: none;">Checkout</a>
-              <?php } ?>
+                <a href="<?= base_url() . 'admin/Transaksi/CheckOut/' . $huhu ?>" class="btn btn-success btn-sm" role="button" style="float: right; text-decoration: none;">Checkout</a>
+              
             </div>
           </div>
           <!-- /.card -->

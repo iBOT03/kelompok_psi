@@ -57,9 +57,9 @@ class Transaksi extends CI_Controller
         $data['detail_beli'] = $this->Transaksi_Model->tampil_join('menu', 'detail_pesan', 'menu.id_menu=detail_pesan.id_menu', $kode)->result();
 
 
-        $dataIdPesan = $this->db->get_where('pesan', ['id_status_transaksi' => 1])->row();
-        // var_dump($dataIdPesan);die;
-        $data['huhu'] = $dataIdPesan;
+        $dataIdPesan = $this->db->get_where('pesan', ['id_status_transaksi' => 1])->row_array();
+        // var_dump($dataIdPesan['id_pesan']);die;
+        $data['huhu'] = $dataIdPesan['id_pesan'];
         $data['produk'] = $this->Transaksi_Model->tampil('menu')->result();
 
 
@@ -99,7 +99,7 @@ class Transaksi extends CI_Controller
 
                     $this->db->where('id_detail_pesan', $cekDetailPesan['id_detail_pesan']);
                     $this->db->update('detail_pesan', [
-                        'jumlah_pesan' => $jumlahPesan, 
+                        'jumlah_pesan' => $jumlahPesan,
                         'total_harga_pesan' => $jumlahPesan * $dataMenu['harga_menu']
                     ]);
                     redirect('admin/Transaksi');
@@ -159,7 +159,7 @@ class Transaksi extends CI_Controller
 
     public function hapus($id)
     {
-        if($id){
+        if ($id) {
             $this->Transaksi_Model->hapus($id);
             redirect('admin/transaksi');
         }
@@ -168,5 +168,35 @@ class Transaksi extends CI_Controller
         // $where['id_menu'] = $pecah[1];
         // $this->Transaksi_Model->hapus('detail_pesan', $where);
         // redirect(base_url() . 'admin/Transaksi');
+    }
+
+    public function CheckOut($id = '')
+    {
+        if ($id) {
+            $this->form_validation->set_rules('namaPemesan', 'Nama Pemesan', 'required|trim');
+            $this->form_validation->set_rules('nomorMeja', 'Nomor Meja', 'required|trim|greater_than[0]');
+            $this->form_validation->set_rules('uangPelanggan', 'Uang Pelanggan', 'required|trim|greater_than[5000]');
+            $this->form_validation->set_rules('uangKembalian', 'Uang Kembalian', 'required|trim|greater_than[1]');
+
+            if ($this->form_validation->run() === false) {
+                $this->load->view('admin/templates/header');
+                $this->load->view('admin/templates/sidebar');
+                $this->load->view('admin/transaksi/CheckOut');
+                $this->load->view('admin/templates/footer');
+            } else {
+                $data = [
+                    'id_status_transaksi' => 2,
+                    'nama_pemesan' => $this->input->post('namaPemesan'),
+                    'no_meja' => $this->input->post('nomorMeja'),
+                    'total_bayar' => $this->input->post('uangPelanggan'),
+                    'kembalian' => $this->input->post('uangKembalian')
+                ];
+                $this->db->where('id_pesan', $id);
+                $this->db->update('pesan', $data);
+                redirect('admin/transaksi');
+            }
+        } else {
+            redirect('admin/transaksi');
+        }
     }
 }
