@@ -42,7 +42,7 @@ function Ubelumlogin()
 {
   $cek = get_instance();
   if (!$cek->session->userdata('email')) {
-    redirect('user/Auth');
+    redirect('Auth');
   }
 }
 
@@ -50,6 +50,6 @@ function Usudahlogin()
 {
   $cek = get_instance();
   if ($cek->session->userdata('email')) {
-    redirect('user/home');
+    redirect('user/Dashboard');
   }
 }

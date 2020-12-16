@@ -6,11 +6,12 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        // Ubelumlogin();
+         //Ubelumlogin();
     }
 
     public function index()
     {
+        //Usudahlogin();
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
         if ($this->form_validation->run() === false) {
@@ -37,7 +38,11 @@ class Auth extends CI_Controller
             if (password_verify($password, $user['password'])) {
                 $data = [
                     'id_pembeli' => $user['id_pembeli'],
-                    'nama' => $user['nama_pembeli']
+                    'nama' => $user['nama_pembeli'],
+                    'alamat' => $user['alamat_pembeli'],
+                    'nohp' => $user['no_telepon_pembeli'],
+                    'foto' => $user['foto'],
+                    'email' => $user['email']
                 ];
                 $this->session->set_userdata($data);
                 $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
@@ -132,6 +137,7 @@ class Auth extends CI_Controller
     {
         $this->session->unset_userdata('id_pembeli');
         $this->session->unset_userdata('nama_pembeli');
+        $this->session->unset_userdata('email');
         $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Anda berhasil logout! Silahkan login untuk melanjutkan.</div>');
         redirect('/Auth');
     }
