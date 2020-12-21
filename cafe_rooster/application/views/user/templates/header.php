@@ -42,14 +42,14 @@
                         </li>
 
                     <?php } else { ?>
-                        
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#booking">Booking</a></li>
+
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#booking">Booking</a></li>
                         <li class="nav-item dropdown mx-0 mx-lg-1">
                             <a class="nav-link py-3 px-0 px-lg-3 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Transaksi
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Booking</a></li>
+                                <li><a class="dropdown-item" href="<?= base_url('Booking') ?>">Booking</a></li>
                                 <li><a class="dropdown-item" href="<?= base_url('Catering/Keranjang') ?>">Keranjang</a></li>
                                 <li><a class="dropdown-item" href="<?= base_url('Catering/Pembayaran') ?>">Pembayaran</a></li>
                                 <li><a class="dropdown-item" href="#">Proses</a></li>
