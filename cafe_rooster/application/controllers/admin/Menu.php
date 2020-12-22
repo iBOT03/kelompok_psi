@@ -53,7 +53,7 @@ class Menu extends CI_Controller
                 if ($ubahfoto) {
                     $config['allowed_types'] = 'jpg|png|gif|jpeg|pdf';
                     $config['max_size'] = '2048';
-                    $config['upload_path'] = './uploads/foto/';
+                    $config['upload_path'] = './assets/menu/';
                     $config['file_name'] = $ubahfoto;
 
                     $this->upload->initialize($config);

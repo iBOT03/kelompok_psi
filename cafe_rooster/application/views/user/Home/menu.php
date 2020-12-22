@@ -23,7 +23,7 @@ $hasil = mysqli_fetch_array($data);
                 <div class="divider-custom-line"></div>
             </div>
             <!-- Portfolio Modal - Image-->
-            <img class="img-fluid rounded mb-5" src="http://localhost/kelompok_psi/cafe_rooster/assets/user/img/menu/<?= $hasil['gambar_menu'] ?>" alt="" />
+            <img class="img-fluid rounded mb-5" src="http://localhost/kelompok_psi/cafe_rooster/assets/menu/<?= $hasil['gambar_menu'] ?>" alt="" />
             <!-- Portfolio Modal - Text-->
             <p>Rp. <?= $hasil['harga_menu'] ?></p>
             <p class="mb-5"> <?= $hasil['deskripsi_menu'] ?></p>

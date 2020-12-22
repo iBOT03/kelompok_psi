@@ -60,7 +60,7 @@
                         <td><?= $row['nama_kategori'] ?></td>
                         <td>Rp. <?= number_format($row['harga_menu']) ?></td>
                         <td>
-                          <img width="100px" height="100px" src="<?= base_url('uploads/foto/') . $row['gambar_menu']; ?>">
+                          <img width="100px" height="100px" src="<?= base_url('assets/menu/') . $row['gambar_menu']; ?>">
                         </td>
                         <td><?= $row['deskripsi_menu'] ?></td>
                         <td>
