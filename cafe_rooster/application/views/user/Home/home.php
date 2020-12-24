@@ -41,7 +41,7 @@
                                 <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                     <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="<?= base_url(); ?>assets/user/img/menu/<?= $data['gambar_menu'] ?>" alt="" />
+                                <img class="img-fluid" src="<?= base_url(); ?>assets/menu/<?= $data['gambar_menu'] ?>" alt="" />
                                 <h6><?= $data['nama_menu'] ?></h6>
                                 <h6>Rp. <?= $data['harga_menu'] ?></h6>
                             </div>

@@ -20,89 +20,108 @@ class Menu extends CI_Controller
   }
 
   public function edit($id = null)
-    {
-        $this->form_validation->set_rules('namamenu', 'Nama Menu', 'required|trim');
-        $this->form_validation->set_rules('kategorimenu', 'Kategori Menu', 'required|trim');
-        $this->form_validation->set_rules('hargamenu', 'Harga Menu', 'required|trim');
-        $this->form_validation->set_rules('gambarmenu', 'Gambar Menu', 'trim');
-        $this->form_validation->set_rules('deskripsimenu', 'Deskripsi Menu', 'required|trim');
+  {
+    $this->form_validation->set_rules('namamenu', 'Nama Menu', 'required|trim');
+    $this->form_validation->set_rules('kategorimenu', 'Kategori Menu', 'required|trim');
+    $this->form_validation->set_rules('hargamenu', 'Harga Menu', 'required|trim');
+    $this->form_validation->set_rules('gambarmenu', 'Gambar Menu', 'trim');
+    $this->form_validation->set_rules('deskripsimenu', 'Deskripsi Menu', 'required|trim');
 
-        if ($this->form_validation->run() == false) {
-            $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
-            $data['food'] = $this->Menu_Model->dMenu($id);
-            $data['sub'] = $this->Menu_Model->getDetail($id);
-            $data['kategori'] = $this->Menu_Model->kategori($id);
+    if ($this->form_validation->run() == false) {
+      $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
+      $data['food'] = $this->Menu_Model->dMenu($id);
+      $data['sub'] = $this->Menu_Model->getDetail($id);
+      $data['kategori'] = $this->Menu_Model->kategori($id);
 
-            $this->load->view('admin/templates/header', $data);
-            $this->load->view('admin/templates/sidebar');
-            $this->load->view('admin/menu/editmenu', $data);
-            $this->load->view('admin/templates/footer');
+      $this->load->view('admin/templates/header', $data);
+      $this->load->view('admin/templates/sidebar');
+      $this->load->view('admin/menu/editmenu', $data);
+      $this->load->view('admin/templates/footer');
+    } else {
+      $update = $this->Menu_Model->upMenu(array(
+        'id_menu'          => $this->input->post('idmenu'),
+        'id_kategori'     => $this->input->post('kategorimenu'),
+        'nama_menu'        => $this->input->post("namamenu"),
+        'harga_menu'      => $this->input->post("hargamenu"),
+        // 'gambar_menu'   => $this->input->post("gambarmenu"),
+        'deskripsi_menu'   => $this->input->post("deskripsimenu")
+      ), $id);
 
-        } else {
-            $update = $this->Menu_Model->upMenu(array(
-                'id_menu'          => $this->input->post('idmenu'),
-                'id_kategori'     => $this->input->post('kategorimenu'),
-                'nama_menu'        => $this->input->post("namamenu"),
-                'harga_menu'      => $this->input->post("hargamenu"),
-                // 'gambar_menu'   => $this->input->post("gambarmenu"),
-                'deskripsi_menu'   => $this->input->post("deskripsimenu")
-            ), $id);
+      if ($update) {
+        $ubahfoto = $_FILES['gambarmenu']['name'];
+        if ($ubahfoto) {
+          $config['allowed_types'] = 'jpg|png|jpeg';
+          $config['max_size'] = '2048';
+          $config['upload_path'] = './assets/menu/';
+          $config['file_name'] = $ubahfoto;
 
-            if ($update) {
-                $ubahfoto = $_FILES['gambarmenu']['name'];
-                if ($ubahfoto) {
-                    $config['allowed_types'] = 'jpg|png|gif|jpeg|pdf';
-                    $config['max_size'] = '2048';
-                    $config['upload_path'] = './assets/menu/';
-                    $config['file_name'] = $ubahfoto;
+          $this->upload->initialize($config);
 
-                    $this->upload->initialize($config);
+          if ($this->upload->do_upload('gambarmenu')) {
 
-                    if ($this->upload->do_upload('gambarmenu')) {
-                        $menu = $this->db->get_where('menu', ['id_menu' => $id])->row_array();
-                        $fotolama = $menu['gambar_menu'];
-                        if ($fotolama) {
-                            unlink(FCPATH . '.uploads/foto/' . $fotolama);
-                        }
-                        $fotobaru = $this->upload->data('file_name');
-                        $this->db->set('gambar_menu', $fotobaru);
-                        $this->db->where('id_menu', $id);
-                        $this->db->update('menu');
-                    } else {
-                        $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">'
-                            . $this->upload->display_errors() .
-                            '</div>');
-                        redirect('admin/menu');
-                    }
-                }
-                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+            $menu = $this->db->get_where('menu', ['id_menu' => $id])->row_array();
+            $fotolama = $menu['gambar_menu'];
+            if ($fotolama) {
+              unlink(FCPATH . './assets/menu/' . $fotolama);
+            }
+            $fotobaru = $this->upload->data('file_name');
+            $this->db->set('gambar_menu', $fotobaru);
+            $this->db->where('id_menu', $id);
+            $this->db->update('menu');
+
+
+            $cek = $this->db->get_where('menu', ['id_menu' => $id])->row_array();
+            $config['image_library'] = 'gd2';
+            $config['source_image'] = './assets/menu/'.$cek['gambar_menu'].'';
+            $config['create_thumb'] = FALSE;
+            $config['maintain_ratio'] = FALSE;
+            $config['width'] = 640;
+            $config['height'] = 640;
+
+            $this->load->library('image_lib', $config);
+
+            // echo $config['source_image'];die;
+
+            $this->image_lib->crop();
+            if (!$this->image_lib->resize()) {
+              echo $this->image_lib->display_errors();
+              die;
+            }
+          } else {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">'
+              . $this->upload->display_errors() .
+              '</div>');
+            redirect('admin/menu');
+          }
+        }
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
 				Data Berhasil Diubah
 				</div>');
-                redirect('admin/menu');
-            } else {
-                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+        redirect('admin/menu');
+      } else {
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
                 Data Gagal Di Ubah
                 </div>');
-                redirect('admin/menu');
-            }
-        }
+        redirect('admin/menu');
+      }
     }
+  }
 
   public function delete($idMenu)
   {
     // $idMenu = $this->input->post('id');
     $delete = $this->Menu_Model->deletemenu($idMenu);
     if ($delete) {
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+      $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
 			Data Berhasi di Hapus!
             </div>');
-            redirect('admin/Menu');
-        } else {
-            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+      redirect('admin/Menu');
+    } else {
+      $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
 			Data gagal di Hapus!
             </div>');
-            redirect('admin/Menu');
-        }
+      redirect('admin/Menu');
+    }
   }
 
   public function tambah()
@@ -159,5 +178,4 @@ class Menu extends CI_Controller
       }
     }
   }
-
 }
