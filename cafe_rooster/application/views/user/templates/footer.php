@@ -70,7 +70,7 @@
         $(function() {
             $(document).on('click', '.open-modal', function(e) {
                 e.preventDefault();
-                // console.log($(this).attr('data-id'));
+                console.log($(this).attr('data-id'));
                 $("#get-data").modal('show');
                 $.post('application/views/user/home/menu.php', {
                         id: $(this).attr('data-id')

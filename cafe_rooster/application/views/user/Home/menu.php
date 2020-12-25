@@ -13,7 +13,7 @@ $hasil = mysqli_fetch_array($data);
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-lg-8">
+        <div class="col-lg-4">
             <!-- Portfolio Modal - Title-->
             <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal1Label"><?= $hasil['nama_menu'] ?></h2>
             <!-- Icon Divider-->

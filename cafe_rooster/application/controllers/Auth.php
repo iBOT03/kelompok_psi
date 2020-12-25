@@ -18,6 +18,9 @@ class Auth extends CI_Controller
             $data['menu'] = $this->db->get('menu')->result_array();
             $data['judul'] = "Welcome to Cafe Rooster Probolinggo";
             $data['user'] = $this->db->get_where('pembeli', ['email' => $this->session->userdata('email')])->row_array();
+
+            $this->session->set_flashdata('pesanLogin', '<div class="alert alert-danger" role="alert">Login gagal, Silahkan cek kembali email dan password yang anda masukan!</div>');
+
             $this->load->view('user/templates/header.php', $data);
             $this->load->view('user/home/home.php', $data);
             $this->load->view('user/templates/footer.php');
@@ -89,7 +92,7 @@ class Auth extends CI_Controller
     }
     public function Register()
     {
-        // $nama = $this->input->post('nama');
+        $nama = $this->input->post('nama');
         // $alamat = $this->input->post('alamat');
         // $nohp = $this->input->post('nohp');
         // $email = $this->input->post('email');
@@ -98,22 +101,24 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
         $this->form_validation->set_rules('nohp', 'No Telepon', 'required|trim|integer');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[pembeli.email]|valid_email');
-        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]');
+        $this->form_validation->set_rules('emailregt', 'Email', 'required|trim|is_unique[pembeli.email]|valid_email');
+        $this->form_validation->set_rules('passwordregt', 'Password', 'required|trim|min_length[8]');
         $this->form_validation->set_rules('passwordk', 'Konfirmasi Password', 'required|trim|matches[password]');
         if ($this->form_validation->run() === false) {
-            // $this->load->view('user/home/home');
-            // redirect(base_url());
+            // // $this->load->view('user/home/home');
 
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Register akun gagal, silahkan cek kembali data yang anda masukan</div>');
+            redirect(base_url());
+            
 
-
-            $data['menu'] = $this->db->get('menu')->result_array();
-            $data['judul'] = "Welcome to Cafe Rooster Probolinggo";
+            // $data['menu'] = $this->db->get('menu')->result_array();
+            // $data['judul'] = "Welcome to Cafe Rooster Probolinggo";
+            // // $this->load->view('user/templates/header', $data);
+            // $data['user'] = $this->db->get_where('pembeli', ['email' => $this->session->userdata('email')])->row_array();
             // $this->load->view('user/templates/header', $data);
-            $data['user'] = $this->db->get_where('pembeli', ['email' => $this->session->userdata('email')])->row_array();
-            $this->load->view('user/templates/header.php', $data);
-            $this->load->view('user/home/home', $data);
-            $this->load->view('user/templates/footer');
+            // $this->load->view('user/home/home', $data);
+            // $this->load->view('user/templates/footer');
+            // // redirect(base_url());
         } else {
             $data = [
                 'email' => $this->input->post('email'),

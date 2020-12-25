@@ -2,6 +2,7 @@
     <header class="masthead bg-primary text-white text-center">
         <div class="container d-flex align-items-center flex-column">
             <p class="masthead-subheading font-weight-light mb-0"><?= $this->session->flashdata('pesan'); ?></p>
+            <p class="masthead-subheading font-weight-light mb-0"><?= $this->session->flashdata('pesanLogin'); ?></p>
             <!-- Masthead Avatar Image-->
             <img class="masthead-avatar mb-5" src="<?= base_url(); ?>assets/user/img/avataaars.svg" alt="" />
             <!-- Masthead Heading-->
@@ -35,13 +36,13 @@
                 <?php foreach ($menu as $data) { ?>
 
 
-                    <div class="col-md-6 col-lg-4 mb-5">
-                        <a href="#" class="open-modal" data-id="<?= $data['id_menu'] ?>">
+                    <div class="col-md-6 col-lg-2 mb-5">
+                        <a class="open-modal" data-id="<?= $data['id_menu'] ?>">
                             <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#">
                                 <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                     <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="<?= base_url(); ?>assets/menu/<?= $data['gambar_menu'] ?>" alt="" />
+                                <img class="img-fluid img-thumbnail" src="<?= base_url(); ?>assets/menu/<?= $data['gambar_menu'] ?>" alt="" />
                                 <h6><?= $data['nama_menu'] ?></h6>
                                 <h6>Rp. <?= $data['harga_menu'] ?></h6>
                             </div>

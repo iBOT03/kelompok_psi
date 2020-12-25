@@ -43,7 +43,7 @@
                 <div class="card">
                     <div class="card-body login-card-body">
                         <p class="login-box-msg">Welcome back, Sign in to start your session</p>
-                        <?= $this->session->flashdata('pesan'); ?>
+                        <?= $this->session->flashdata('pesanLogin'); ?>
 
                         <form action="<?= base_url('Auth/index') ?>" method="post">
                             <?= form_error('email', '<small class="text-danger">', '</small>') ?>
@@ -158,18 +158,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <?= form_error('email', '<small class="text-danger">', '</small>') ?>
+                            <?= form_error('emailregt', '<small class="text-danger">', '</small>') ?>
                             <div class="input-group mb-3">
-                                <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="<?= set_value('email') ?>">
+                                <input type="email" name="emailregt" id="email" class="form-control" placeholder="Email" value="<?= set_value('email') ?>">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-envelope"></span>
                                     </div>
                                 </div>
                             </div>
-                            <?= form_error('password', '<small class="text-danger">', '</small>') ?>
+                            <?= form_error('passwordregt', '<small class="text-danger">', '</small>') ?>
                             <div class="input-group mb-3">
-                                <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                                <input type="password" name="passwordregt" id="password" class="form-control" placeholder="Password">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-lock"></span>
