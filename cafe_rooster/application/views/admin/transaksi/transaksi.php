@@ -124,11 +124,15 @@
                   </tr>
                 <?php $no++;
                 endforeach; ?>
+                <tr>
+                  <td colspan="4"><strong>Total</strong></td>
+                  <td colspan="2"><strong>Rp. <?= number_format($sub_total->total); ?></strong></td>
+                </tr>
               </tbody>
             </table>
             <div class="row justify-content-center">
-                <a href="<?= base_url() . 'admin/Transaksi/CheckOut/' . $huhu ?>" class="btn btn-success btn-sm" role="button" style="float: right; text-decoration: none;">Checkout</a>
-              
+              <a href="<?= base_url() . 'admin/Transaksi/CheckOut/' . $huhu ?>" class="btn btn-success btn-sm" role="button" style="float: right; text-decoration: none;">Checkout</a>
+
             </div>
           </div>
           <!-- /.card -->
