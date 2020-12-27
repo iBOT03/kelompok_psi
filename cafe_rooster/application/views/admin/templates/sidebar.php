@@ -119,7 +119,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/tables/simple.html" class="nav-link">
+              <a href="<?= base_url('admin/Booking')?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Data Booking</p>
               </a>
@@ -190,7 +190,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/tables/simple.html" class="nav-link">
+              <a href="<?= base_url('admin/Booking')?>l" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Data Booking</p>
               </a>
