@@ -66,6 +66,15 @@ class Auth extends CI_Controller
         }
     }
 
+    public function ForgotPassNext()
+    {
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[pembeli.email]|valid_email');
+        if($this->form_validation->run() === false){
+            $this->load->view('user/auth/forgotpw2');
+        } else {
+
+        }
+    }
     public function ForgotPassword()
     {
         $this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[pembeli.email]|valid_email');
@@ -74,19 +83,21 @@ class Auth extends CI_Controller
         } else {
             $email = $this->input->post('email');
             //cek email di db
-            $data = $this->db->get('pembeli')->result_array();
-            if ($email == $data['email']) {
-                $dt = rand(10);
-                $this->db->query("update pembeli SET password ='$dt' where email='" . $email . "'");
+            $user = $this->db->get_where('pembeli', ['email' => $email])->row_array();
+            if ($user) {
+                $data = [
+                    'email' => $user['email']
+                ];
+                $this->session->set_userdata($data);
                 $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
-            Password baru anda <b>'.$dt.' </b>
-            </div>');
-                redirect('auth/ForgotPassword');
+					Hi, '.$user['nama_pembeli'].'. Silahkan Ganti Passwordmu!
+		  			</div>');
+                redirect('Auth/ForgotPassword');
             } else {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
             Email Tidak Terdaftar <b> Okedah bos</b>
             </div>');
-                redirect('auth/ForgotPassword');
+                redirect('Auth/ForgotPassword');
             }
         }
     }
