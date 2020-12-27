@@ -35,10 +35,12 @@
                                 <td>Rp. <?= $data['dp_booking'] ?></td>
                                 <td> <?php if ($data['status_transaksi'] == 1) {
                                             echo '<p class="badge bg-warning" style="width: 11rem;">Menunggu verifikasi</p>';
+                                        }else if($data['status_transaksi'] == 3){
+                                            echo '<p class="badge bg-success" style="width: 11rem;">Booking selesai</p>';
                                         } else {
-                                            echo '<a class="btn btn-primary float-right js-scroll-trigger" href="#" data-target="#bayarModal" data-toggle="modal" role="button">
+                                            echo '<a class="btn btn-primary js-scroll-trigger" href="#" data-target="#bayarModal" data-toggle="modal" role="button">
                                             <i class="mr-2 text-gray-400"></i>
-                                            Konfirmasi
+                                            Lakukan pembayaran
                                         </a>';
                                         } ?>
                                 </td>
@@ -87,7 +89,7 @@
             </div>
             <form>
                 <div class="alert alert-secondary text-center" role="alert">
-                    Silahkan bayar (DP/Lunas) untuk booking yang anda pesan sebesar <br><br><br>
+                    Silahkan bayar (DP/Lunas) untuk booking yang anda pesan.<br>
                     Pastikan anda mentransfer pembayaran anda ke rekening BCA berikut, lalu upload bukti pembayaran dibawah ini. <br>
                     <center><b>2010847583, Atas nama Hendry Dwi Nurmansyah Idris</b></center>
                 </div>
