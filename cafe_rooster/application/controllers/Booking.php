@@ -13,7 +13,7 @@ class Booking extends CI_Controller {
         $data['user'] = $this->db->get_where('pembeli', ['email' => $this->session->userdata('email')])->row_array();
 
 
-        $this->load->view('user/templates/header', $data);
+        $this->load->view('user/templates/headerother', $data);
         $this->load->view('user/Booking/booking', $data);
         $this->load->view('user/templates/footer');
     }
