@@ -5,7 +5,8 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <p><b>Cafe Rooster</b></p>
+            <!-- <p><b>Cafe Rooster</b></p> -->
+            <img src="<?= base_url('/assets/admin/img/rooster-logo2.png') ?>" width="200px">
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -49,10 +50,7 @@
                         </button>
                     </div>
                     <!-- /.social-auth-links -->
-                </form>
-                <p class="mb-1" style="text-align: center;">
-                    <a href="<?= site_url('admin/lupapassword') ?>">I forgot my password</a>
-                </p>
+                </form>                
             </div>
             <!-- /.login-card-body -->
         </div>
