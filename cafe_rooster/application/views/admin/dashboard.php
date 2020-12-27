@@ -35,7 +35,7 @@
            <!-- small box -->
            <div class="small-box bg-info">
              <div class="inner">
-               <h3>150</h3>
+               <h3><?= $total_transaksi; ?></h3>
 
                <p>Total Transaksi</p>
              </div>
@@ -50,7 +50,7 @@
            <!-- small box -->
            <div class="small-box bg-success">
              <div class="inner">
-               <h3>53</h3>
+               <h3><?= $total_catering; ?></h3>
 
                <p>Total Catering</p>
              </div>
@@ -65,9 +65,9 @@
            <!-- small box -->
            <div class="small-box bg-warning">
              <div class="inner">
-               <h3>5</h3>
+               <h3><?= $total_booking; ?></h3>
 
-               <p>Total Karyawan</p>
+               <p>Total Booking</p>
              </div>
              <div class="icon">
                <i class="ion ion-person-add"></i>
@@ -80,7 +80,7 @@
            <!-- small box -->
            <div class="small-box bg-danger">
              <div class="inner">
-               <h3>65</h3>
+               <h3><?= $total_pengguna; ?></h3>
 
                <p>Total Pengguna</p>
              </div>
