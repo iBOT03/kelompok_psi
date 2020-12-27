@@ -60,7 +60,7 @@
                                 <input type="password" name="password" id="password" class="form-control" placeholder="Password">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <span class="fas fa-lock"></span>
+                                    <span><i id="icon" class="fas fa-lock" onclick="tampil()"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -172,7 +172,7 @@
                                 <input type="password" name="passwordregt" id="password" class="form-control" placeholder="Password">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <span class="fas fa-lock"></span>
+                                    <span><i id="icon" class="fas fa-lock" onclick="tampil()"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +181,7 @@
                                 <input type="password" name="passwordk" id="password" class="form-control" placeholder="Konfirmasi Password">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <span class="fas fa-lock"></span>
+                                    <span><i id="icon" class="fas fa-lock" onclick="tampil()"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -223,6 +223,21 @@
       </div>
   </div> -->
 
+<!-- tampil password -->
+<script>
+  function tampil() {
+    var x = document.getElementById('password');
+    var y = document.querySelector('icon');
+    if (x.type ==="password") {
+      x.type = "text";
+      y.style.color ="blue";
+    }else{
+      x.type = "password";
+      y.style.color ="grey";
+      
+    }
+  }
+</script>
 
 
 
