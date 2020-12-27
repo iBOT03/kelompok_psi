@@ -125,9 +125,11 @@
                 <?php $no++;
                 endforeach; ?>
                 <tr>
+                  
                   <td colspan="4"><strong>Total</strong></td>
-                  <td colspan="2"><strong>Rp. <?= number_format($detail_harga->total_pesanan); ?></strong></td>
+                  <td colspan="2"><strong>Rp. <?php foreach ($detail_beli as $row) :?><?= number_format($row->total_bayar); ?><?php endforeach; ?></strong></td>
                 </tr>
+                
               </tbody>
             </table>
             <div class="row justify-content-center">
@@ -153,3 +155,4 @@
 <!-- /.content-wrapper -->
 
 <!-- Transaksi Keranjang -->
+	
