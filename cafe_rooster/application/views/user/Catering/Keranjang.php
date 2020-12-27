@@ -51,51 +51,53 @@
                 </tbody>
             </table>
         </div>
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <form method="post" action="<?php echo base_url('catering/checkout') ?>">
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <!-- <label for="tglAcara">Masukan Tanggal Acara</label> -->
-                            <!-- <input class="form-control" id="tglAcara" type="date" required="required" data-validation-required-message="Harap isi tanggal acara anda." /> -->
-                            <input type="hidden" name="id" value="<?= $checkout?>">
-                            <input class="form-control textbox-n" type="text" onfocus="(this.type='date')" name="tgl" required="required" placeholder="Masukan Tanggal Diperlukan" data-validation-required-message="Harap isi tanggal acara anda.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-
-                    <br />
-                    <div id="success"></div>
-                    <div class="form-group">
-                        <!-- <button class="btn btn-primary btn-xl float-right" type="submit" name="lanjutkan">Lanjutkan</button> -->
-                        <a class="btn btn-primary float-right js-scroll-trigger" href="#" data-target="#BookingModaluser" data-toggle="modal" role="button">
-                            <i class="mr-2 text-gray-400"></i>
-                            Konfirmasi
-                        </a>
-
-
-                        <!-- Booking Modal -->
-                        <div class="modal fade" id="BookingModaluser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Pemesanan</h5>
-                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-info float-left" type="button" data-dismiss="modal">Batal</button>
-                                        <button class="btn btn-primary form-group" type="submit" name="lanjutkan">Lanjutkan</button>
-                                    </div>
-                                </div>
+        <?php if ($keranjang) { ?>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <form method="post" action="<?php echo base_url('catering/checkout') ?>">
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <!-- <label for="tglAcara">Masukan Tanggal Acara</label> -->
+                                <!-- <input class="form-control" id="tglAcara" type="date" required="required" data-validation-required-message="Harap isi tanggal acara anda." /> -->
+                                <input type="hidden" name="id" value="<?= $checkout ?>">
+                                <input class="form-control textbox-n" type="text" onfocus="(this.type='date')" name="tgl" required="required" placeholder="Masukan Tanggal Diperlukan" data-validation-required-message="Harap isi tanggal acara anda.">
+                                <p class="help-block text-danger"></p>
                             </div>
                         </div>
 
+                        <br />
+                        <div id="success"></div>
+                        <div class="form-group">
+                            <!-- <button class="btn btn-primary btn-xl float-right" type="submit" name="lanjutkan">Lanjutkan</button> -->
+                            <a class="btn btn-primary float-right js-scroll-trigger" href="#" data-target="#BookingModaluser" data-toggle="modal" role="button">
+                                <i class="mr-2 text-gray-400"></i>
+                                Konfirmasi
+                            </a>
 
-                    </div>
-                </form>
+
+                            <!-- Booking Modal -->
+                            <div class="modal fade" id="BookingModaluser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Pemesanan</h5>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-info float-left" type="button" data-dismiss="modal">Batal</button>
+                                            <button class="btn btn-primary form-group" type="submit" name="lanjutkan">Lanjutkan</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
+        <?php } ?>
     </div>
 </section>

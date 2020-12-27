@@ -8,10 +8,37 @@
             <div class="divider-custom-icon"><i class="fas fa-file-invoice-dollar"></i></div>
             <div class="divider-custom-line"></div>
         </div>
-        <?= $this->session->flashdata('pesan');?>
+        <?= $this->session->flashdata('pesan'); ?>
         <!-- Portfolio Grid Items-->
-        <div class="row justify-content-center">
-            <!-- Portfolio Item 1-->
+
+        <?php if ($pembayaran) { ?>
+
+            <?php $i = 1;
+            foreach ($pembayaran as $data) { ?>
+                <div class="card text-center mb-5">
+                    <div class="card-header">
+                        Tagihan
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Rp. <?= number_format($data['total_catering']) ?></h5>
+                        <p class="card-text">
+                        <b><?= $data['catatan']?></b>    
+                        <br>Pastikan anda membayar tagihan ke nomer rekening yang sudah ditentukan, <br> dan mengupload bukti pembayaran dengan jelas(tidak blur)</p>
+                        <a href="<?= base_url('catering/HalamanUploadPembayaran/') . $data['id_catering']?>" class="btn btn-primary">Upload Pembayaran</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        2 days ago
+                    </div>
+                </div>
+            <?php $i++;
+            } ?>
+        <?php } else { ?>
+            <div class="alert alert-info" role="alert">
+                Anda belum memiliki tagihan pembayaran!
+            </div>
+        <?php } ?>
+
+        <!-- <div class="row justify-content-center">
             <table class="table">
                 <thead>
                     <tr>
@@ -66,6 +93,6 @@
             </div>
             <button type="submit" class="btn btn-success">Success</button>
             </form>
-        </div>
+        </div> -->
     </div>
 </section>
