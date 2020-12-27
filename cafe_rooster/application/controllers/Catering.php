@@ -97,9 +97,45 @@ class Catering extends CI_Controller
             'id_status_transaksi' => 1
         ])->result_array();
 
+        $cek = $this->db->get_where('catering', [
+            'id_pembeli' => $id_pembeli,
+            'id_status_transaksi' => 1
+        ])->row_array();
+
+        $data['checkout'] = $cek['id_catering'];
+        // var_dump($id_catering); die;
+
         $this->load->view('user/templates/headerother', $data);
         $this->load->view('user/Catering/Keranjang', $data);
         $this->load->view('user/templates/footer');
+    }
+
+    public function checkout()
+    {
+        $id = $this->input->post('id');
+        $tgl = $this->input->post('tgl');
+        // echo $tgl;die;
+        if ($id) {
+            $cek = $this->db->get_where('catering', [
+                'id_catering' => $id,
+                'id_pembeli' => $this->session->userdata('id_pembeli'),
+                'id_status_transaksi' => 1
+            ])->row_array();
+
+            if ($cek) {
+                $this->db->where('id_catering', $id);
+                $this->db->update('catering', [
+                    'id_status_transaksi' => 2,
+                    'tgl_catering' => date('Y-m-d H:i:s'),
+                    'tgl_diperlukan' => $tgl
+                ]);
+                redirect('catering/pembayaran');
+            } else {
+                redirect('catering/keranjang');
+            }
+        } else {
+            redirect('catering/keranjang');
+        }
     }
 
     public function HapusKeranjang($id)

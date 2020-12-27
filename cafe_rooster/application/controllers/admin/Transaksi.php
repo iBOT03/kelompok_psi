@@ -75,7 +75,7 @@ class Transaksi extends CI_Controller
         $pesan = [
             'id_karyawan' => $this->session->userdata('id_karyawan'),
             'id_status_transaksi' => 1,
-            'tgl_pesan' => time()
+            'tgl_pesan' => date('Y-m-d H:i:s')
         ];
 
         $dataProduk = $this->Transaksi_Model->tampil_id('menu', ['id_menu' => $id])->row_array();
