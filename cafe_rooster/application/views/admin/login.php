@@ -23,13 +23,14 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                        <input id="password" type="password" name="password"  class="form-control" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                            <span><i id="icon" class="fas fa-eye" onclick="show()"></i></span>
                             </div>
                         </div>
                     </div>
+                    <!-- <input type="checkbox" onclick="show()"> show password -->
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
@@ -58,6 +59,22 @@
     </div>
 </body>
 
+<!-- show password -->
+<script>
+  function show() {
+    var x = document.getElementById('password');
+    
+    if (x.type ==="password") {
+      x.type = "text";
+      document.getElementById('icon').innerHTML = '<i class="glyphicon glyphicon-eye-close"></i>';
+    }else{
+      x.type = "password";
+      document.getElementById('icon').innerHTML = '<i class="glyphicon glyphicon-eye-open"></i>';
+    }
+  }
+</script>
+
 <!-- Footer -->
 <?php $this->load->view("admin/templates/footerauth.php"); ?>
 <!-- End Footer -->
+
