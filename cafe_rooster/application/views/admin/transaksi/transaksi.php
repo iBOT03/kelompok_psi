@@ -126,7 +126,7 @@
                 endforeach; ?>
                 <tr>
                   <td colspan="4"><strong>Total</strong></td>
-                  <td colspan="2"><strong>Rp. <?= number_format($sub_total->total); ?></strong></td>
+                  <td colspan="2"><strong>Rp. <?= number_format($detail_harga->total_pesanan); ?></strong></td>
                 </tr>
               </tbody>
             </table>

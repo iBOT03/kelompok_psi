@@ -66,7 +66,7 @@ public function tampil_join($table, $tablejoin, $join, $where) {
               ->get_where('detail_pesan', ['id_status_transaksi' => 1]);
 }
 
-public function total($table, $total, $where) {
+function total($table, $total, $where) {
     $this->db->select('SUM('.$total.') as total');
     $this->db->where($where);
     return $this->db->get($table);

@@ -48,7 +48,7 @@
                             <p>Uang Pelanggan</p>
                             <div class="input-group">
                                 <input name="uangPelanggan" id="uangPelanggan" onkeyup="sum();" type="number" class="form-control border-dark small mb-3" placeholder="Masukkan Uang Pelanggan" aria-describedby="basic-addon2">
-                                <input name="tagihan" id="tagihanPelanggan" onkeyup="sum();" type="hidden" class="form-control border-dark small mb-3" placeholder="Masukkan Uang Pelanggan" aria-describedby="basic-addon2" value="100000">
+                                <!-- <input name="tagihan" id="tagihanPelanggan" onkeyup="sum();" type="hidden" class="form-control border-dark small mb-3" placeholder="Masukkan Uang Pelanggan" aria-describedby="basic-addon2" value="100000"> -->
                             </div>
                             <?= form_error('uangPelanggan', '<small class="text-danger pl-2">', '</small>'); ?>
                         </div>
@@ -65,8 +65,8 @@
                         <div class="col">
                             <div class="alert alert-light text-center" role="alert">
                                 <p><b>Tagihan Pelanggan</b></p>
-                                <p>Rp. 100000</p>
-
+                                <input name="tagihan" id="tagihanPelanggan" onkeyup="sum();" type="hidden" class="form-control border-dark small mb-3" placeholder="Masukkan Uang Pelanggan" aria-describedby="basic-addon2" value="<?= $detail_harga->total_pesanan; ?>">
+                                <p>Rp. <?= number_format($detail_harga->total_pesanan); ?></p>
                             </div>
                         </div>
                     </div>
@@ -102,7 +102,5 @@
             document.getElementById('uangKembalian').value = result;
             document.getElementById('uangKembalian1').value = result;
         }
-
-
     }
 </script>

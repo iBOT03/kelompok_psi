@@ -55,6 +55,7 @@ class Transaksi extends CI_Controller
         $data['sub_total'] = $this->Transaksi_Model->total('detail_pesan', 'total_harga_pesan', $kode)->row();
         //menampilkan detail beli
         $data['detail_beli'] = $this->Transaksi_Model->tampil_join('menu', 'detail_pesan', 'menu.id_menu=detail_pesan.id_menu', $kode)->result();
+        $data['detail_harga'] = $this->Transaksi_Model->tampil_join('menu', 'detail_pesan', 'menu.id_menu=detail_pesan.id_menu', $kode)->row();
 
 
         $dataIdPesan = $this->db->get_where('pesan', ['id_status_transaksi' => 1])->row_array();
@@ -179,9 +180,22 @@ class Transaksi extends CI_Controller
             $this->form_validation->set_rules('uangKembalian', 'Uang Kembalian', 'required|trim|greater_than[1]');
 
             if ($this->form_validation->run() === false) {
+                //transaksi
+                $id_pesan = $id_pesan = $this->Transaksi_Model->tampil_order('id_pesan', 'pesan', 'DESC')->row();
+                if (empty($id_pesan)) {
+                    $data['kode_jual'] = 1;
+                    $kode['id_pesan'] = 1;
+                } else {
+                    $data['kode_jual'] = $id_pesan->id_pesan + 1;
+                    $kode['id_pesan'] = $id_pesan->id_pesan + 1;
+                }
+                //get sub total
+                $data['sub_total'] = $this->Transaksi_Model->total('detail_pesan', 'total_harga_pesan', $kode)->row();
+                //menampilkan detail beli                
+                $data['detail_harga'] = $this->Transaksi_Model->tampil_join('menu', 'detail_pesan', 'menu.id_menu=detail_pesan.id_menu', $kode)->row();
                 $this->load->view('admin/templates/header');
                 $this->load->view('admin/templates/sidebar');
-                $this->load->view('admin/transaksi/CheckOut');
+                $this->load->view('admin/transaksi/CheckOut', $data);
                 $this->load->view('admin/templates/footer');
             } else {
                 $data = [
