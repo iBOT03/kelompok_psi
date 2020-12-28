@@ -5,7 +5,7 @@
         <!-- Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+            <div class="divider-custom-icon"><i class="fas fa-spinner"></i></div>
             <div class="divider-custom-line"></div>
         </div>
         <?= $this->session->flashdata('pesan'); ?>

@@ -219,7 +219,7 @@ class Catering extends CI_Controller
                   <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-                redirect('Catering/Pembayaran');
+                redirect('Catering/HalamanUploadPembayaran/'.$idCatering);
             } else {
                 $this->session->set_flashdata('pesan', '<div class="alert text-center alert-danger alert-dismissible fade show" role="alert">' . $this->upload->display_errors() . '
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -234,51 +234,51 @@ class Catering extends CI_Controller
                   <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-            redirect('Catering/Pembayaran');
+            redirect('Catering/HalamanUploadPembayaran/'.$idCatering);
         }
     }
 
-    public function updateBukti()
-    {
-        //jika ada foto yang mau diubah
-        $idCatering = $this->input->post('id');
-        $bukti = str_replace(' ', '', $_FILES['bukti']['name']);
-        // var_dump($bukti); die;
-        if ($bukti) {
-            $config['allowed_types'] = 'jpg|png|jpeg';
-            $config['max_size'] = '2048';
-            $config['upload_path'] = './assets/buktiPembayaran/';
+    // public function updateBukti()
+    // {
+    //     //jika ada foto yang mau diubah
+    //     $idCatering = $this->input->post('id');
+    //     $bukti = str_replace(' ', '', $_FILES['bukti']['name']);
+    //     // var_dump($bukti); die;
+    //     if ($bukti) {
+    //         $config['allowed_types'] = 'jpg|png|jpeg';
+    //         $config['max_size'] = '2048';
+    //         $config['upload_path'] = './assets/buktiPembayaran/';
 
-            $this->upload->initialize($config);
+    //         $this->upload->initialize($config);
 
-            if ($this->upload->do_upload('bukti')) {
-                $fotoBukti = $this->upload->data('file_name');
-                $this->db->where('id_catering', $idCatering);
-                $this->db->update('catering', ['dp_catering' => $fotoBukti]);
+    //         if ($this->upload->do_upload('bukti')) {
+    //             $fotoBukti = $this->upload->data('file_name');
+    //             $this->db->where('id_catering', $idCatering);
+    //             $this->db->update('catering', ['dp_catering' => $fotoBukti]);
 
-                $this->session->set_flashdata('pesan', '<div class="alert text-center alert-success alert-dismissible fade show" role="alert">Bukti Pembayaran berhasil di upload! Harap menunggu konfirmasi dari admin.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                </div>');
-                redirect('Catering/Pembayaran');
-            } else {
-                $this->session->set_flashdata('pesan', '<div class="alert text-center alert-danger alert-dismissible fade show" role="alert">' . $this->upload->display_errors() . '
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                </div>');
-                redirect('Catering/Pembayaran');
-            }
-        } else {
-            $this->session->set_flashdata('pesan', '<div class="alert text-center alert-danger alert-dismissible fade show" role="alert">Silahkan masukan foto bukti pembayaran terlebih dahulu!
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                </div>');
-            redirect('Catering/Pembayaran');
-        }
-    }
+    //             $this->session->set_flashdata('pesan', '<div class="alert text-center alert-success alert-dismissible fade show" role="alert">Bukti Pembayaran berhasil di upload! Harap menunggu konfirmasi dari admin.
+    //             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    //               <span aria-hidden="true">&times;</span>
+    //             </button>
+    //             </div>');
+    //             redirect('Catering/HalamanUploadPembayaran/' . $idCatering);
+    //         } else {
+    //             $this->session->set_flashdata('pesan', '<div class="alert text-center alert-danger alert-dismissible fade show" role="alert">' . $this->upload->display_errors() . '
+    //             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    //               <span aria-hidden="true">&times;</span>
+    //             </button>
+    //             </div>');
+    //             redirect('Catering/HalamanUploadPembayaran/' . $idCatering);
+    //         }
+    //     } else {
+    //         $this->session->set_flashdata('pesan', '<div class="alert text-center alert-danger alert-dismissible fade show" role="alert">Silahkan masukan foto bukti pembayaran terlebih dahulu!
+    //             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    //               <span aria-hidden="true">&times;</span>
+    //             </button>
+    //             </div>');
+    //         redirect('Catering/HalamanUploadPembayaran/' . $idCatering);
+    //     }
+    // }
 
     public function Proses()
     {
