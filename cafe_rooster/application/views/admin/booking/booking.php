@@ -57,8 +57,8 @@
                                                 <td><?= $row->dp_booking ?></td>
                                                 <td><img src="<?= base_url('uploads/foto/') . $row->bukti_tf ?>" alt="Belum upload" width="100"></td>
                                                 <td>
-                                                    <a href="<?php echo site_url('admin/kategorimenu/edit/' . $row->id_booking) ?>" class="badge id btn btn-outline-primary">
-                                                        <p>Konfirmasi</p>
+                                                    <a href="<?php echo site_url('admin/kategorimenu/edit/' . $row->id_booking) ?>" class="badge id btn btn-primary">
+                                                        konfirmasi
                                                     </a>
                                                 </td>
                                             </tr>
