@@ -102,7 +102,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/charts/flot.html" class="nav-link">
+              <a href="<?= base_url('admin/Lap_Transaksi') ?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Report Transaksi</p>
               </a>
@@ -173,7 +173,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/charts/flot.html" class="nav-link">
+              <a href="<?= base_url('admin/Lap_Transaksi') ?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Report Transaksi</p>
               </a>

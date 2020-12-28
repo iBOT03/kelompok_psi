@@ -127,7 +127,7 @@
                 <tr>
                   
                   <td colspan="4"><strong>Total</strong></td>
-                  <td colspan="2"><strong>Rp. <?php foreach ($detail_beli as $row) :?><?= number_format($row->total_bayar); ?><?php endforeach; ?></strong></td>
+                  <td colspan="2"><strong>Rp. <?= number_format($detail_harga->total_pesanan); ?></strong></td>
                 </tr>
                 
               </tbody>
