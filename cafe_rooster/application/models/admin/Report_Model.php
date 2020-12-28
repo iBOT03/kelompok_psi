@@ -42,4 +42,14 @@ class Report_Model extends CI_Model
             return 0;
         }
     }
+
+    public function nota($id)
+    {
+        return $this->db->join('pesan', 'pesan.id_pesan = detail_pesan.id_pesan', 'left')
+        ->join('menu', 'menu.id_menu = detail_pesan.id_menu', 'left')
+        ->join('karyawan', 'karyawan.id_karyawan = pesan.id_karyawan', 'inner')
+        ->where('detail_pesan.id_pesan', $id)->get('detail_pesan')->result();
+    }
+
+    
 }

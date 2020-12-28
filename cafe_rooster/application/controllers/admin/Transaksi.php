@@ -6,6 +6,7 @@ class Transaksi extends CI_Controller
         parent::__construct();
         belumlogin();
         $this->load->model('admin/Transaksi_Model');
+        $this->load->model('admin/Report_Model');
     }
     public function index()
     {
@@ -211,5 +212,27 @@ class Transaksi extends CI_Controller
         } else {
             redirect('admin/transaksi');
         }
+    }
+
+    public function Nota($id)
+    {
+        $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
+        $cek = $this->Report_Model->nota($this->uri->segment(4));
+        $data = array(
+            'tanggal' => $cek[0]->tgl_pesan,
+            'nota' => $cek[0]->id_pesan,
+            'operator' => $cek[0]->nama_karyawan,
+            'meja' => $cek[0]->no_meja,
+            'pelanggan' => $cek[0]->nama_pemesan,
+            'total' => $cek[0]->total_pesanan,
+            'result' => $cek,
+            'bayar' => $cek[0]->total_bayar,
+            'kembalian' => $cek[0]->kembalian,
+        );
+
+        $this->load->view('admin/templates/header', $data);
+        $this->load->view('admin/templates/sidebar');
+        $this->load->view('admin/transaksi/nota', $data);
+        $this->load->view('admin/templates/footer');
     }
 }

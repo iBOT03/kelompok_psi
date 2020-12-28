@@ -32,7 +32,6 @@
                   <span class="icon text-white">
                     <i class="fas fa-plus"></i>
                     <i class="text">Tambah Menu</i>
-                    
                   </span>
                 </a>
               </div>

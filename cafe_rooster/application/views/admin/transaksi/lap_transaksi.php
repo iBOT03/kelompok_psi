@@ -56,7 +56,7 @@
                                               <td><?= $row->jumlah_pesan; ?></td>
                                               <td>Rp. <?= number_format($row->total_harga_pesan); ?></td>
                                               <td>
-                                                  <a href="<?= base_url('admin/Menu/edit/') ?>" class="badge id btn btn-warning">
+                                                  <a href="<?= base_url('admin/Transaksi/Nota/' . $row->id_pesan) ?>" class="badge id btn btn-warning">
                                                       <i class="fas fa-search"></i>
                                                       Detail
                                                   </a>
