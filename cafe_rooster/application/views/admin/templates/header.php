@@ -93,3 +93,4 @@
 
     <!-- Load Modal -->
     <?php $this->load->view("admin/templates/modal.php"); ?>
+    

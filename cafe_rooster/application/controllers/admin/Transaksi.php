@@ -72,7 +72,6 @@ class Transaksi extends CI_Controller
 
     public function beli($id)
     {
-
         $pesan = [
             'id_karyawan' => $this->session->userdata('id_karyawan'),
             'id_status_transaksi' => 1,
