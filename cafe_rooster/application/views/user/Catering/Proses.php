@@ -1,7 +1,7 @@
 <section class="page-section portfolio mt-5">
     <div class="container">
         <!-- Portfolio Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Pembayaran</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Dibuat</h2>
         <!-- Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
@@ -11,20 +11,20 @@
         <?= $this->session->flashdata('pesan'); ?>
         <!-- Portfolio Grid Items-->
 
-        <?php if ($pembayaran) { ?>
+        <?php if ($proses) { ?>
 
             <?php $i = 1;
-            foreach ($pembayaran as $data) { ?>
+            foreach ($proses as $data) { ?>
                 <div class="card text-center mb-5">
                     <div class="card-header">
-                        Tagihan
+                        Dibuat
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Rp. <?= number_format($data['total_catering']) ?></h5>
                         <p class="card-text">
                         <b><?= $data['catatan']?></b>    
-                        <br>Pastikan anda membayar tagihan ke nomer rekening yang sudah ditentukan, <br> dan mengupload bukti pembayaran dengan jelas(tidak blur)</p>
-                        <a href="<?= base_url('catering/HalamanUploadPembayaran/') . $data['id_catering']?>" class="btn btn-primary">Upload Pembayaran</a>
+                        <br>Pastikan anda mengambil pesanan tepat waktu, <br> dan membawa nota pembayaran untuk ditunjukan kepada kasir.</p>
+                        <a href="<?= base_url('catering/DetailPesanan/') . $data['id_catering']?>" class="btn btn-primary">Lihat Detail Pesanan</a>
                     </div>
                     <div class="card-footer text-muted">
                         Hari ini
@@ -34,7 +34,7 @@
             } ?>
         <?php } else { ?>
             <div class="alert alert-info text-center" role="alert">
-                Anda belum memiliki tagihan pembayaran!
+                Anda belum memiliki catering yang sedang dibuat!
             </div>
         <?php } ?>
 

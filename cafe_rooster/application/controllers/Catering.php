@@ -171,7 +171,8 @@ class Catering extends CI_Controller
         $id_pembeli = $this->session->userdata('id_pembeli');
         $data['Pembayaran'] = $this->db->join('detail_catering', 'detail_catering.id_catering = catering.id_catering')->join('menu', 'menu.id_menu = detail_catering.id_menu')->get_where('catering', [
             'id_pembeli' => $id_pembeli,
-            'id_status_transaksi' => 2
+            'id_status_transaksi' => 2,
+            'catering.id_catering' => $id
         ])->result_array();
         
         $cek = $this->db->get_where('catering', [
@@ -225,7 +226,7 @@ class Catering extends CI_Controller
                   <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-                redirect('Catering/Pembayaran');
+                redirect('Catering/HalamanUploadPembayaran/' . $idCatering);
             }
         } else {
             $this->session->set_flashdata('pesan', '<div class="alert text-center alert-danger alert-dismissible fade show" role="alert">Silahkan masukan foto bukti pembayaran terlebih dahulu!
@@ -276,6 +277,100 @@ class Catering extends CI_Controller
                 </button>
                 </div>');
             redirect('Catering/Pembayaran');
+        }
+    }
+
+    public function Proses()
+    {
+        $data['judul'] = 'Pesanan yang dibuat';
+
+        $id_pembeli = $this->session->userdata('id_pembeli');
+        $data['proses'] = $this->db->get_where('catering', [
+            'id_pembeli' => $id_pembeli,
+            'id_status_transaksi' => 3
+        ])->result_array();
+
+        $this->load->view('user/templates/headerother', $data);
+        $this->load->view('user/Catering/Proses', $data);
+        $this->load->view('user/templates/footer');
+    }
+
+    public function DetailPesanan($id = '')
+    {
+        $data['judul'] = 'Detail Pesanan';
+
+        $id_pembeli = $this->session->userdata('id_pembeli');
+        $data['proses'] = $this->db->join('detail_catering', 'detail_catering.id_catering = catering.id_catering')->join('menu', 'menu.id_menu = detail_catering.id_menu')->get_where('catering', [
+            'id_pembeli' => $id_pembeli,
+            'id_status_transaksi' => 3,
+            'catering.id_catering' => $id
+        ])->result_array();
+        
+        $cek = $this->db->get_where('catering', [
+            'id_catering' => $id,
+            'id_pembeli' => $id_pembeli,
+            'id_status_transaksi' => 3
+        ])->row_array();
+
+        $data['BuktiPembayaran'] = $cek['dp_catering'];
+        $data['catatan'] = $cek['catatan']; 
+        $data['total'] = $cek['total_catering'];
+
+        // echo $data['catatan'];die;  
+
+        if($id){
+            $this->load->view('user/templates/headerother', $data);
+            $this->load->view('user/Catering/DetailPesanan', $data);
+            $this->load->view('user/templates/footer');
+        }else{
+            redirect('catering/Proses');
+        }
+    }
+
+    public function History()
+    {
+        $data['judul'] = 'History Catering';
+
+        $id_pembeli = $this->session->userdata('id_pembeli');
+        $data['history'] = $this->db->get_where('catering', [
+            'id_pembeli' => $id_pembeli,
+            'id_status_transaksi' => 4
+        ])->result_array();
+
+        $this->load->view('user/templates/headerother', $data);
+        $this->load->view('user/Catering/History', $data);
+        $this->load->view('user/templates/footer');
+    }
+
+    public function DetailHistoryPesanan($id = '')
+    {
+        $data['judul'] = 'Detail History Pesanan';
+
+        $id_pembeli = $this->session->userdata('id_pembeli');
+        $data['history'] = $this->db->join('detail_catering', 'detail_catering.id_catering = catering.id_catering')->join('menu', 'menu.id_menu = detail_catering.id_menu')->get_where('catering', [
+            'id_pembeli' => $id_pembeli,
+            'id_status_transaksi' => 4,
+            'catering.id_catering' => $id
+        ])->result_array();
+        
+        $cek = $this->db->get_where('catering', [
+            'id_catering' => $id,
+            'id_pembeli' => $id_pembeli,
+            'id_status_transaksi' => 4
+        ])->row_array();
+
+        $data['BuktiPembayaran'] = $cek['dp_catering'];
+        $data['catatan'] = $cek['catatan']; 
+        $data['total'] = $cek['total_catering'];
+
+        // echo $data['catatan'];die;  
+
+        if($id){
+            $this->load->view('user/templates/headerother', $data);
+            $this->load->view('user/Catering/DetailHistoryPesanan', $data);
+            $this->load->view('user/templates/footer');
+        }else{
+            redirect('catering/History');
         }
     }
 
