@@ -23,8 +23,9 @@
               <div class="row">
                   <div class="col-12">
                       <div class="card">
+                      
                           <div class="card-header">
-                              <a href="" class="btn btn-sm btn-info btn-icon-split shadow-sm" onclick="printDiv('print-area')">
+                              <a href="Lap_Transaksi/print" class="btn btn-sm btn-info btn-icon-split shadow-sm" ">
                                   <span class="icon text-white">
                                       <i class="fas fa-download"></i>
                                       <i class="text">Cetak Laporan</i>
@@ -34,6 +35,7 @@
                           </div>
                           <!-- /.card-header -->
                           <div class="card-body">
+                          
                               <?php echo $this->session->userdata('pesan'); ?>
                               <table id="example1" class="table table-bordered table-striped">
                                   <thead>
@@ -73,8 +75,9 @@
                                   </tfoot>
                               </table>
                           </div>
+                          </div>
                           <!-- /.card-body -->
-                      </div>
+                      
                       <!-- /.card -->
                   </div>
                   <!-- /.col -->
@@ -84,78 +87,11 @@
           <!-- /.container-fluid -->
       </section>
       <!-- /.content -->
-      <script>
-          $(document).ready(function() {
-              $('.input-daterange').datepicker({
-                  todayBtn: 'linked',
-                  format: "yyyy-mm-dd",
-                  autoclose: true
-              });
-              $('#example1').DataTable({
-                  dom: 'Blfrtip',
-                  buttons: [{
-                          extend: 'csvHtml5',
-                          exportOptions: {
-                              columns: [0, 1, 2, 3, 4, 5, ],
-                          },
-                      },
-                      {
-                          extend: 'excelHtml5',
-                          title: 'LAPORAN PENJUALAN',
-                          exportOptions: {
-                              columns: [0, 1, 2, 3, 4, 5],
-                          },
-                      },
-                      {
-                          extend: 'copyHtml5',
-                          title: 'LAPORAN PENJUALAN',
-                          exportOptions: {
-                              columns: [0, 1, 2, 3, 4, 5],
-                          },
-                      },
-                      {
-                          extend: 'pdfHtml5',
-                          oriented: 'portrait',
-                          pageSize: 'legal',
-                          title: 'LAPORAN PENJUALAN',
-                          download: 'open',
-                          exportOptions: {
-                              columns: [0, 1, 2, 3, 4, 5],
-                          },
-                          customize: function(doc) {
-                              doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
-                              doc.styles.tableBodyEven.alignment = 'center';
-                              doc.styles.tableBodyOdd.alignment = 'center';
-                          },
-                      },
-                      {
-                          extend: 'print',
-                          oriented: 'portrait',
-                          pageSize: 'A4',
-                          title: 'LAPORAN PENJUALAN',
-                          exportOptions: {
-                              columns: [0, 1, 2, 3, 4, 5],
-                          },
-                      },
-                  ],
-              });
-          });
-      </script>
   </div>
   <!-- /.content-wrapper -->
 
   </div>
   <!-- ./wrapper -->
   </body>
-  <!-- print nota -->
-  <!-- <script type="text/javascript">
-  function printDiv(divName) {
-      let printContents = document.getElementById(divName).innerHTML;
-      let originalContents = document.body.innerHTML;
-      document.body.innerHTML = printContents;
-      window.print();
-      document.body.innerHTML = originalContents;
-      location.reload(true);
-      setTimeout(function() {}, 1000);
-  }
-</script> -->
+  <!-- print nota --> -->
+ 
