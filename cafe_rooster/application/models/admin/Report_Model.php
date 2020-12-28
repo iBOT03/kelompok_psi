@@ -13,7 +13,7 @@ class Report_Model extends CI_Model
         return $query->result();
     }
 
-    public function getDataTrans() 
+    public function getDataTrans()
     {
         $this->db->select('*');
         $this->db->from('menu');
@@ -51,5 +51,26 @@ class Report_Model extends CI_Model
         ->where('detail_pesan.id_pesan', $id)->get('detail_pesan')->result();
     }
 
-    
+    public function getDataBook()
+    {
+        $this->db->select('*')->where('status_transaksi', 4);
+        // $this->db->join('detail_pesan', 'detail_pesan.id_menu = menu.id_menu');
+        //$this->db->join('detail_pesan', 'detail_pesan.id_pesan = pesan.id_pesan');
+
+        $query = $this->db->get('booking');
+        return $query->result();
+        //$this->db->join('karyawan', 'karyawan.id_karyawan = pesan.id_karyawan');
+    }
+
+    public function totalBook()
+    {
+        $this->db->select_sum('total_booking')->where('status_transaksi', 4);
+        $query = $this->db->get('booking');
+        
+        if ($query->num_rows() > 0) {
+            return $query->row()->total_booking;
+        } else {
+            return 0;
+        }
+    }
 }
