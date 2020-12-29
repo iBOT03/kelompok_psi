@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <!-- <input type="checkbox" onclick="show()"> show password -->
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
                                 <input type="checkbox" id="remember">
@@ -41,7 +41,7 @@
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
 
                     <div class="social-auth-links text-center mb-3">
