@@ -42,12 +42,14 @@
                             Anda belum memasukan menu apapun kedalam keranjang!
                         </div>
                     <?php } ?>
+                    <?php if($keranjang){?>
                     <tr>
                         <th scope="row">Total Harga</th>
                         <td colspan="3"></td>
-                        <td>Rp. </td>
+                        <td>Rp. <?= number_format($data['total_catering'])?></td>
                         <td colspan="1"></td>
                     </tr>
+                    <?php }?>
                 </tbody>
             </table>
         </div>
