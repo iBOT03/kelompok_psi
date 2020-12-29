@@ -66,7 +66,7 @@
                       <div class="row">
                         <div class="col-10">
                           <p><b>Rp. <?= number_format($row['harga_menu']) ?></b></p>
-                          <img class="img-fluid width=" 100px" height="100px" src="<?= base_url('uploads/foto/') . $row['gambar_menu']; ?>">
+                          <img class="img-fluid width=" 100px" height="100px" src="<?= base_url('assets/menu/') . $row['gambar_menu']; ?>">
                         </div>
                       </div>
                     </div>
