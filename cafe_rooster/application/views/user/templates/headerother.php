@@ -51,8 +51,8 @@
                                 <li><a class="dropdown-item" href="<?= base_url('Booking') ?>">Booking</a></li>
                                 <li><a class="dropdown-item" href="<?= base_url('Catering/Keranjang') ?>">Keranjang</a></li>
                                 <li><a class="dropdown-item" href="<?= base_url('Catering/Pembayaran') ?>">Pembayaran</a></li>
-                                <li><a class="dropdown-item" href="#">Proses</a></li>
-                                <li><a class="dropdown-item" href="#">Riwayat</a></li>
+                                <li><a class="dropdown-item" href="<?= base_url('Catering/Proses') ?>">Dibuat</a></li>
+                                <li><a class="dropdown-item" href="<?= base_url('Catering/History') ?>">Riwayat</a></li>
                             </ul>
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">

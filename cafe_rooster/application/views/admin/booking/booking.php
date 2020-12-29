@@ -42,6 +42,7 @@
                                             <th>Total Booking</th>
                                             <th>DP Booking</th>
                                             <th>Bukti bayar</th>
+                                            <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -57,8 +58,19 @@
                                                 <td><?= $row->dp_booking ?></td>
                                                 <td><img src="<?= base_url('uploads/foto/') . $row->bukti_tf ?>" alt="Belum upload" width="100"></td>
                                                 <td>
-                                                    <a href="<?php echo site_url('admin/kategorimenu/edit/' . $row->id_booking) ?>" class="badge id btn btn-outline-primary">
-                                                        <p>Konfirmasi</p>
+                                                    <?php if ($row->status_transaksi == 1) {
+                                                        echo '<div class="badge badge-danger badge-pill">Proses Cek</div>';
+                                                    } elseif ($row->status_transaksi == 2) {
+                                                        echo '<div class="badge badge-warning badge-pill">Belum Lunas</div>';                                                    
+                                                    } elseif ($row->status_transaksi == 3) {
+                                                        echo '<div class="badge badge-info badge-pill">Belum Lunas</div>';                                                    
+                                                    }  elseif ($row->status_transaksi == 4) {
+                                                        echo '<div class="badge badge-success badge-pill">Lunas</div>';
+                                                    } ?>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="badge id btn btn-primary">
+                                                        konfirmasi
                                                     </a>
                                                 </td>
                                             </tr>

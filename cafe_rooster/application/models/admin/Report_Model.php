@@ -6,7 +6,7 @@ class Report_Model extends CI_Model
         parent::__construct();
         $this->load->database();
     }
-
+//////////////////////////////////////// DATA REPORT TRANSAKSI //////////////////////////////////////////
     public function index()
     {
         $query = $this->db->get('pesan');
@@ -18,7 +18,7 @@ class Report_Model extends CI_Model
         $this->db->select('*');
         $this->db->from('menu');
         $this->db->join('detail_pesan', 'detail_pesan.id_menu = menu.id_menu');
-        //$this->db->join('detail_pesan', 'detail_pesan.id_pesan = pesan.id_pesan');
+        $this->db->join('pesan', 'pesan.id_pesan = detail_pesan.id_pesan');
         //$this->db->where();
 
         $query = $this->db->get();
@@ -43,6 +43,10 @@ class Report_Model extends CI_Model
         }
     }
 
+//////////////////////////////////////// END OF DATA REPORT TRANSAKSI //////////////////////////////////////////
+
+/////////////////////////////////////////////// NOTA TRANSAKSI /////////////////////////////////////////////////
+
     public function nota($id)
     {
         return $this->db->join('pesan', 'pesan.id_pesan = detail_pesan.id_pesan', 'left')
@@ -51,15 +55,23 @@ class Report_Model extends CI_Model
         ->where('detail_pesan.id_pesan', $id)->get('detail_pesan')->result();
     }
 
+//////////////////////////////////////////// END OF NOTA TRANSAKSI //////////////////////////////////////////////
+
+///////////////////////////////////////////// DATA REPORT BOOKING ///////////////////////////////////////////////
     public function getDataBook()
     {
-        $this->db->select('*')->where('status_transaksi', 4);
-        // $this->db->join('detail_pesan', 'detail_pesan.id_menu = menu.id_menu');
+        $this->db->select('*');
+        $this->db->from('menu');
+        $this->db->join('detail_booking', 'detail_booking.id_menu = menu.id_menu');
+        $this->db->join('booking', 'booking.id_booking = detail_booking.id_booking');
+        //$this->db->select('*')->where('status_transaksi', 4);
+        //$this->db->join('detail_pesan', 'detail_pesan.id_menu = menu.id_menu');
         //$this->db->join('detail_pesan', 'detail_pesan.id_pesan = pesan.id_pesan');
 
-        $query = $this->db->get('booking');
-        return $query->result();
+        //return $this->db->get_where('booking', ['status_transaksi' => 4])->result();
         //$this->db->join('karyawan', 'karyawan.id_karyawan = pesan.id_karyawan');
+        $query = $this->db->get();
+        return $query->result();
     }
 
     public function totalBook()
@@ -73,4 +85,11 @@ class Report_Model extends CI_Model
             return 0;
         }
     }
+
+//////////////////////////////////////// END OF DATA REPORT BOOKING //////////////////////////////////////////
+
+//////////////////////////////////////// DATA REPORT CATERING //////////////////////////////////////////
+
+    
+
 }
