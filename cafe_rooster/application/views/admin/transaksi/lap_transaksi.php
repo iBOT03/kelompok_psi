@@ -25,12 +25,37 @@
                       <div class="card">
                       
                           <div class="card-header">
-                              <a href="Lap_Transaksi/print" class="btn btn-sm btn-info btn-icon-split shadow-sm" ">
+                          <form class="mb-5" method="POST" action="<?= site_url('Lap_Transaksi/print/') ?>">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <p>Tanggal Mulai</p>
+                                <div class="input-group">
+                                    <input class="form-control border-dark small mb-6" type="date" id="tanggalMulai" name="tanggalMulai">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <p>Sampai dengan</p>
+                                <div class="input-group">
+                                    <input class="form-control border-dark small mb-6" type="date" id="sampaiDengan" name="sampaiDengan">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <p> </p>
+                                <button type="submit" class="btn btn-sm btn-info btn-icon-split shadow-sm">
+                                    <span class="icon text-white-50">
+                                    <i class="fas fa-print"></i>
+                                    </span>
+                                    <span class="text"> Cetak Laporan</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                              <!-- <a href="Lap_Transaksi/print" class="btn btn-sm btn-info btn-icon-split shadow-sm" ">
                                   <span class="icon text-white">
                                       <i class="fas fa-print"></i>
                                       <i class="text">Cetak Laporan</i>
                                   </span>
-                              </a>
+                              </a> -->
                               <!-- <h3 class="card-title">DataTable with default features</h3> -->
                           </div>
                           <!-- /.card-header -->
@@ -43,6 +68,7 @@
                                           <th style="width: 2px;">No</th>
                                           <th>ID Pesan</th>
                                           <th>Menu</th>
+                                          <th>Tanggal</th>
                                           <th>Jumlah Pesan</th>
                                           <th>Sub Total</th>
                                           <th>Aksi</th>
@@ -55,6 +81,7 @@
                                               <td style="width: 2px;"><?= $no; ?></td>
                                               <td><?= $row->id_pesan; ?></td>
                                               <td><?= $row->nama_menu; ?></td>
+                                              <td><?= $row->tgl_pesan; ?></td>
                                               <td><?= $row->jumlah_pesan; ?></td>
                                               <td>Rp. <?= number_format($row->total_harga_pesan); ?></td>
                                               <td>
@@ -69,7 +96,7 @@
                                   </tbody>
                                   <tfoot>
                                       <tr>
-                                          <th colspan="4">Total Pendapatan : </th>
+                                          <th colspan="5">Total Pendapatan : </th>
                                           <th colspan="2">Rp. <?= number_format($total); ?></th>
                                       </tr>
                                   </tfoot>

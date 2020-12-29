@@ -18,7 +18,7 @@ class Report_Model extends CI_Model
         $this->db->select('*');
         $this->db->from('menu');
         $this->db->join('detail_pesan', 'detail_pesan.id_menu = menu.id_menu');
-        //$this->db->join('detail_pesan', 'detail_pesan.id_pesan = pesan.id_pesan');
+        $this->db->join('pesan', 'pesan.id_pesan = detail_pesan.id_pesan');
         //$this->db->where();
 
         $query = $this->db->get();

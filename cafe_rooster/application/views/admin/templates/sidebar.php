@@ -142,13 +142,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/tables/simple.html" class="nav-link">
+              <a href="<?= base_url('admin/Catering')?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Catering</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/tables/data.html" class="nav-link">
+              <a href="<?= base_url('admin/Lap_Catering')?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Report Catering</p>
               </a>
@@ -190,7 +190,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?= base_url('admin/Booking')?>l" class="nav-link">
+              <a href="<?= base_url('admin/Booking')?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Data Booking</p>
               </a>
@@ -213,13 +213,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/tables/simple.html" class="nav-link">
+              <a href="<?= base_url('admin/Catering')?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Catering</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/tables/data.html" class="nav-link">
+              <a href="<?= base_url('admin/Lap_Catering')?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Report Catering</p>
               </a>
