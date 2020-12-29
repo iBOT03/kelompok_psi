@@ -45,7 +45,7 @@
                                     <span class="icon text-white-50">
                                     <i class="fas fa-print"></i>
                                     </span>
-                                    <span class="text"> Cetak Laporan</span>
+                                    <span class="text"> Cetakwe Laporan</span>
                                 </button>
                             </div>
                         </div>
