@@ -127,7 +127,7 @@
                 <tr>
                   
                   <td colspan="4"><strong>Total</strong></td>
-                  <td colspan="2"><strong>Rp. <?= number_format($detail_harga->total_pesanan); ?></strong></td>
+                  <td colspan="2"><strong>Rp. <?= number_format($total_harga); ?></strong></td>
                 </tr>
                 
               </tbody>
