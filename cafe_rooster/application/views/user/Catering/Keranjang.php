@@ -45,7 +45,7 @@
                     <tr>
                         <th scope="row">Total Harga</th>
                         <td colspan="3"></td>
-                        <td>Rp. </td>
+                        <td>Rp. <?= number_format($data['total_catering'])?></td>
                         <td colspan="1"></td>
                     </tr>
                 </tbody>
