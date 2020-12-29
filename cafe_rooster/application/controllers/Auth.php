@@ -113,8 +113,8 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
         $this->form_validation->set_rules('nohp', 'No Telepon', 'required|trim|integer');
         $this->form_validation->set_rules('emailregt', 'Email', 'required|trim|is_unique[pembeli.email]|valid_email');
-        $this->form_validation->set_rules('passwordregt', 'Password', 'required|trim|min_length[8]');
-        $this->form_validation->set_rules('passwordk', 'Konfirmasi Password', 'required|trim|matches[password]');
+        $this->form_validation->set_rules('passwordregt', 'Password', 'required|trim|min_length[6]');
+        $this->form_validation->set_rules('passwordk', 'Konfirmasi Password', 'required|trim|matches[passwordregt]');
         if ($this->form_validation->run() === false) {
             // // $this->load->view('user/home/home');
 
@@ -132,8 +132,8 @@ class Auth extends CI_Controller
             // // redirect(base_url());
         } else {
             $data = [
-                'email' => $this->input->post('email'),
-                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                'email' => $this->input->post('emailregt'),
+                'password' => password_hash($this->input->post('passwordregt'), PASSWORD_DEFAULT),
                 'nama_pembeli' => $this->input->post('nama'),
                 'alamat_pembeli' => $this->input->post('alamat'),
                 'no_telepon_pembeli' => $this->input->post('nohp'),
@@ -145,7 +145,7 @@ class Auth extends CI_Controller
             $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
 			Register Success, Please Login!
 		  	</div>');
-            redirect('auth');
+            redirect(base_url());
         }
     }
 
