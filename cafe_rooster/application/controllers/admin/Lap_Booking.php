@@ -1,5 +1,5 @@
 <?php
-class Lap_Transaksi extends CI_Controller
+class Lap_Booking extends CI_Controller
 {
     public function __construct()
     {
@@ -13,11 +13,11 @@ class Lap_Transaksi extends CI_Controller
     {        
        
         $data['admin']  = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();   
-        $data['report'] = $this->Report_Model->getDataTrans();
-        $data['total']  = $this->Report_Model->total();
+        $data['report'] = $this->Report_Model->getDataBook();
+        $data['total']  = $this->Report_Model->totalBook();
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar');
-        $this->load->view("admin/transaksi/lap_transaksi", $data);
+        $this->load->view("admin/booking/lap_booking", $data);
         $this->load->view('admin/templates/footer');
     }
 
@@ -25,11 +25,11 @@ class Lap_Transaksi extends CI_Controller
     {        
        
         $data['admin']  = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();   
-        $data['report'] = $this->Report_Model->getDataTrans();
-        $data['total']  = $this->Report_Model->total();
+        $data['report'] = $this->Report_Model->getDataBook();
+        $data['total']  = $this->Report_Model->totalBook();
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar');
-        $this->load->view("admin/transaksi/print", $data);
+        $this->load->view("admin/booking/print", $data);
         $this->load->view('admin/templates/footer');
     }
 }

@@ -69,7 +69,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?= base_url('admin/Dashboard') ?>">Home</a></li>
-              <li class="breadcrumb-item active">Lapoaran</li>
+              <li class="breadcrumb-item active">Laporan</li>
             </ol>
           </div>
         </div>
@@ -88,14 +88,12 @@
                     <div id="receiptData" style="width: auto; max-width: 580px; min-width: 250px; margin: 0 auto;">
                       <div id="receipt-data">
                         <div>
-                          <!-- <div style="text-align:center;">
+                          <div style="text-align:center;">
                             <img src="<?php echo base_url(); ?>/assets/admin/img/rooster-logo2.png" style="max-width:150px;" alt="BILBILWEST">
-                            <p style="text-align:center;"><strong>Cafe Rooster</strong><br>Probolinggo</p>
+                            <h4>LAPORAN TRANSAKSI</h4>
+                            <h3><strong>CAFE ROOSTER PROBOLINGGO</strong></h3>
                             <p></p>
-                          </div> -->
-                          <h3>LAPORAN BULANAN</h3> 
-                          <h3>CAFE ROOSTER PROBOLINGGO</h3>
-
+                          </div>
                           <div style="clear:both;"></div>
                           <table class="table table-bordered table-striped">
                             <thead>
@@ -105,7 +103,7 @@
                                 <th>Menu</th>
                                 <th>Jumlah Pesan</th>
                                 <th>Sub Total</th>
-                                
+
                               </tr>
                             </thead>
                             <tbody>
