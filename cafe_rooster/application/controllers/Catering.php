@@ -177,7 +177,8 @@ class Catering extends CI_Controller
         
         $cek = $this->db->get_where('catering', [
             'id_pembeli' => $id_pembeli,
-            'id_status_transaksi' => 2  
+            'id_status_transaksi' => 2,
+            'id_catering' => $id 
         ])->row_array();
 
         $data['BuktiPembayaran'] = $cek['dp_catering'];

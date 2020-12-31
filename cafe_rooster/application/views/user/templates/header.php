@@ -52,12 +52,12 @@
                                 <li><a class="dropdown-item" href="<?= base_url('Booking') ?>">Booking</a></li>
                                 <li><a class="dropdown-item" href="<?= base_url('Catering/Keranjang') ?>">Keranjang</a></li>
                                 <li><a class="dropdown-item" href="<?= base_url('Catering/Pembayaran') ?>">Pembayaran</a></li>
-                                <li><a class="dropdown-item" href="#">Proses</a></li>
-                                <li><a class="dropdown-item" href="#">Riwayat</a></li>
+                                <li><a class="dropdown-item" href="<?= base_url('Catering/Proses') ?>">Dibuat</a></li>
+                                <li><a class="dropdown-item" href="<?= base_url('Catering/History') ?>">Riwayat</a></li>
                             </ul>
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="user/dashboard">HI, <?= $this->session->userdata('nama'); ?>!</a>
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="user/dashboard">HI, <?= $this->session->userdata('namaPembeli'); ?>!</a>
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">
                             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#" data-target="#logoutModaluser" data-toggle="modal" role="button">

@@ -41,11 +41,11 @@ class Auth extends CI_Controller
             if (password_verify($password, $user['password'])) {
                 $data = [
                     'id_pembeli' => $user['id_pembeli'],
-                    'nama' => $user['nama_pembeli'],
-                    'alamat' => $user['alamat_pembeli'],
-                    'nohp' => $user['no_telepon_pembeli'],
-                    'foto' => $user['foto'],
-                    'email' => $user['email']
+                    'namaPembeli' => $user['nama_pembeli'],
+                    'alamatPembeli' => $user['alamat_pembeli'],
+                    'nohpPembeli' => $user['no_telepon_pembeli'],
+                    'fotoPembeli' => $user['foto'],
+                    'emailPembeli' => $user['email']
                 ];
                 $this->session->set_userdata($data);
                 $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
