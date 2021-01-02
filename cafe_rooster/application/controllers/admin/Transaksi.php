@@ -56,15 +56,15 @@ class Transaksi extends CI_Controller
         $data['sub_total'] = $this->Transaksi_Model->total('detail_pesan', 'total_harga_pesan', $kode)->row();
         //menampilkan detail beli
         $data['detail_beli'] = $this->Transaksi_Model->tampil_join('menu', 'detail_pesan', 'menu.id_menu=detail_pesan.id_menu', $kode)->result();
-        
+
         // $data['detail_harga'] = $this->Transaksi_Model->tampil_join('menu', 'detail_pesan', 'menu.id_menu=detail_pesan.id_menu', $kode)->row();
-        
+
         // var_dump($kode);die;
         $cek = $this->db->get_where('pesan', ['id_pesan' => $kode['id_pesan'] - 1, 'id_status_transaksi' => 1])->row_array();
 
         $data['total_harga'] = $cek['total_pesanan'];
 
-        $dataIdPesan = $this->db->get_where('pesan', ['id_status_transaksi' => 1, ])->row_array();
+        $dataIdPesan = $this->db->get_where('pesan', ['id_status_transaksi' => 1,])->row_array();
         // var_dump($dataIdPesan['id_pesan']);die;
         $data['huhu'] = $dataIdPesan['id_pesan'];
         $data['produk'] = $this->Transaksi_Model->tampil('menu')->result();
@@ -87,8 +87,8 @@ class Transaksi extends CI_Controller
         $dataProduk = $this->Transaksi_Model->tampil_id('menu', ['id_menu' => $id])->row_array();
 
 
-
         if ($id) {
+            // echo $this->session->userdata('cari');die;
             $cekIdPesan = $this->db->get_where('pesan', ['id_status_transaksi' => 1])->row_array();
             $dataMenu = $this->db->get_where('menu',  ['id_menu' => $id])->row_array();
             if ($cekIdPesan) {

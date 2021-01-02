@@ -11,46 +11,76 @@ class Catering extends CI_Controller
 
     public function Catering()
     {
+        $id_pembeli = $this->session->userdata('id_pembeli');
 
-
-        $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|trim|greater_than_equal_to[1]');
-        if ($this->form_validation->run() === false) {
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
-			Jumlah Menu yang ingin di beli tidak boleh kurang dari 1!
+        if (!$id_pembeli) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+			Silahkan Login Terlebih Dahulu!
 		  	</div>');
             redirect(base_url());
         } else {
+            $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|trim|greater_than_equal_to[1]');
+            if ($this->form_validation->run() === false) {
+                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+			Jumlah Menu yang ingin di beli tidak boleh kurang dari 1!
+		  	</div>');
+                redirect(base_url());
+            } else {
 
-            $cek = $this->db->get_where('catering', [
-                'id_pembeli' => $this->session->userdata('id_pembeli'),
-                'id_status_transaksi' => 1
-            ])->row_array();
-
-            if ($cek) {
-                $id_catering = $cek['id_catering'];
-                $idmenu = $this->input->post('id_menu');
-                $cek2 = $this->db->get_where('detail_catering', [
-                    'id_catering' => $id_catering,
-                    'id_menu' => $idmenu
+                $cek = $this->db->get_where('catering', [
+                    'id_pembeli' => $id_pembeli,
+                    'id_status_transaksi' => 1
                 ])->row_array();
 
-                if ($cek2) {
-                    $jumlahbeli = $this->input->post('jumlah');
-                    $jumlahbelisebelumnya = $cek2['jumlah_catering'];
-                    $tambahjumlah = $jumlahbeli + $jumlahbelisebelumnya;
-                    $totalhargacatering = $tambahjumlah * $this->input->post('harga');
-
-                    $datadetailcatering = [
-                        'jumlah_catering' => $tambahjumlah,
-                        'total_harga_catering' => $totalhargacatering
-                    ];
-                    $this->db->where([
+                if ($cek) {
+                    $id_catering = $cek['id_catering'];
+                    $idmenu = $this->input->post('id_menu');
+                    $cek2 = $this->db->get_where('detail_catering', [
                         'id_catering' => $id_catering,
                         'id_menu' => $idmenu
-                    ]);
-                    $this->db->update('detail_catering', $datadetailcatering);
-                    redirect('Catering/Keranjang');
+                    ])->row_array();
+
+                    if ($cek2) {
+                        $jumlahbeli = $this->input->post('jumlah');
+                        $jumlahbelisebelumnya = $cek2['jumlah_catering'];
+                        $tambahjumlah = $jumlahbeli + $jumlahbelisebelumnya;
+                        $totalhargacatering = $tambahjumlah * $this->input->post('harga');
+
+                        $datadetailcatering = [
+                            'jumlah_catering' => $tambahjumlah,
+                            'total_harga_catering' => $totalhargacatering
+                        ];
+                        $this->db->where([
+                            'id_catering' => $id_catering,
+                            'id_menu' => $idmenu
+                        ]);
+                        $this->db->update('detail_catering', $datadetailcatering);
+                        redirect('Catering/Keranjang');
+                    } else {
+                        $detail_catering = [
+                            'id_menu' => $this->input->post('id_menu'),
+                            'id_catering' => $cek['id_catering'],
+                            'jumlah_catering' => $this->input->post('jumlah'),
+                            'total_harga_catering' => $this->input->post('total')
+                        ];
+
+                        $this->db->insert('detail_catering', $detail_catering);
+                        redirect('Catering/Keranjang');
+                    }
                 } else {
+                    $catering = [
+                        'id_pembeli' => $this->session->userdata('id_pembeli'),
+                        'id_status_transaksi' => 1
+                    ];
+                    $this->db->insert('catering', $catering);
+
+
+
+
+                    $cek = $this->db->get_where('catering', [
+                        'id_pembeli' => $this->session->userdata('id_pembeli'),
+                        'id_status_transaksi' => 1
+                    ])->row_array();
                     $detail_catering = [
                         'id_menu' => $this->input->post('id_menu'),
                         'id_catering' => $cek['id_catering'],
@@ -61,29 +91,6 @@ class Catering extends CI_Controller
                     $this->db->insert('detail_catering', $detail_catering);
                     redirect('Catering/Keranjang');
                 }
-            } else {
-                $catering = [
-                    'id_pembeli' => $this->session->userdata('id_pembeli'),
-                    'id_status_transaksi' => 1
-                ];
-                $this->db->insert('catering', $catering);
-
-
-
-
-                $cek = $this->db->get_where('catering', [
-                    'id_pembeli' => $this->session->userdata('id_pembeli'),
-                    'id_status_transaksi' => 1
-                ])->row_array();
-                $detail_catering = [
-                    'id_menu' => $this->input->post('id_menu'),
-                    'id_catering' => $cek['id_catering'],
-                    'jumlah_catering' => $this->input->post('jumlah'),
-                    'total_harga_catering' => $this->input->post('total')
-                ];
-
-                $this->db->insert('detail_catering', $detail_catering);
-                redirect('Catering/Keranjang');
             }
         }
     }
@@ -174,24 +181,24 @@ class Catering extends CI_Controller
             'id_status_transaksi' => 2,
             'catering.id_catering' => $id
         ])->result_array();
-        
+
         $cek = $this->db->get_where('catering', [
             'id_pembeli' => $id_pembeli,
             'id_status_transaksi' => 2,
-            'id_catering' => $id 
+            'id_catering' => $id
         ])->row_array();
 
         $data['BuktiPembayaran'] = $cek['dp_catering'];
-        $data['catatan'] = $cek['catatan']; 
+        $data['catatan'] = $cek['catatan'];
         $data['total'] = $cek['total_catering'];
 
         // echo $data['catatan'];die;  
 
-        if($id){
+        if ($id) {
             $this->load->view('user/templates/headerother', $data);
             $this->load->view('user/Catering/HalamanUploadPembayaran', $data);
             $this->load->view('user/templates/footer');
-        }else{
+        } else {
             redirect('catering/pembayaran');
         }
     }
@@ -220,7 +227,7 @@ class Catering extends CI_Controller
                   <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-                redirect('Catering/HalamanUploadPembayaran/'.$idCatering);
+                redirect('Catering/HalamanUploadPembayaran/' . $idCatering);
             } else {
                 $this->session->set_flashdata('pesan', '<div class="alert text-center alert-danger alert-dismissible fade show" role="alert">' . $this->upload->display_errors() . '
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -235,7 +242,7 @@ class Catering extends CI_Controller
                   <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-            redirect('Catering/HalamanUploadPembayaran/'.$idCatering);
+            redirect('Catering/HalamanUploadPembayaran/' . $idCatering);
         }
     }
 
@@ -306,7 +313,7 @@ class Catering extends CI_Controller
             'id_status_transaksi' => 3,
             'catering.id_catering' => $id
         ])->result_array();
-        
+
         $cek = $this->db->get_where('catering', [
             'id_catering' => $id,
             'id_pembeli' => $id_pembeli,
@@ -314,16 +321,16 @@ class Catering extends CI_Controller
         ])->row_array();
 
         $data['BuktiPembayaran'] = $cek['dp_catering'];
-        $data['catatan'] = $cek['catatan']; 
+        $data['catatan'] = $cek['catatan'];
         $data['total'] = $cek['total_catering'];
 
         // echo $data['catatan'];die;  
 
-        if($id){
+        if ($id) {
             $this->load->view('user/templates/headerother', $data);
             $this->load->view('user/Catering/DetailPesanan', $data);
             $this->load->view('user/templates/footer');
-        }else{
+        } else {
             redirect('catering/Proses');
         }
     }
@@ -353,7 +360,7 @@ class Catering extends CI_Controller
             'id_status_transaksi' => 4,
             'catering.id_catering' => $id
         ])->result_array();
-        
+
         $cek = $this->db->get_where('catering', [
             'id_catering' => $id,
             'id_pembeli' => $id_pembeli,
@@ -361,18 +368,17 @@ class Catering extends CI_Controller
         ])->row_array();
 
         $data['BuktiPembayaran'] = $cek['dp_catering'];
-        $data['catatan'] = $cek['catatan']; 
+        $data['catatan'] = $cek['catatan'];
         $data['total'] = $cek['total_catering'];
 
         // echo $data['catatan'];die;  
 
-        if($id){
+        if ($id) {
             $this->load->view('user/templates/headerother', $data);
             $this->load->view('user/Catering/DetailHistoryPesanan', $data);
             $this->load->view('user/templates/footer');
-        }else{
+        } else {
             redirect('catering/History');
         }
     }
-
 }

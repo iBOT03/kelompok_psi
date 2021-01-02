@@ -44,7 +44,7 @@
                                 </div>
                                 <img class="img-fluid img-thumbnail" src="<?= base_url(); ?>assets/menu/<?= $data['gambar_menu'] ?>" alt="" />
                                 <h6><?= $data['nama_menu'] ?></h6>
-                                <h6>Rp. <?= $data['harga_menu'] ?></h6>
+                                <h6>Rp. <?= number_format($data['harga_menu']) ?></h6>
                             </div>
                         </a>
                     </div>

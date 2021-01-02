@@ -125,17 +125,19 @@
                 <?php $no++;
                 endforeach; ?>
                 <tr>
-                  
+
                   <td colspan="4"><strong>Total</strong></td>
                   <td colspan="2"><strong>Rp. <?= number_format($total_harga); ?></strong></td>
                 </tr>
-                
+
               </tbody>
             </table>
-            <div class="row justify-content-center">
-              <a href="<?= base_url() . 'admin/Transaksi/CheckOut/' . $huhu ?>" class="btn btn-success btn-sm" role="button" style="float: right; text-decoration: none;">Checkout</a>
+            <?php if ($detail_beli) { ?>
+              <div class="row justify-content-center mt-3">
+                <a href="<?= base_url() . 'admin/Transaksi/CheckOut/' . $huhu ?>" class="btn btn-success btn-sm" role="button" style="float: right; text-decoration: none;">Checkout</a>
 
-            </div>
+              </div>
+            <?php } ?>
           </div>
           <!-- /.card -->
         </div>
@@ -155,4 +157,3 @@
 <!-- /.content-wrapper -->
 
 <!-- Transaksi Keranjang -->
-	
