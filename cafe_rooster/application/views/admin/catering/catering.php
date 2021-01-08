@@ -38,7 +38,7 @@
                                             <th style="width: 2px; ">No</th>
                                             <th>Tanggal Catering</th>
                                             <th>Tanggal acara</th>
-                                            <th>Total Catering</th>
+                                            <th>Total Tagihan</th>
                                             <th>Bukti DP</th>
                                             <th>Pelunasan</th>
                                             <th>Status</th>
@@ -52,14 +52,14 @@
                                                 <td style="width: 2px;"><?= $no; ?></td>
                                                 <td><?= $row->tgl_catering ?></td>
                                                 <td><?= $row->tgl_diperlukan ?></td>
-                                                <td><?= $row->total_catering ?></td>
+                                                <td>Rp. <?= number_format($row->total_catering) ?></td>
                                                 <td><img src="<?= base_url('uploads/foto/') . $row->dp_catering ?>" alt="Belum upload" width="100"></td>
-                                                <td><?= $row->pelunasan_catering ?></td>
+                                                <td>Rp. <?= $row->pelunasan_catering ?></td>
                                                 <td>
                                                     <?php if ($row->id_status_transaksi == 1) {
                                                         echo '<div class="badge badge-danger badge-pill">Belum Bayar</div>';
                                                     } elseif ($row->id_status_transaksi == 2) {
-                                                        echo '<div class="badge badge-warning badge-pill">Belum Lunas</div>';                                                    
+                                                        echo '<div class="badge badge-warning badge-pill">Belum Lunas</div>';
                                                     } elseif ($row->id_status_transaksi == 3) {
                                                         echo '<div class="badge badge-success badge-pill">Lunas</div>';
                                                     } ?>
