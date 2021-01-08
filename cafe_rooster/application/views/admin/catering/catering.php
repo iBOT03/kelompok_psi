@@ -65,7 +65,7 @@
                                                     } ?>
                                                 </td>
                                                 <td>
-                                                    <a href="#" class="badge id btn btn-primary">
+                                                    <a href="<?= base_url('admin/Catering/konfirmasi/' . $row->id_catering) ?>" class="badge id btn btn-primary">
                                                         konfirmasi
                                                     </a>
                                                 </td>

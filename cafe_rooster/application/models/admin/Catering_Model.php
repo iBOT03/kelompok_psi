@@ -22,4 +22,17 @@ class Catering_Model extends CI_Model
   {
     return $this->db->get("catering")->result();
   }
+
+  public function detail($id)
+    {
+        $this->db->where('id_catering', $id);
+        return $this->db->get("catering")->result();
+    }
+
+    //UPDATE DATA CATERING
+    public function konfirmasi($data = array(), $id)
+    {
+        $this->db->where('id_catering', $id);
+        return $this->db->update("catering", $data);
+    }
 }
