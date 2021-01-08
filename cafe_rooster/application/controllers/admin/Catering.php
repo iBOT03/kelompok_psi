@@ -22,7 +22,7 @@ class Catering extends CI_Controller{
     public function konfirmasi($id = null)
     {                
         $this->form_validation->set_rules('status', 'Status', 'required');
-        $this->form_validation->set_rules('pelunasan', 'Pelunasan Catering', 'required|trim|max_length[13]|numeric');
+        $this->form_validation->set_rules('pelunasan', 'Pelunasan Catering', 'trim|max_length[13]|numeric');
         $this->form_validation->set_rules('catatan', 'Catatan', 'required|trim');
         $this->form_validation->set_rules('foto', 'Foto', 'trim');
 
