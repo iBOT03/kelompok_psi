@@ -82,6 +82,9 @@
                                                     <a href="<?php echo site_url('admin/administrator/detail/' . $row->id_karyawan) ?>" type="button" class="badge id btn btn-outline-warning">
                                                         <i class="fas fa-search"> Detail</i>
                                                     </a>
+                                                    <!-- <button type="button" class="badge id btn btn-outline-primary" data-toggle="modal" data-target="#modal-default<?= $row->id_karyawan ?>">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button> -->
                                                 <?php } ?>
                                             </td>
                                         </tr>
