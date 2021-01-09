@@ -148,8 +148,12 @@ class Administrator extends CI_Controller
     }
 
 
-    public function ganti($id)
+    public function detail($id)
     {
+        $data["bagian"] = $this->Karyawan_Model->detail($id);
+        $data["row"] = $this->Karyawan_Model->getBagKar($id);
+        $data["data"] = $this->Karyawan_Model->getDetail($id);
+        $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
         if (isset($_POST['aktif'])) {
             $this->Karyawan_Model->setAktif($id);
             $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
@@ -162,7 +166,9 @@ class Administrator extends CI_Controller
                         Akun telah dinonaktifkan!
                         </div>');
             redirect('admin/administrator');
-        } 
-        $this->load->view("admin/administrator");
+        }
+        
+        $this->load->view('admin/templates/sidebar', $data);
+        $this->load->view("admin/administrator/detail", $data);
     }
 }

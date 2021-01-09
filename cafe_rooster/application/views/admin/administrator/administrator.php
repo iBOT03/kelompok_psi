@@ -79,8 +79,8 @@
                                                 <?php
                                                 if ($_SESSION['nama_karyawan'] != $row->nama_karyawan) {
                                                 ?>
-                                                    <a href="" type="button" class="badge id btn btn-outline-primary" data-toggle="modal" data-target="#modal-default<?= $row->id_karyawan ?>">
-                                                        <i class="fas fa-edit"></i>
+                                                    <a href="<?php echo site_url('admin/administrator/detail/' . $row->id_karyawan) ?>" type="button" class="badge id btn btn-outline-warning">
+                                                        <i class="fas fa-search"> Detail</i>
                                                     </a>
                                                 <?php } ?>
                                             </td>

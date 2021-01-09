@@ -67,4 +67,5 @@ class Karyawan_Model extends CI_Model
         $query = $this->db->get('bagian_karyawan');
         return $query->result_array();
     }
+
 }

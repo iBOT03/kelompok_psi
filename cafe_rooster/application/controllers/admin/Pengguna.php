@@ -73,8 +73,10 @@ class Pengguna extends CI_Controller
         }
     }
 
-    public function ganti($id)
+    public function detail($id)
     {
+        $data["user"] = $this->Pengguna_Model->detail($id);
+        $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
         if (isset($_POST['aktif'])) {
             $this->Pengguna_Model->setAktif($id);
             $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
@@ -87,7 +89,8 @@ class Pengguna extends CI_Controller
                         Akun telah dinonaktifkan!
                         </div>');
             redirect('admin/pengguna');
-        } 
-        $this->load->view("admin/pengguna");
+        }
+        $this->load->view('admin/templates/sidebar', $data);
+        $this->load->view("admin/pengguna/detail", $data);
     }
 }

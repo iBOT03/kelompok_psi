@@ -30,4 +30,10 @@ class Pengguna_Model extends CI_Model
         $this->db->where('id_pembeli', $id);
         $this->db->update('pembeli', ['status' => '2']);
     }
+
+    public function detail($id)
+    {
+        $this->db->where('id_pembeli', $id);
+        return $this->db->get("pembeli")->result();
+    }
 }
