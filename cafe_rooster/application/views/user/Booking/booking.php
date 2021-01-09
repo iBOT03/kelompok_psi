@@ -8,7 +8,7 @@
             <div class="divider-custom-icon"><i class="fas fa-book"></i></div>
             <div class="divider-custom-line"></div>
         </div>
-
+        <?= $this->session->flashdata('pesan'); ?>
         <!-- Portfolio Grid Items-->
         <div class="row justify-content-center">
             <!-- Portfolio Item 1-->
@@ -93,7 +93,7 @@ foreach($booking as $data) : $no++; ?>
             </div>
             <form action="<?= base_url('Booking/UploadBukti') ?>" method="post" enctype="multipart/form-data">
             <div class="row g-3">
-                <input type="hidden" name="idBooking" id="idBooking" value="<?= $data['id_booking'];?>">
+                <input type="" name="idBooking" id="idBooking" value="<?= $data['id_booking'];?>">
                 <div class="col-sm-5">
                     <label for="tglAcara">Tanggal acara</label>
                     <p id="tglAcara"><?= $data['tgl_acara'];?></p>
