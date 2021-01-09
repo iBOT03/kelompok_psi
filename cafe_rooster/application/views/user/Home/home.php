@@ -4,7 +4,7 @@
             <p class="masthead-subheading font-weight-light mb-0"><?= $this->session->flashdata('pesan'); ?></p>
             <p class="masthead-subheading font-weight-light mb-0"><?= $this->session->flashdata('pesanLogin'); ?></p>
             <!-- Masthead Avatar Image-->
-            <img class="masthead-avatar mb-5" src="<?= base_url(); ?>assets/user/img/avataaars.svg" alt="" />
+            <!-- <img class="masthead-avatar mb-5" src="<?= base_url(); ?>assets/user/img/avataaars.svg" alt="" /> -->  <br><br><br><br><br><br><br><br><br><br><br><br><br>
             <!-- Masthead Heading-->
             <h1 class="masthead-heading text-uppercase mb-0">Rooster Cafe</h1>
             <!-- Icon Divider-->
