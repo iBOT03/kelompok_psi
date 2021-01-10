@@ -33,7 +33,7 @@
 
                             <p>Tanggal Catering</p>
                             <div class="input-group">
-                                <input name="tgl_catering" id="tgl_catering" type="text" class="form-control border-dark small mb-3" placeholder="Masukkan Tanggal" aria-describedby="basic-addon2" value="<?php echo $data[0]->tgl_catering; ?>" readonly> 
+                                <input name="tgl_catering" id="tgl_catering" type="text" class="form-control border-dark small mb-3" placeholder="Masukkan Tanggal" aria-describedby="basic-addon2" value="<?php echo $data[0]->tgl_catering; ?>" readonly>
                             </div>
                             <?= form_error('tgl_catering', '<small class="text-danger pl-2">', '</small>'); ?>
                         </div>
@@ -52,14 +52,14 @@
                             <div class="input-group">
                                 <select class="form-control border-dark small mb-3" id="status" name="status">
                                     <option value="<?= $data[0]->id_status_transaksi ?>"><?php
-                                     if ($data[0]->id_status_transaksi == 1) {
-                                        echo 'Belum Bayar';
-                                    } elseif ($data[0]->id_status_transaksi == 2) {
-                                        echo 'Belum Lunas';                                                    
-                                    } elseif ($data[0]->id_status_transaksi == 3) {
-                                        echo 'Lunas';
-                                    }
-                                    ?></option>
+                                                                                            if ($data[0]->id_status_transaksi == 1) {
+                                                                                                echo 'Belum Bayar';
+                                                                                            } elseif ($data[0]->id_status_transaksi == 2) {
+                                                                                                echo 'Belum Lunas';
+                                                                                            } elseif ($data[0]->id_status_transaksi == 3) {
+                                                                                                echo 'Lunas';
+                                                                                            }
+                                                                                            ?></option>
                                     <option value="0">--- Pilih ---</option>
                                     <option value="1">Belum Bayar</option>
                                     <option value="2">Belum Lunas</option>
@@ -77,43 +77,27 @@
                         </div>
                     </div>
 
+
                     <div class="row">
                         <div class="col-sm-6">
                             <p>Pelunasan Catering</p>
                             <div class="input-group">
-                                <input name="pelunasan" id="pelunasan" type="text" class="form-control border-dark small mb-3" placeholder="Masukkan Tagihan Kekurangan DP" aria-describedby="basic-addon2" value="<?php echo $data[0]->pelunasan_catering; ?>">
+                                <input name="pelunasan" id="pelunasan" type="number" class="form-control border-dark small mb-3" placeholder="Masukkan Nominal Tagihan Kekurangan DP" aria-describedby="basic-addon2"  value="<?php echo $data[0]->pelunasan_catering; ?>">
                             </div>
                             <?= form_error('pelunasan', '<small class="text-danger pl-2">', '</small>'); ?>
                         </div>
                         <div class="col-sm-6">
-                            <p>Upload Foto DP</p>
+                            <p>Catatan</p>
                             <div class="input-group">
-                                <input name="dp_catering" id="dp_catering" type="file" accept="image/*" onchange="tampilkanPreview(this,'preview')" class="form-control border-dark small mb-3" placeholder="" aria-describedby="basic-addon2">
-                                <?php foreach ($data as $row) { ?>
-                                    <a href="<?= base_url('uploads/foto/') . $row->dp_catering ?>">Lihat Foto DP</a>
-                                <?php } ?>
+                                <textarea name="catatan" id="catatan" type="text" class="form-control border-dark small mb-3" placeholder="Masukkan catatan" aria-describedby="basic-addon2"><?php echo $data[0]->catatan; ?></textarea>
                             </div>
+                            <?= form_error('catatan', '<small class="text-danger pl-2">', '</small>'); ?>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <input type="hidden" name="blank" id="blank" class="form-control border-dark small mb-3" placeholder="blank" aria-describedby="basic-addon2">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <img id="preview" src="" alt="" width="320px" /> <br>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <p>Catatan</p>
-                    <div class="input-group">
-                        <textarea name="catatan" id="catatan" type="text" class="form-control border-dark small mb-3" placeholder="Masukkan catatan" aria-describedby="basic-addon2"><?php echo $data[0]->catatan; ?></textarea>
-                    </div>
-                    <?= form_error('catatan', '<small class="text-danger pl-2">', '</small>'); ?>
+                    <p>Foto Bukti DP</p>
+                    <div>
+                        <img width="100px" height="100px" src="<?= base_url('assets/buktiPembayaran/') . $data[0]->dp_catering; ?>">
+                    </div> <br><br>
 
                     <button type="submit" href="<?php echo site_url('admin/catering') ?>" class="btn btn-info btn-icon-split">
                         <span class="icon text-white-50">

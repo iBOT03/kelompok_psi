@@ -6,7 +6,7 @@ class Booking_Model extends CI_Model
     parent::__construct();
     $this->load->database();
   }
-
+ 
   public function data_booking()
   {
     // return $this->db->get('menu')->result();
@@ -22,4 +22,10 @@ class Booking_Model extends CI_Model
   {
     return $this->db->get("booking")->result();
   }
+
+  public function konfirmasi($id)
+    {
+        $this->db->where('id_booking', $id);
+        $this->db->update('booking', ['status' => '2']);
+    }
 }
