@@ -39,7 +39,7 @@
                                             <th>Jumlah Meja</th>
                                             <th>Total Booking</th>
                                             <th>DP Booking</th>
-                                            <th>Bukti bayar</th>
+                                            <!-- <th>Bukti bayar</th> -->
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -54,7 +54,7 @@
                                                 <td><?= $row->jumlah_meja ?></td>
                                                 <td><?= $row->total_booking ?></td>
                                                 <td><?= $row->dp_booking ?></td>
-                                                <td><img src="<?= base_url('uploads/foto/') . $row->bukti_tf ?>" alt="Belum upload" width="100"></td>
+                                                <!-- <td><img src="<?= base_url('uploads/foto/') . $row->bukti_tf ?>" alt="Belum upload" width="100"></td> -->
                                                 <td>
                                                     <?php if ($row->status_transaksi == 1) {
                                                         echo '<div class="badge badge-danger badge-pill">Proses Cek</div>';
@@ -67,7 +67,7 @@
                                                     } ?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?= base_url('admin/Booking/konfirmasi')?>" class="badge id btn btn-primary">
+                                                    <a href="<?= base_url('admin/Booking/konfirmasi/') . $row->id_booking?>" class="badge id btn btn-primary">
                                                         konfirmasi
                                                     </a>
                                                 </td>

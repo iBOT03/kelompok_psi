@@ -37,7 +37,7 @@
                                             <th>Tanggal Catering</th>
                                             <th>Tanggal acara</th>
                                             <th>Total Tagihan</th>
-                                            <th>Bukti DP</th>
+                                            <!-- <th>Bukti DP</th> -->
                                             <th>Pelunasan</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
@@ -51,7 +51,7 @@
                                                 <td><?= $row->tgl_catering ?></td>
                                                 <td><?= $row->tgl_diperlukan ?></td>
                                                 <td>Rp. <?= number_format($row->total_catering) ?></td>
-                                                <td><img src="<?= base_url('uploads/foto/') . $row->dp_catering ?>" alt="Belum upload" width="100"></td>
+                                                <!-- <td><img src="<?= base_url('uploads/foto/') . $row->dp_catering ?>" alt="Belum upload" width="100"></td> -->
                                                 <td>Rp. <?= $row->pelunasan_catering ?></td>
                                                 <td>
                                                     <?php if ($row->id_status_transaksi == 1) {

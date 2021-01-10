@@ -96,7 +96,7 @@
                     </div>
                     <p>Foto Bukti DP</p>
                     <div>
-                        <img width="100px" height="100px" src="<?= base_url('assets/buktiPembayaran/') . $data[0]->dp_catering; ?>">
+                        <img width="250px" height="250px" src="<?= base_url('assets/buktiPembayaran/') . $data[0]->dp_catering; ?>">
                     </div> <br><br>
 
                     <button type="submit" href="<?php echo site_url('admin/catering') ?>" class="btn btn-info btn-icon-split">

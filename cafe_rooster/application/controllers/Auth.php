@@ -70,7 +70,7 @@ class Auth extends CI_Controller
     {
         $this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[pembeli.email]|valid_email');
         if($this->form_validation->run() === false){
-            $this->load->view('user/auth/forgotpw2');
+            $this->load->view('user/Auth/forgotpw2');
         } else {
 
         }
