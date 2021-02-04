@@ -56,13 +56,13 @@
                                                 <td><?= $row->dp_booking ?></td>
                                                 <!-- <td><img src="<?= base_url('uploads/foto/') . $row->bukti_tf ?>" alt="Belum upload" width="100"></td> -->
                                                 <td>
-                                                    <?php if ($row->status_transaksi == 1) {
+                                                    <?php if ($row->status_transaksi == 0) {
                                                         echo '<div class="badge badge-danger badge-pill">Proses Cek</div>';
+                                                    } elseif ($row->status_transaksi == 1) {
+                                                        echo '<div class="badge badge-warning badge-pill">Belum Bayar</div>';                                                    
                                                     } elseif ($row->status_transaksi == 2) {
-                                                        echo '<div class="badge badge-warning badge-pill">Belum Lunas</div>';                                                    
-                                                    } elseif ($row->status_transaksi == 3) {
                                                         echo '<div class="badge badge-info badge-pill">Belum Lunas</div>';                                                    
-                                                    }  elseif ($row->status_transaksi == 4) {
+                                                    }  elseif ($row->status_transaksi == 3) {
                                                         echo '<div class="badge badge-success badge-pill">Lunas</div>';
                                                     } ?>
                                                 </td>

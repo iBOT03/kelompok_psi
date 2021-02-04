@@ -23,9 +23,7 @@ class Booking extends CI_Controller
     public function konfirmasi($id = null)
     {                
         $this->form_validation->set_rules('status', 'Status', 'required');
-        $this->form_validation->set_rules('pelunasan', 'Pelunasan booking', 'required|trim|max_length[13]|numeric');
-        $this->form_validation->set_rules('catatan', 'Catatan', 'required|trim');
-        $this->form_validation->set_rules('foto', 'Foto', 'trim');
+        $this->form_validation->set_rules('pelunasan', 'Pelunasan booking', 'required|trim|max_length[13]|numeric');        
 
         if ($this->form_validation->run() == false) {
             $data["data"] = $this->booking_Model->detail($id);
@@ -36,19 +34,21 @@ class Booking extends CI_Controller
             $this->load->view('admin/templates/footer');
         } else {
             $update = $this->booking_Model->konfirmasi(array(
-                'id_booking'           => $this->input->post("id_cat"),
+                'id_booking'           => $this->input->post("id_bok"),
                 'id_karyawan'           => $this->session->userdata('id_karyawan'),
                 'id_pembeli'            => $this->input->post("id_pem"),
-                'id_status_transaksi'   => $this->input->post("status"),
+                'status_transaksi'   => $this->input->post("status"),
                 'tgl_booking'          => $this->input->post("tgl_booking"),
                 'tgl_acara'        => $this->input->post("tgl_acara"),
+                'jumlah_meja'           => $this->input->post("jumlah_meja"),
                 'total_booking'        => $this->input->post("total"),
-                'dp_booking'           => $this->input->post("foto"),
-                'pelunasan_booking'    => $this->input->post("pelunasan")
+                'dp_booking'           => $this->input->post("dp_booking"),
+                'pelunasan_booking'    => $this->input->post("pelunasan"),
+                'bukti_tf'           => $this->input->post("foto")
             ), $id);
 
             if ($update) {
-                $ubahfoto = $_FILES['dp_booking']['name'];
+                $ubahfoto = $_FILES['bukti_tf']['name'];
 
                 if ($ubahfoto) {
                     $config['allowed_types'] = 'jpg|png|gif|jpeg|pdf';
@@ -58,14 +58,14 @@ class Booking extends CI_Controller
 
                     $this->upload->initialize($config);
 
-                    if ($this->upload->do_upload('dp_booking')) {
+                    if ($this->upload->do_upload('bukti_tf')) {
                         $booking = $this->db->get_where('booking', ['id_booking' => $id])->row_array();
-                        $fotolama = $booking['dp_booking'];
+                        $fotolama = $booking['bukti_tf'];
                         if ($fotolama) {
                             unlink(FCPATH . '.uploads/foto/' . $fotolama);
                         }
                         $fotobaru = $this->upload->data('file_name');
-                        $this->db->set('dp_booking', $fotobaru);
+                        $this->db->set('bukti_tf', $fotobaru);
                         $this->db->where('id_booking', $id);
                         $this->db->update('booking');
                     } else {

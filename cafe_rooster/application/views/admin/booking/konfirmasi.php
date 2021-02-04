@@ -22,13 +22,13 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <form method="post" action="<?= site_url('admin/Booking/konfirmasi/' . $data[0]->id_booking) ?>" enctype="multipart/form-data">
+        <form method="post" action="<?= site_url('admin/booking/konfirmasi/' . $data[0]->id_booking) ?>" enctype="multipart/form-data">
 
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6">
-                            <input name="id_cat" id="id_cat" type="hidden" class="form-control border-dark small mb-3" aria-describedby="basic-addon2" value="<?php echo $data[0]->id_booking; ?>">
+                            <input name="id_bok" id="id_bok" type="hidden" class="form-control border-dark small mb-3" aria-describedby="basic-addon2" value="<?php echo $data[0]->id_booking; ?>">
                             <input name="id_pem" id="id_pem" type="hidden" class="form-control border-dark small mb-3" aria-describedby="basic-addon2" value="<?php echo $data[0]->id_pembeli; ?>">
 
                             <p>Tanggal booking</p>
@@ -52,14 +52,14 @@
                             <div class="input-group">
                                 <select class="form-control border-dark small mb-3" id="status" name="status">
                                     <option value="<?= $data[0]->status_transaksi ?>"><?php
-                                                                                            if ($data[0]->status_transaksi == 1) {
-                                                                                                echo 'Belum Bayar';
-                                                                                            } elseif ($data[0]->status_transaksi == 2) {
-                                                                                                echo 'Belum Lunas';
-                                                                                            } elseif ($data[0]->status_transaksi == 3) {
-                                                                                                echo 'Lunas';
-                                                                                            }
-                                                                                            ?></option>
+                                                                                        if ($data[0]->status_transaksi == 1) {
+                                                                                            echo 'Belum Bayar';
+                                                                                        } elseif ($data[0]->status_transaksi == 2) {
+                                                                                            echo 'Belum Lunas';
+                                                                                        } elseif ($data[0]->status_transaksi == 3) {
+                                                                                            echo 'Lunas';
+                                                                                        }
+                                                                                        ?></option>
                                     <option value="0">--- Pilih ---</option>
                                     <option value="1">Belum Bayar</option>
                                     <option value="2">Belum Lunas</option>
@@ -69,30 +69,50 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
+                            <p>DP Booking</p>
+                            <div class="input-group">
+                                <input name="dp_booking" id="dp_booking" type="text" class="form-control border-dark small mb-3" aria-describedby="basic-addon2" value="<?php echo $data[0]->dp_booking; ?>" readonly>
+                            </div>
+                            <?= form_error('dp_booking', '<small class="text-danger pl-2">', '</small>'); ?>
+                        </div>
+                        
+                    </div>
+
+
+                    <div class="row">                    
+                        <div class="col-sm-6">
                             <p>Total Tagihan</p>
                             <div class="input-group">
                                 <input name="total" id="total" type="text" class="form-control border-dark small mb-3" placeholder="Masukkan Total Tagihan" aria-describedby="basic-addon2" value="<?php echo $data[0]->total_booking; ?>" readonly>
                             </div>
                             <?= form_error('total', '<small class="text-danger pl-2">', '</small>'); ?>
                         </div>
-                    </div>
-
-
-                    <div class="row">
                         <div class="col-sm-6">
                             <p>Pelunasan Booking</p>
                             <div class="input-group">
-                                <input name="pelunasan" id="pelunasan" type="number" class="form-control border-dark small mb-3" placeholder="Masukkan Nominal Tagihan Kekurangan DP" aria-describedby="basic-addon2"  value="<?php echo $data[0]->pelunasan_booking; ?>">
+                                <input name="pelunasan" id="pelunasan" type="number" class="form-control border-dark small mb-3" placeholder="Masukkan Nominal Tagihan Kekurangan DP" aria-describedby="basic-addon2" value="<?php echo $data[0]->pelunasan_booking; ?>">
                             </div>
                             <?= form_error('pelunasan', '<small class="text-danger pl-2">', '</small>'); ?>
                         </div>
                     </div>
-                    <p>Foto Bukti DP</p>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>Jumlah Meja</p>
+                            <div class="input-group">
+                                <input name="jumlah_meja" id="jumlah_meja" type="text" class="form-control border-dark small mb-3" aria-describedby="basic-addon2" value="<?php echo $data[0]->jumlah_meja; ?>" readonly>
+                            </div>
+                            <?= form_error('jumlah_meja', '<small class="text-danger pl-2">', '</small>'); ?>
+                        </div>
+                        <div class="col-sm-6">
+                        <p>Foto Bukti DP</p>
                     <div>
                         <img width="250px" height="250px" src="<?= base_url('assets/buktiPembayaranBooking/') . $data[0]->bukti_tf; ?>">
                     </div> <br><br>
+                        </div>
+                    </div>
+                    
 
-                    <button type="submit" href="<?php echo site_url('admin/Booking') ?>" class="btn btn-info btn-icon-split">
+                    <button type="submit" href="<?php echo site_url('admin/booking') ?>" class="btn btn-info btn-icon-split">
                         <span class="icon text-white-50">
                             <i class="fas fa-plus"></i>
                         </span>
