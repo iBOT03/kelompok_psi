@@ -6073,8 +6073,9 @@ a.close.disabled {
 }
 
 .bg-primary {
-  /* background-color: #1abc9c !important; */
+  background-color: #1abc9c !important;
   background-image: url("../../FotoCafe/DSC_0142.JPG");
+  
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -10115,6 +10116,20 @@ h3 {
   padding-top: calc(6rem + 74px);
   padding-bottom: 6rem;
 }
+
+/* .masthead {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 35rem;
+  padding: 15rem 0;
+  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.2) 0%, rgba(22, 22, 22, 0.2) 75%, #161616 100%), url("../../FotoCafe/DSC_0142.JPG");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+} */
+
 .masthead .masthead-heading {
   font-size: 2.75rem;
   line-height: 2.75rem;
