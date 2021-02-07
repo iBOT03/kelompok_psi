@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Des 2020 pada 02.01
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.3
+-- Generation Time: Feb 08, 2021 at 12:42 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.4.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bagian_karyawan`
+-- Table structure for table `bagian_karyawan`
 --
 
 CREATE TABLE `bagian_karyawan` (
@@ -34,7 +33,7 @@ CREATE TABLE `bagian_karyawan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `bagian_karyawan`
+-- Dumping data for table `bagian_karyawan`
 --
 
 INSERT INTO `bagian_karyawan` (`id_bagian`, `bagian`) VALUES
@@ -45,7 +44,7 @@ INSERT INTO `bagian_karyawan` (`id_bagian`, `bagian`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `booking`
+-- Table structure for table `booking`
 --
 
 CREATE TABLE `booking` (
@@ -63,20 +62,21 @@ CREATE TABLE `booking` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `booking`
+-- Dumping data for table `booking`
 --
 
 INSERT INTO `booking` (`id_booking`, `id_karyawan`, `id_pembeli`, `status_transaksi`, `tgl_booking`, `tgl_acara`, `jumlah_meja`, `total_booking`, `dp_booking`, `pelunasan_booking`, `bukti_tf`) VALUES
-(1, 0, 0, 0, '2020-11-03', '2020-11-07', 12, 100, '500000', '500000', ''),
-(2, 0, 7, 2, '2020-12-21', '2020-12-30', 2, 100000, '50000', '50000', ''),
+(1, 4, 0, 1, '2020-11-03', '2020-11-07', 12, 100, '500000', '500000', ''),
+(2, 0, 7, 3, '2020-12-21', '2020-12-30', 2, 100000, '50000', '50000', 'dessert.jpg'),
 (3, 0, 7, 1, '2020-12-21', '2020-12-30', 5, 250000, '125000', '125000', ''),
 (4, 0, 7, 3, '2020-12-27', '2020-12-27', 2, 100000, '50000', '50000', ''),
-(5, 0, 7, 4, '2020-12-28', '2020-12-30', 1, 50000, '25000', '25000', '');
+(5, 4, 7, 0, '2020-12-28', '2020-12-30', 1, 50000, '25000', '25000', ''),
+(6, 0, 7, 2, '2021-01-09', '2021-01-14', 3, 150000, '75000', '75000', '');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `catering`
+-- Table structure for table `catering`
 --
 
 CREATE TABLE `catering` (
@@ -93,17 +93,17 @@ CREATE TABLE `catering` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `catering`
+-- Dumping data for table `catering`
 --
 
 INSERT INTO `catering` (`id_catering`, `id_karyawan`, `id_pembeli`, `id_status_transaksi`, `tgl_catering`, `tgl_diperlukan`, `total_catering`, `dp_catering`, `pelunasan_catering`, `catatan`) VALUES
-(6, 0, 7, 2, '2020-12-27', '2020-12-30', 16000, 'preview-167872-RZx9UA8dYL-high_00052.jpg', '', 'Pesanan anda tidak bisa kami terima karena bukti pembayaran anda tidak jelas atau blur'),
-(7, 0, 7, 2, '2020-12-28', '2020-12-30', 18000, '10jari2.PNG', '', '');
+(6, 4, 7, 3, '2020-12-27', '2020-12-30', 16000, '', '16000', 'Pesanan akan kami proses.'),
+(7, 4, 7, 3, '2020-12-28', '2020-12-30', 18000, '', '18000', 'asd');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_booking`
+-- Table structure for table `detail_booking`
 --
 
 CREATE TABLE `detail_booking` (
@@ -114,10 +114,17 @@ CREATE TABLE `detail_booking` (
   `total_harga_menu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `detail_booking`
+--
+
+INSERT INTO `detail_booking` (`id_detail_booking`, `id_booking`, `id_menu`, `jumlah_menu`, `total_harga_menu`) VALUES
+(1, 5, 4, 5, 50000);
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_catering`
+-- Table structure for table `detail_catering`
 --
 
 CREATE TABLE `detail_catering` (
@@ -129,7 +136,7 @@ CREATE TABLE `detail_catering` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `detail_catering`
+-- Dumping data for table `detail_catering`
 --
 
 INSERT INTO `detail_catering` (`id_detail_catering`, `id_catering`, `id_menu`, `jumlah_catering`, `total_harga_catering`) VALUES
@@ -138,7 +145,7 @@ INSERT INTO `detail_catering` (`id_detail_catering`, `id_catering`, `id_menu`, `
 (11, 7, 4, 1, 10000);
 
 --
--- Trigger `detail_catering`
+-- Triggers `detail_catering`
 --
 DELIMITER $$
 CREATE TRIGGER `reset_total_catering` AFTER DELETE ON `detail_catering` FOR EACH ROW BEGIN
@@ -165,7 +172,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_pesan`
+-- Table structure for table `detail_pesan`
 --
 
 CREATE TABLE `detail_pesan` (
@@ -177,16 +184,17 @@ CREATE TABLE `detail_pesan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `detail_pesan`
+-- Dumping data for table `detail_pesan`
 --
 
 INSERT INTO `detail_pesan` (`id_detail_pesan`, `id_pesan`, `id_menu`, `jumlah_pesan`, `total_harga_pesan`) VALUES
 (57, 16, 3, 1, 10000),
 (58, 16, 5, 1, 8000),
-(59, 16, 8, 1, 7000);
+(59, 16, 8, 1, 7000),
+(62, 18, 8, 1, 7000);
 
 --
--- Trigger `detail_pesan`
+-- Triggers `detail_pesan`
 --
 DELIMITER $$
 CREATE TRIGGER `reset_total` AFTER DELETE ON `detail_pesan` FOR EACH ROW BEGIN
@@ -213,7 +221,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `karyawan`
+-- Table structure for table `karyawan`
 --
 
 CREATE TABLE `karyawan` (
@@ -229,18 +237,20 @@ CREATE TABLE `karyawan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `karyawan`
+-- Dumping data for table `karyawan`
 --
 
 INSERT INTO `karyawan` (`id_karyawan`, `id_bagian`, `email`, `password`, `nama_karyawan`, `alamat_karyawan`, `no_telepon_karyawan`, `foto`, `status`) VALUES
-(4, 1, 'hendra01@gmail.com', '$2y$10$sK/eA7laaEOPSkDsXd186O9uDzh/Ps825hjcyLdPg9u8.Snq4DYNq', 'Hendra Prayetno', 'Paiton, Probolinggo.', '08234567891', '', 1),
+(4, 1, 'hendra01@gmail.com', '$2y$10$sK/eA7laaEOPSkDsXd186O9uDzh/Ps825hjcyLdPg9u8.Snq4DYNq', 'Hendra Prayetno', 'Paiton, Probolinggo.', '08234567891', 'Om_Yoyok.png', 1),
 (5, 2, 'rinto02@gmail.com', '$2y$10$sK/eA7laaEOPSkDsXd186O9uDzh/Ps825hjcyLdPg9u8.Snq4DYNq', 'Rinto', 'Sukodadi, Probolinggo.', '123123123123', '', 1),
-(6, 3, 'amalia03@gmail.com', '$2y$10$sK/eA7laaEOPSkDsXd186O9uDzh/Ps825hjcyLdPg9u8.Snq4DYNq', 'Amalia', 'Sumberjo, Probolinggo.', '098098098098', '', 1);
+(6, 3, 'amalia03@gmail.com', '$2y$10$xrsXMMcyINd63VZVdJDioeJyjgtuDud/MjpRJaAgnCYY.glreWCy2', 'Amalia', 'Sumberjo, Probolinggo.', '098098098098', 'snack2.jpg', 1),
+(8, 1, 'admin@gmail.com', '$2y$10$AtZDVvXRh/svZmBCPzvcwevzwcj0647XoylqHFWd8FlxKml3OqjM6', 'Admin 1', 'Sumenep', '088995422213', '1612740749.jpg', 1),
+(9, 3, 'kasir@gmail.com', '$2y$10$0w52Fz0S/aHope1ql/uOzOyfRG8.FlY0/ss2HJ5m9XD4Twl2euqva', 'Kasir 1', 'Sumenep', '087362728192', '1612740907.png', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori_menu`
+-- Table structure for table `kategori_menu`
 --
 
 CREATE TABLE `kategori_menu` (
@@ -251,7 +261,7 @@ CREATE TABLE `kategori_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kategori_menu`
+-- Dumping data for table `kategori_menu`
 --
 
 INSERT INTO `kategori_menu` (`id_kategori`, `nama_kategori`, `gambar_kategori`, `deskripsi_kategori`) VALUES
@@ -266,7 +276,7 @@ INSERT INTO `kategori_menu` (`id_kategori`, `nama_kategori`, `gambar_kategori`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `menu`
+-- Table structure for table `menu`
 --
 
 CREATE TABLE `menu` (
@@ -279,7 +289,7 @@ CREATE TABLE `menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `menu`
+-- Dumping data for table `menu`
 --
 
 INSERT INTO `menu` (`id_menu`, `id_kategori`, `nama_menu`, `harga_menu`, `gambar_menu`, `deskripsi_menu`) VALUES
@@ -355,7 +365,7 @@ INSERT INTO `menu` (`id_menu`, `id_kategori`, `nama_menu`, `harga_menu`, `gambar
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pembeli`
+-- Table structure for table `pembeli`
 --
 
 CREATE TABLE `pembeli` (
@@ -370,18 +380,19 @@ CREATE TABLE `pembeli` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pembeli`
+-- Dumping data for table `pembeli`
 --
 
 INSERT INTO `pembeli` (`id_pembeli`, `email`, `password`, `nama_pembeli`, `alamat_pembeli`, `no_telepon_pembeli`, `foto`, `status`) VALUES
 (1, 'user', 'user12', 'deki', 'binor, paiton, probolinggo', '082312408105', '', 1),
 (7, 'idristifa@gmail.com', '$2y$10$a9yjxnSZDXTG25/vc025leqVV1uc28xmAHB/COLihRktXzSGjTCH.', 'hendry', 'Probolinggo', '08537538347', 'default.jpg', 1),
-(8, 'dinda@gmail.com', '$2y$10$GmdfMcPOMsTwL.KOe38NFui09j64kmJeYEclqiIYi.u8cOqhDkbD6', 'Dinda', 'Probolinggo', '0853753838989', 'default.jpg', 1);
+(8, 'dinda@gmail.com', '$2y$10$GmdfMcPOMsTwL.KOe38NFui09j64kmJeYEclqiIYi.u8cOqhDkbD6', 'Dinda', 'Probolinggo', '0853753838989', 'default.jpg', 1),
+(9, 'user@gmail.com', '$2y$10$8T5.kZCakB/F2987l.N0xOOjr9A6/ACQ2/4Q0KqV7fEXqc/Qb0laq', 'User 1', 'Sumenep', '085257423236', 'default.jpg', 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pesan`
+-- Table structure for table `pesan`
 --
 
 CREATE TABLE `pesan` (
@@ -397,16 +408,17 @@ CREATE TABLE `pesan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pesan`
+-- Dumping data for table `pesan`
 --
 
 INSERT INTO `pesan` (`id_pesan`, `id_karyawan`, `id_status_transaksi`, `tgl_pesan`, `nama_pemesan`, `no_meja`, `total_pesanan`, `total_bayar`, `kembalian`) VALUES
-(16, 4, 2, '2020-12-27', 'Levi', '2', 25000, 40000, 15000);
+(16, 4, 2, '2020-12-27', 'Levi', '2', 25000, 40000, 15000),
+(18, 4, 2, '2021-01-08', 'aku', '2', 7000, 10000, 3000);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `status_transaksi`
+-- Table structure for table `status_transaksi`
 --
 
 CREATE TABLE `status_transaksi` (
@@ -415,7 +427,7 @@ CREATE TABLE `status_transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `status_transaksi`
+-- Dumping data for table `status_transaksi`
 --
 
 INSERT INTO `status_transaksi` (`id_status_transaksi`, `status_transaksi`) VALUES
@@ -428,149 +440,149 @@ INSERT INTO `status_transaksi` (`id_status_transaksi`, `status_transaksi`) VALUE
 --
 
 --
--- Indeks untuk tabel `bagian_karyawan`
+-- Indexes for table `bagian_karyawan`
 --
 ALTER TABLE `bagian_karyawan`
   ADD PRIMARY KEY (`id_bagian`);
 
 --
--- Indeks untuk tabel `booking`
+-- Indexes for table `booking`
 --
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`id_booking`);
 
 --
--- Indeks untuk tabel `catering`
+-- Indexes for table `catering`
 --
 ALTER TABLE `catering`
   ADD PRIMARY KEY (`id_catering`);
 
 --
--- Indeks untuk tabel `detail_booking`
+-- Indexes for table `detail_booking`
 --
 ALTER TABLE `detail_booking`
   ADD PRIMARY KEY (`id_detail_booking`);
 
 --
--- Indeks untuk tabel `detail_catering`
+-- Indexes for table `detail_catering`
 --
 ALTER TABLE `detail_catering`
   ADD PRIMARY KEY (`id_detail_catering`);
 
 --
--- Indeks untuk tabel `detail_pesan`
+-- Indexes for table `detail_pesan`
 --
 ALTER TABLE `detail_pesan`
   ADD PRIMARY KEY (`id_detail_pesan`);
 
 --
--- Indeks untuk tabel `karyawan`
+-- Indexes for table `karyawan`
 --
 ALTER TABLE `karyawan`
   ADD PRIMARY KEY (`id_karyawan`);
 
 --
--- Indeks untuk tabel `kategori_menu`
+-- Indexes for table `kategori_menu`
 --
 ALTER TABLE `kategori_menu`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `menu`
+-- Indexes for table `menu`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id_menu`);
 
 --
--- Indeks untuk tabel `pembeli`
+-- Indexes for table `pembeli`
 --
 ALTER TABLE `pembeli`
   ADD PRIMARY KEY (`id_pembeli`);
 
 --
--- Indeks untuk tabel `pesan`
+-- Indexes for table `pesan`
 --
 ALTER TABLE `pesan`
   ADD PRIMARY KEY (`id_pesan`);
 
 --
--- Indeks untuk tabel `status_transaksi`
+-- Indexes for table `status_transaksi`
 --
 ALTER TABLE `status_transaksi`
   ADD PRIMARY KEY (`id_status_transaksi`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `bagian_karyawan`
+-- AUTO_INCREMENT for table `bagian_karyawan`
 --
 ALTER TABLE `bagian_karyawan`
   MODIFY `id_bagian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `booking`
+-- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id_booking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_booking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `catering`
+-- AUTO_INCREMENT for table `catering`
 --
 ALTER TABLE `catering`
   MODIFY `id_catering` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `detail_booking`
+-- AUTO_INCREMENT for table `detail_booking`
 --
 ALTER TABLE `detail_booking`
-  MODIFY `id_detail_booking` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detail_booking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `detail_catering`
+-- AUTO_INCREMENT for table `detail_catering`
 --
 ALTER TABLE `detail_catering`
   MODIFY `id_detail_catering` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `detail_pesan`
+-- AUTO_INCREMENT for table `detail_pesan`
 --
 ALTER TABLE `detail_pesan`
-  MODIFY `id_detail_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id_detail_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
--- AUTO_INCREMENT untuk tabel `karyawan`
+-- AUTO_INCREMENT for table `karyawan`
 --
 ALTER TABLE `karyawan`
-  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `kategori_menu`
+-- AUTO_INCREMENT for table `kategori_menu`
 --
 ALTER TABLE `kategori_menu`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `menu`
+-- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
   MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
--- AUTO_INCREMENT untuk tabel `pembeli`
+-- AUTO_INCREMENT for table `pembeli`
 --
 ALTER TABLE `pembeli`
-  MODIFY `id_pembeli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_pembeli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `pesan`
+-- AUTO_INCREMENT for table `pesan`
 --
 ALTER TABLE `pesan`
-  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT untuk tabel `status_transaksi`
+-- AUTO_INCREMENT for table `status_transaksi`
 --
 ALTER TABLE `status_transaksi`
   MODIFY `id_status_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
