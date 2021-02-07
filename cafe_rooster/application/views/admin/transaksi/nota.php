@@ -122,7 +122,7 @@
                                             <tfoot>
                                                 <tr>
                                                     <th colspan="2">Total</th>
-                                                    <th colspan="2" class="text-right">Rp.<?php echo number_format($total); ?></th>
+                                                    <th colspan="2" class="text-right" style="color: red;">Rp.<?php echo number_format($total); ?></th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -130,9 +130,9 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="text-right">Bayar :</td>
-                                                    <td>Rp.<?php echo number_format($bayar); ?></td>
+                                                    <th style="color: green;">Rp.<?php echo number_format($bayar); ?></th>
                                                     <td class="text-right">Kembalian:</td>
-                                                    <td>Rp.<?php echo number_format($kembalian); ?></td>
+                                                    <th class="text-right">Rp.<?php echo number_format($kembalian); ?></th>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -153,7 +153,7 @@
                             </div>
                         </div>
                     </div>
-                </div
+                </div>
             </div>
             <!-- /.col -->
           </div>
