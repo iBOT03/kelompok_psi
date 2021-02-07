@@ -89,10 +89,10 @@ class Auth extends CI_Controller
                     'email' => $user['email']
                 ];
                 $this->session->set_userdata($data);
-                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
-					Hi, '.$user['nama_pembeli'].'. Silahkan Ganti Passwordmu!
-		  			</div>');
-                redirect('Auth/ForgotPassword');
+                // $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+				// 	Hi, '.$user['nama_pembeli'].'. Silahkan Ganti Passwordmu!
+		  		// 	</div>');
+                redirect('Auth/ForgotPassNext');
             } else {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
             Email Tidak Terdaftar <b> Okedah bos</b>
