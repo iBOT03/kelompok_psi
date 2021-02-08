@@ -6,13 +6,13 @@ class Booking extends CI_Controller
     {
         parent::__construct();
         belumlogin();
-        $this->load->model('admin/booking_Model');
+        $this->load->model('admin/Booking_Model');
     }
 
     public function index()
     {
         $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
-        $data['booking'] = $this->booking_Model->getBooking();
+        $data['booking'] = $this->Booking_Model->getBooking();
 
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar');
@@ -26,14 +26,14 @@ class Booking extends CI_Controller
         $this->form_validation->set_rules('pelunasan', 'Pelunasan booking', 'required|trim|max_length[13]|numeric');        
 
         if ($this->form_validation->run() == false) {
-            $data["data"] = $this->booking_Model->detail($id);
+            $data["data"] = $this->Booking_Model->detail($id);
             $data['admin'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('admin/templates/header', $data);
             $this->load->view('admin/templates/sidebar');
             $this->load->view("admin/booking/konfirmasi", $data);
             $this->load->view('admin/templates/footer');
         } else {
-            $update = $this->booking_Model->konfirmasi(array(
+            $update = $this->Booking_Model->konfirmasi(array(
                 'id_booking'           => $this->input->post("id_bok"),
                 'id_karyawan'           => $this->session->userdata('id_karyawan'),
                 'id_pembeli'            => $this->input->post("id_pem"),

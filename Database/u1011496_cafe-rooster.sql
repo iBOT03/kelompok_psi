@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2021 at 12:42 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.13
+-- Generation Time: Feb 08, 2021 at 11:25 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -244,8 +244,8 @@ INSERT INTO `karyawan` (`id_karyawan`, `id_bagian`, `email`, `password`, `nama_k
 (4, 1, 'hendra01@gmail.com', '$2y$10$sK/eA7laaEOPSkDsXd186O9uDzh/Ps825hjcyLdPg9u8.Snq4DYNq', 'Hendra Prayetno', 'Paiton, Probolinggo.', '08234567891', 'Om_Yoyok.png', 1),
 (5, 2, 'rinto02@gmail.com', '$2y$10$sK/eA7laaEOPSkDsXd186O9uDzh/Ps825hjcyLdPg9u8.Snq4DYNq', 'Rinto', 'Sukodadi, Probolinggo.', '123123123123', '', 1),
 (6, 3, 'amalia03@gmail.com', '$2y$10$xrsXMMcyINd63VZVdJDioeJyjgtuDud/MjpRJaAgnCYY.glreWCy2', 'Amalia', 'Sumberjo, Probolinggo.', '098098098098', 'snack2.jpg', 1),
-(8, 1, 'admin@gmail.com', '$2y$10$AtZDVvXRh/svZmBCPzvcwevzwcj0647XoylqHFWd8FlxKml3OqjM6', 'Admin 1', 'Sumenep', '088995422213', '1612740749.jpg', 1),
-(9, 3, 'kasir@gmail.com', '$2y$10$0w52Fz0S/aHope1ql/uOzOyfRG8.FlY0/ss2HJ5m9XD4Twl2euqva', 'Kasir 1', 'Sumenep', '087362728192', '1612740907.png', 1);
+(8, 1, 'admin@gmail.com', '$2y$10$jKzbQOTg9/.wtZPI0B.IvO1lR95NZpsdhhFmQDyrQN6GhtGBuxb/S', 'Admin 1', 'Sumenep', '088995422213', '1612740749.jpg', 1),
+(9, 3, 'kasir@gmail.com', '$2y$10$3UdMvzC1C/IwXYHHadirpeH/R.I/Dfpj3tVXMA8YIGKZ2YKOIS2N.', 'Kasir 1', 'Sumenep', '087362728192', '1612740907.png', 1);
 
 -- --------------------------------------------------------
 
@@ -384,10 +384,9 @@ CREATE TABLE `pembeli` (
 --
 
 INSERT INTO `pembeli` (`id_pembeli`, `email`, `password`, `nama_pembeli`, `alamat_pembeli`, `no_telepon_pembeli`, `foto`, `status`) VALUES
-(1, 'user', 'user12', 'deki', 'binor, paiton, probolinggo', '082312408105', '', 1),
 (7, 'idristifa@gmail.com', '$2y$10$a9yjxnSZDXTG25/vc025leqVV1uc28xmAHB/COLihRktXzSGjTCH.', 'hendry', 'Probolinggo', '08537538347', 'default.jpg', 1),
 (8, 'dinda@gmail.com', '$2y$10$GmdfMcPOMsTwL.KOe38NFui09j64kmJeYEclqiIYi.u8cOqhDkbD6', 'Dinda', 'Probolinggo', '0853753838989', 'default.jpg', 1),
-(9, 'user@gmail.com', '$2y$10$8T5.kZCakB/F2987l.N0xOOjr9A6/ACQ2/4Q0KqV7fEXqc/Qb0laq', 'User 1', 'Sumenep', '085257423236', 'default.jpg', 0);
+(9, 'user@gmail.com', '$2y$10$i5Mqv12wvwgYKU/P0zXsXupjnnV1ySy6imoQcjINTcq6rCdBSLTGe', 'User 1', 'Sumenep', '085257423236', 'default.jpg', 0);
 
 -- --------------------------------------------------------
 

@@ -22,7 +22,7 @@ class Auth extends CI_Controller
             $this->session->set_flashdata('pesanLogin', '<div class="alert alert-danger" role="alert">Login gagal, Silahkan cek kembali email dan password yang anda masukan!</div>');
 
             $this->load->view('user/templates/header.php', $data);
-            $this->load->view('user/home/home.php', $data);
+            $this->load->view('user/Home/home.php', $data);
             $this->load->view('user/templates/footer.php');
         } else {
             $this->_login();

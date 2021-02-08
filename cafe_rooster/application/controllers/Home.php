@@ -17,7 +17,7 @@ class Home extends CI_Controller
 
 
         $this->load->view('user/templates/header', $data);
-        $this->load->view('user/home/home', $data);
+        $this->load->view('user/Home/home', $data);
         $this->load->view('user/templates/footer');
     }
 
@@ -27,7 +27,7 @@ class Home extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
 
             $this->load->view('user/templates/header');
-            $this->load->view('user/home/home');
+            $this->load->view('user/Home/home');
             $this->load->view('user/templates/footer');
         } else {
             $this->load->model('user/Booking_model');
